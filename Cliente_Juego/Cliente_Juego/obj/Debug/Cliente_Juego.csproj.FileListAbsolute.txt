@@ -1,0 +1,25 @@
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.SuggestedBindingRedirects.cache
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Identificación.resources
+C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.MainDish.resources
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Identificación.resources
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.MainDish.resources
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
+C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb

@@ -30,9 +30,9 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9000);
+	serv_adr.sin_port = htons(9001);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
-		printf ("Error al bind");
+		printf ("Error al bind\n");
 	
 	if (listen(sock_listen, 3) < 0)
 		printf("Error en el Listen");
@@ -103,23 +103,37 @@ int main(int argc, char *argv[])
 				terminar=1;
 			else if(codigo == 1)// consulta 1: Registrarse
 			{	
-				char registro[100];
+				char registro[300];
 				char nombre[100];
 				char contrasena[100];
-				int i = 5;
+				int i = 8;
 				
 				p = strtok(NULL, "/");
 				strcpy(nombre, p);
 				p = strtok(NULL, "/");
 				strcpy(contrasena, p);
 				
-				strcpy (registro,"INSERT INTO Jugador VALUES (");
-				strcat (registro, i);
-				strcat(registro, ",");
+				printf("nombre: %s \n", nombre);
+				printf("contraseña: %s\n", contrasena);
+				
+				strcpy (registro,"INSERT INTO Jugador VALUES ("); //INSERT INTO Jugador VALUES (5, nombre, contraseña)
+				printf("%s\n", registro);
+				strcat (registro,"8" ); 
+				printf("%s\n", registro);
+				strcat(registro, ",'");
+				printf("%s\n", registro);
 				strcat (registro, nombre);
-				strcat(registro, ",");
+				printf("%s\n", registro);
+				strcat(registro, "','");
+				printf("%s\n", registro);
 				strcat (registro, contrasena);
-				strcat(registro, ")");
+				printf("%s\n", registro);
+				strcat(registro, "')");
+				printf("%s\n", registro);
+				//sprintf(registro,("INSERT INTO Jugador VALUES (5, 'Hola' , 'Pol' )"));
+				
+				//strcpy(registro, (("INSERT INTO Jugador VALUES(%d, '%s' , '%s')", i , nombre, contrasena)));
+				printf("%s\n", registro);
 				strcpy (respuesta,"Registrado");
 				i = i + 1;
 				

@@ -30,14 +30,12 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9001);
+	serv_adr.sin_port = htons(9102);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind\n");
 	
 	if (listen(sock_listen, 3) < 0)
 		printf("Error en el Listen");
-	
-	int i;
 	
 	
 	//iniciamos conexion con la base de datos
@@ -61,6 +59,8 @@ int main(int argc, char *argv[])
 				mysql_errno(conn), mysql_error(conn));
 		exit (1);
 	}
+	
+	int numjug;
 	
 	// Bucle infinito
 	for (;;){
@@ -106,7 +106,6 @@ int main(int argc, char *argv[])
 				char registro[300];
 				char nombre[100];
 				char contrasena[100];
-				int i = 8;
 				
 				p = strtok(NULL, "/");
 				strcpy(nombre, p);
@@ -116,9 +115,22 @@ int main(int argc, char *argv[])
 				printf("nombre: %s \n", nombre);
 				printf("contraseña: %s\n", contrasena);
 				
+				char cont[100];
+				strcpy(cont,"SELECT COUNT(*) FROM Jugador");
+				err=mysql_query (conn, cont);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					exit (1);
+				}
+				
+				char var[20];
+				sprintf(var,"%s",mysql_store_result(conn));
+				numjug = atoi(var) + 3;
+				
 				strcpy (registro,"INSERT INTO Jugador VALUES ("); //INSERT INTO Jugador VALUES (5, nombre, contraseña)
 				printf("%s\n", registro);
-				strcat (registro,"8" ); 
+				sprintf (registro, "%s%d",registro,numjug ); 
 				printf("%s\n", registro);
 				strcat(registro, ",'");
 				printf("%s\n", registro);
@@ -135,7 +147,6 @@ int main(int argc, char *argv[])
 				//strcpy(registro, (("INSERT INTO Jugador VALUES(%d, '%s' , '%s')", i , nombre, contrasena)));
 				printf("%s\n", registro);
 				strcpy (respuesta,"Registrado");
-				i = i + 1;
 				
 				err=mysql_query (conn, registro);
 				if (err!=0) {
@@ -145,7 +156,7 @@ int main(int argc, char *argv[])
 				}
 				
 				mysql_close (conn);
-				exit(0); 
+				//exit(0); 
 			}
 			else if(codigo ==2)// consulta 2:
 			{	
@@ -184,7 +195,7 @@ int main(int argc, char *argv[])
 				
 					
 				mysql_close (conn);
-				exit(0); 
+				//exit(0); 
 			}
 			else if(codigo ==3)// consulta 3: icnicio sesion, supongo que solo un mensaje que ponga OK
 			{	
@@ -223,7 +234,7 @@ int main(int argc, char *argv[])
 					}
 					
 					mysql_close (conn);
-					exit(0);
+					//exit(0);
 			}
 			
 			if (codigo !=0)
@@ -235,6 +246,7 @@ int main(int argc, char *argv[])
 			}
 		}
 		// Se acabo el servicio para este cliente
-		close(sock_conn); 
+		close(sock_conn);
+		//exit(0);
 	}
 }

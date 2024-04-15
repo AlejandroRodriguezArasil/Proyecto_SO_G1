@@ -47,12 +47,10 @@ namespace Cliente_Juego
                 server.Send(msg);
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
-                
-                byte[] msg3 = new byte[80];
-                server.Receive(msg3);
-                mensaje = Encoding.ASCII.GetString(msg3).Split('\0')[0];
+
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
                 MessageBox.Show(mensaje);
-                if (mensaje == "Registrado") 
+                if (mensaje != "")
                 {
                     MessageBox.Show("Te has registrado correctamente");
                 }

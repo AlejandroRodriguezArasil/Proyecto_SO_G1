@@ -23,3 +23,15 @@ C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj
 C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
 C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
 C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Identificación.resources
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.MainDish.resources
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
+C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb

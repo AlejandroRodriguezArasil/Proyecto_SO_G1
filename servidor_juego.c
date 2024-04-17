@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9102);
+	serv_adr.sin_port = htons(9010);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind\n");
 	
@@ -115,38 +115,26 @@ int main(int argc, char *argv[])
 				printf("nombre: %s \n", nombre);
 				printf("contraseña: %s\n", contrasena);
 				
-				char cont[100];
-				strcpy(cont,"SELECT COUNT(*) FROM Jugador");
-				err=mysql_query (conn, cont);
-				if (err!=0) {
-					printf ("Error al consultar datos de la base %u %s\n",
-							mysql_errno(conn), mysql_error(conn));
-					exit (1);
-				}
+				char cont[100]; //debería ser int
 				
-				char var[20];
-				sprintf(var,"%s",mysql_store_result(conn));
-				numjug = atoi(var) + 3;
+				
+				numjug = 5;
 				
 				strcpy (registro,"INSERT INTO Jugador VALUES ("); //INSERT INTO Jugador VALUES (5, nombre, contraseña)
-				printf("%s\n", registro);
-				sprintf (registro, "%s%d",registro,numjug ); 
-				printf("%s\n", registro);
+				sprintf (registro, "%s%d",registro,&numjug ); 
 				strcat(registro, ",'");
-				printf("%s\n", registro);
 				strcat (registro, nombre);
-				printf("%s\n", registro);
 				strcat(registro, "','");
-				printf("%s\n", registro);
 				strcat (registro, contrasena);
-				printf("%s\n", registro);
-				strcat(registro, "')");
-				printf("%s\n", registro);
-				//sprintf(registro,("INSERT INTO Jugador VALUES (5, 'Hola' , 'Pol' )"));
+				strcat(registro, "');");
 				
-				//strcpy(registro, (("INSERT INTO Jugador VALUES(%d, '%s' , '%s')", i , nombre, contrasena)));
 				printf("%s\n", registro);
 				strcpy (respuesta,"Registrado");
+				
+				strcpy(cont,"SELECT * FROM Jugador;");
+				//printf(strcpy(cont,"SELECT * FROM Jugador"));
+				printf("%s\n", cont);
+				
 				
 				err=mysql_query (conn, registro);
 				if (err!=0) {
@@ -154,6 +142,15 @@ int main(int argc, char *argv[])
 							mysql_errno(conn), mysql_error(conn));
 					exit (1);
 				}
+				
+				err=mysql_query (conn, cont);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					exit (1);
+				}
+				char var[20];
+				sprintf(var,"%s",mysql_store_result(conn));
 				
 				mysql_close (conn);
 				//exit(0); 
@@ -180,7 +177,7 @@ int main(int argc, char *argv[])
 				
 				tablaordenada = mysql_store_result (conn);
 				fila1 = mysql_fetch_row (tablaordenada); //al leer la 1a fila cogemos el jugador con mï¿¡s puntos
-				fila2 = mysql_fetch_row (tablaordenada); //volvemos a leer para coger la informaciï¿³n del 2o jugador
+				fila2 = mysql_fetch_row (tablaordenada); //volvemos a leer para coger la informacion del 2o jugador
 				strcpy(primero, fila1);
 				strcpy(segundo, fila2);
 				

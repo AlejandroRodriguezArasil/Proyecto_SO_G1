@@ -40,7 +40,7 @@ namespace Cliente_Juego
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9102);
+            IPEndPoint ipep = new IPEndPoint(direc, 9010);
 
 
             //Creamos el socket 
@@ -73,6 +73,12 @@ namespace Cliente_Juego
         private void MainDish_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void consultasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Consultas consulta = new Consultas(server);
+            consulta.Show();
         }
     }
 }

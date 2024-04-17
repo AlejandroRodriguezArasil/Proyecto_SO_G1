@@ -45,5 +45,14 @@ namespace Cliente_Juego
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
             MessageBox.Show(mensaje);
         }
+
+        private void Show_Hide_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Show_Hide.Checked)
+            { contraseñaBox.UseSystemPasswordChar = false; }
+
+            else
+            { contraseñaBox.UseSystemPasswordChar = true; }
+        }
     }
 }

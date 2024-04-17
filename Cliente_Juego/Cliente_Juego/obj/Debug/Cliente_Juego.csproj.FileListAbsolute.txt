@@ -47,3 +47,4 @@ C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Ju
 C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
 C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
 C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
+C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Consultas.resources

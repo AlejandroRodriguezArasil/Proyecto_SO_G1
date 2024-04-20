@@ -31,6 +31,8 @@
             this.Registrarse = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.id_p = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.persona = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Registrarse
@@ -60,11 +62,31 @@
             this.id_p.Size = new System.Drawing.Size(162, 22);
             this.id_p.TabIndex = 7;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(62, 181);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(219, 28);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Consulta la contraseña";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // persona
+            // 
+            this.persona.Location = new System.Drawing.Point(348, 187);
+            this.persona.Name = "persona";
+            this.persona.Size = new System.Drawing.Size(162, 22);
+            this.persona.TabIndex = 9;
+            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.persona);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.id_p);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Registrarse);
@@ -80,5 +102,7 @@
         private System.Windows.Forms.Button Registrarse;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox id_p;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox persona;
     }
 }

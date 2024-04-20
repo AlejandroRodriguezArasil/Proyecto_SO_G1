@@ -36,7 +36,7 @@ namespace Cliente_Juego
         {
             string username = usuarioBox.Text;
             string contraseña = contraseñaBox.Text;
-            string mensaje = "3/" + username + "/" + contraseña;
+            string mensaje = "3/Inicio de Sesión/" + username + "/" + contraseña;
 
             byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);

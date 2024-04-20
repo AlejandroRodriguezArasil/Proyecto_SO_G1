@@ -40,7 +40,7 @@ namespace Cliente_Juego
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9010);
+            IPEndPoint ipep = new IPEndPoint(direc, 9280);
 
 
             //Creamos el socket 
@@ -64,6 +64,8 @@ namespace Cliente_Juego
             byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
 
+            MessageBox.Show("Desconectado del servidor.");
+
             conexion = false;
             this.BackColor = Color.Gray;
             server.Shutdown(SocketShutdown.Both);
@@ -77,8 +79,16 @@ namespace Cliente_Juego
 
         private void consultasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Consultas consulta = new Consultas(server);
-            consulta.Show();
+            if (conexion)
+            {
+                Consultas consulta = new Consultas(server);
+                consulta.Show();
+            }
+            else
+            {
+                MessageBox.Show("Primero debes conectarte al servidor");
+            }
+            
         }
     }
 }

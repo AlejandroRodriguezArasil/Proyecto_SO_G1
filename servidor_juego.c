@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9010);
+	serv_adr.sin_port = htons(9280);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind\n");
 	
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 	//Creamos una conexion al servidor MYSQL 
 	conn = mysql_init(NULL);
 	if (conn==NULL) {
-		printf ("Error al crear la conexiï¿³n: %u %s\n", 
+		printf ("Error al crear la conexion: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
 		exit (1);
 	}
@@ -93,17 +93,16 @@ int main(int argc, char *argv[])
 			if (codigo !=0)
 			{
 				p = strtok( NULL, "/");
-				
 				strcpy (consulta, p);
+				
 				// Ya tenemos el nombre
 				printf ("Codigo: %d, Consulta: %s\n", codigo, consulta);
 			}
-			
 			if (codigo ==0) //petici?n de desconexi?n
 				terminar=1;
 			else if(codigo == 1)// consulta 1: Registrarse
 			{	
-				char registro[300];
+				
 				char nombre[100];
 				char contrasena[100];
 				
@@ -115,50 +114,61 @@ int main(int argc, char *argv[])
 				printf("nombre: %s \n", nombre);
 				printf("contraseña: %s\n", contrasena);
 				
-				char cont[100]; //debería ser int
+				char Existe[300];
+				strcpy (Existe, "SELECT username FROM Jugador WHERE username = '");
+				strcat(Existe,nombre);
+				strcat(Existe,"';");
 				
-				
-				numjug = 5;
-				
-				strcpy (registro,"INSERT INTO Jugador VALUES ("); //INSERT INTO Jugador VALUES (5, nombre, contraseña)
-				sprintf (registro, "%s%d",registro,&numjug ); 
-				strcat(registro, ",'");
-				strcat (registro, nombre);
-				strcat(registro, "','");
-				strcat (registro, contrasena);
-				strcat(registro, "');");
-				
-				printf("%s\n", registro);
-				strcpy (respuesta,"Registrado");
-				
-				strcpy(cont,"SELECT * FROM Jugador;");
-				//printf(strcpy(cont,"SELECT * FROM Jugador"));
-				printf("%s\n", cont);
-				
-				
-				err=mysql_query (conn, registro);
+				err=mysql_query (conn, Existe); //err = 1 si existeix ja alguna PRIMARY KEY dins la taula Jugadores
 				if (err!=0) {
 					printf ("Error al consultar datos de la base %u %s\n",
 							mysql_errno(conn), mysql_error(conn));
-					exit (1);
+					//exit (1);
 				}
 				
-				err=mysql_query (conn, cont);
-				if (err!=0) {
-					printf ("Error al consultar datos de la base %u %s\n",
-							mysql_errno(conn), mysql_error(conn));
-					exit (1);
-				}
-				char var[20];
-				sprintf(var,"%s",mysql_store_result(conn));
+				resultado = mysql_store_result(conn);
+				row = mysql_fetch_row(resultado);
 				
-				mysql_close (conn);
-				//exit(0); 
+				if (row != NULL)
+				{
+					printf("Jugador ya existe.");
+					strcpy(respuesta,"Nombre de usuario existente.");
+					printf("0: %d\n",row[0]);
+				}
+				else 
+				{
+					int numjug;
+					p = strtok(NULL, "/");
+					numjug = atoi(p);
+					
+					char registro[300];
+				
+					strcpy (registro,"INSERT INTO Jugador VALUES ("); //INSERT INTO Jugador VALUES (5, nombre, contraseña)
+					sprintf (registro, "%s%d",registro,numjug ); 
+					strcat(registro, ",'");
+					strcat (registro, nombre);
+					strcat(registro, "','");
+					strcat (registro, contrasena);
+					strcat(registro, "');");
+				
+					printf("%s\n", registro);
+					strcpy (respuesta,"Registrado correctamente");
+				
+				
+					err=mysql_query (conn, registro); //err = 1 si existeix ja alguna PRIMARY KEY dins la taula Jugadores
+					if (err!=0) {
+						printf ("Error al consultar datos de la base %u %s\n",
+								mysql_errno(conn), mysql_error(conn));
+						//exit (1);
+					}
+				
+					//mysql_close (conn);
+					//exit(0);
+				}
 			}
 			else if(codigo ==2)// consulta 2:
-			{	
-								
-				char pregunta[100];
+			{				
+				char pregunta[300];
 				strcpy (pregunta,"SELECT * FROM Puntos ORDER BY puntos DESC");
 				
 				
@@ -166,10 +176,10 @@ int main(int argc, char *argv[])
 				if (err!=0) {
 					printf ("Error al consultar datos de la base %u %s\n",
 							mysql_errno(conn), mysql_error(conn));
-					exit (1);
+					//exit (1);
 				}
 				
-				MYSQL_RES* tablaordenada;
+				MYSQL_RES *tablaordenada;
 				char primero[100];
 				char segundo[100];
 				MYSQL_ROW fila1;
@@ -178,43 +188,77 @@ int main(int argc, char *argv[])
 				tablaordenada = mysql_store_result (conn);
 				fila1 = mysql_fetch_row (tablaordenada); //al leer la 1a fila cogemos el jugador con mï¿¡s puntos
 				fila2 = mysql_fetch_row (tablaordenada); //volvemos a leer para coger la informacion del 2o jugador
-				strcpy(primero, fila1);
-				strcpy(segundo, fila2);
+				strcpy(primero, fila1[1]);
+				strcpy(segundo, fila2[1]);
 				
 				char pregunta2[100];
-				strcpy (pregunta2,"SELECT Jugador.nombre FROM Jugador WHERE Jugador.id = '");
-				strcat (pregunta, segundo[0]);
+				sprintf (pregunta2,"SELECT username FROM Jugador WHERE id_jugador = '%s'",segundo);
+				
+				err=mysql_query (conn, pregunta2);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					exit (1);
+				}
 				
 				if (mysql_store_result (conn) == NULL)
 					printf ("No se han obtenido datos en la consulta\n");
 				else
+					printf(mysql_store_result(conn));
 					strcpy (respuesta, mysql_store_result (conn));
 				
 					
-				mysql_close (conn);
+				//mysql_close (conn);
 				//exit(0); 
 			}
-			else if(codigo ==3)// consulta 3: icnicio sesion, supongo que solo un mensaje que ponga OK
+			else if(codigo ==3)// consulta 3: icnicio sesion, consulta la base de datos para saber si existe esa persona
 			{	
-				p = strtok( NULL, "/");
+				char sesion[300];
+				char nombre[100];
+				char contrasena[100];
+				
+				p = strtok(NULL, "/");
+				strcpy(nombre, p);
+				p = strtok(NULL, "/");
+				strcpy(contrasena, p);
+				
+				printf("nombre: %s \n", nombre);
+				printf("contraseña: %s\n", contrasena);
+				
+				strcpy(sesion,"SELECT id_jugador FROM Jugador WHERE username = '");
+				strcat(sesion,nombre);
+				strcat(sesion,"' AND password = '");
+				strcat(sesion,contrasena);
+				strcat(sesion,"';");
+				
+				err=mysql_query (conn, sesion); //err = 1 si existeix ja alguna PRIMARY KEY dins la taula Jugadores
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					//exit (1);
+				}
+				
+				resultado = mysql_store_result(conn);
+				int res = resultado;
+				sprintf(respuesta, "Jugador con identificacion: %d",res);
 			}
 			else if(codigo ==4)//consulta 4: contraseña de un usuario
 			{	
-				char jugador[20];
-				char j;
-				j = strtok( NULL, "/");
-				strcpy (jugador, j);
+				char jugador[16];
+				p = strtok( NULL, "/");
+				strcpy (jugador, p);
 				
 				char pregunta[100];
-				strcpy (pregunta,"SELECT Jugador.contraseña FROM Jugador,Puntos,Partida WHERE Jugador.nombre = '");
+				strcpy (pregunta,"SELECT password FROM Jugador WHERE username = '");
 				strcat (pregunta, jugador);
+				strcat(pregunta,"';");
 				
 				
 				err=mysql_query (conn, pregunta);
 				if (err!=0) {
 					printf ("Error al consultar datos de la base %u %s\n",
 							mysql_errno(conn), mysql_error(conn));
-					exit (1);
+					//exit (1);
 				}
 				
 				resultado = mysql_store_result (conn);
@@ -222,15 +266,11 @@ int main(int argc, char *argv[])
 				if (row == NULL)
 					printf ("No se han obtenido datos en la consulta\n");
 				else
-					while (row !=NULL) {
-						// la columna 0 contiene la contraseña del jugador
-						printf ("%s\n", row[0]);
-						strcat (respuesta, row[0]);
-						// obtenemos la siguiente fila
-						row = mysql_fetch_row (resultado);
-					}
+					// la columna 0 contiene la contraseña del jugador
+					printf ("%s\n", row[0]);
+					sprintf (respuesta,"%s\n", row[0]);
 					
-					mysql_close (conn);
+					//mysql_close (conn);
 					//exit(0);
 			}
 			

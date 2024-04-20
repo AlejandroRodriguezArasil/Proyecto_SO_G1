@@ -49,5 +49,33 @@ namespace Cliente_Juego
 
             
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (persona.Text == "")
+            {
+                MessageBox.Show("Por favor inserte un nombre de usuario");
+            }
+            else
+            {
+                string mensaje = "4/Consulta contrasena/" + persona.Text;
+
+                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+                byte[] msg2 = new byte[80];
+                server.Receive(msg2);
+
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                if (mensaje != "")
+                {
+                    MessageBox.Show("Respuesta: " + mensaje);
+                }
+                else
+                {
+                    MessageBox.Show("Nombre no encontrado");
+                }
+            }
+
+        }
     }
 }

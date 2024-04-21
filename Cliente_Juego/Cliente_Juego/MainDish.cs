@@ -20,23 +20,9 @@ namespace Cliente_Juego
         public MainDish()
         {
             InitializeComponent();
-            
         }
 
-        private void iniciarSessionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (conexion)
-            {
-                Identificación identificación = new Identificación(server);
-                identificación.Show();
-            }
-            else
-            {
-                MessageBox.Show("Primero debes conectarte al servidor");
-            }
-        }
-
-        private void conectarseAlServidor()
+        public void Conectarse()
         {
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
@@ -58,9 +44,23 @@ namespace Cliente_Juego
                 MessageBox.Show("No te has podido conectar al servidor");
             }
         }
+
+        private void iniciarSessionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (conexion)
+            {
+                Identificación identificación = new Identificación(server);
+                identificación.Show();
+            }
+            else
+            {
+                MessageBox.Show("Primero debes conectarte al servidor");
+            }
+        }
+
         private void conectarseAlServidorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            conectarseAlServidor();
+            Conectarse();
         }
 
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
@@ -79,7 +79,7 @@ namespace Cliente_Juego
 
         private void MainDish_Load(object sender, EventArgs e)
         {
-            //conectarseAlServidor();
+            Conectarse();
         }
 
         private void consultasToolStripMenuItem_Click(object sender, EventArgs e)

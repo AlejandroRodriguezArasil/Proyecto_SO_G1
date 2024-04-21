@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9280);
+	serv_adr.sin_port = htons(9180);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind\n");
 	
@@ -99,6 +99,7 @@ int main(int argc, char *argv[])
 				printf ("Codigo: %d, Consulta: %s\n", codigo, consulta);
 			}
 			if (codigo ==0) //petici?n de desconexi?n
+				// aqui ha d'anar el codi x canviar l'estat a desconectat a la base de dades
 				terminar=1;
 			else if(codigo == 1)// consulta 1: Registrarse
 			{	
@@ -216,6 +217,7 @@ int main(int argc, char *argv[])
 				char sesion[300];
 				char nombre[100];
 				char contrasena[100];
+				char conectado[100];
 				
 				p = strtok(NULL, "/");
 				strcpy(nombre, p);
@@ -241,6 +243,12 @@ int main(int argc, char *argv[])
 				resultado = mysql_store_result(conn);
 				int res = resultado;
 				sprintf(respuesta, "Jugador con identificacion: %d",res);
+				// canviem l'identificador de connectat ara que ja s'ha fet la conexió amb èxit
+				strcpy(conectado, "UPDATE Jugador SET conectado = 1 WHERE username = '");
+				strcat(conectado,nombre);
+				strcat(conectado,"';");
+				err=mysql_query (conn, conectado);
+				
 			}
 			else if(codigo ==4)//consulta 4: contraseña de un usuario
 			{	
@@ -272,6 +280,30 @@ int main(int argc, char *argv[])
 					
 					//mysql_close (conn);
 					//exit(0);
+			}
+			else if (codigo == 5) // petició d'usuaris connectats
+			{
+				char consulta[100];
+				strcpy(consulta, "SELECT * FROM Jugador WHERE conectado = 1;");
+				err=mysql_query (conn, consulta);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					//exit (1);
+				}
+				
+				resultado = mysql_store_result (conn);
+				row = mysql_fetch_row (resultado);
+				if (row == NULL)
+					printf ("No se han obtenido datos en la consulta\n");
+				else
+					// la columna 0 contiene la contraseña del jugador
+					printf ("%s\n", row[0]);
+				sprintf (respuesta,"%s\n", row[0]);
+				
+				//mysql_close (conn);
+				//exit(0);
+				
 			}
 			
 			if (codigo !=0)

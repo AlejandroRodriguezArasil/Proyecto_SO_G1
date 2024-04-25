@@ -33,6 +33,8 @@
             this.id_p = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.persona = new System.Windows.Forms.TextBox();
+            this.cons = new System.Windows.Forms.Button();
+            this.ResultLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Registrarse
@@ -80,11 +82,32 @@
             this.persona.Size = new System.Drawing.Size(162, 22);
             this.persona.TabIndex = 9;
             // 
+            // cons
+            // 
+            this.cons.Location = new System.Drawing.Point(62, 253);
+            this.cons.Name = "cons";
+            this.cons.Size = new System.Drawing.Size(219, 23);
+            this.cons.TabIndex = 10;
+            this.cons.Text = "Cuantas Consultas";
+            this.cons.UseVisualStyleBackColor = true;
+            this.cons.Click += new System.EventHandler(this.cons_Click);
+            // 
+            // ResultLbl
+            // 
+            this.ResultLbl.AutoSize = true;
+            this.ResultLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResultLbl.Location = new System.Drawing.Point(348, 253);
+            this.ResultLbl.Name = "ResultLbl";
+            this.ResultLbl.Size = new System.Drawing.Size(0, 18);
+            this.ResultLbl.TabIndex = 11;
+            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ResultLbl);
+            this.Controls.Add(this.cons);
             this.Controls.Add(this.persona);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.id_p);
@@ -104,5 +127,7 @@
         private System.Windows.Forms.TextBox id_p;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox persona;
+        private System.Windows.Forms.Button cons;
+        private System.Windows.Forms.Label ResultLbl;
     }
 }

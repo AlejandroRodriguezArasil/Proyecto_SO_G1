@@ -77,5 +77,19 @@ namespace Cliente_Juego
             }
 
         }
+
+        private void cons_Click(object sender, EventArgs e)
+        {
+            string mensaje = "6/Cuantas consultas";
+
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+            byte[] msg2 = new byte[20];
+            server.Receive(msg2);
+
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+
+            ResultLbl.Text = mensaje;
+        }
     }
 }

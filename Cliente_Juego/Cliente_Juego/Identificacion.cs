@@ -34,16 +34,31 @@ namespace Cliente_Juego
 
         private void InicioSesion_Click(object sender, EventArgs e)
         {
-            string username = usuarioBox.Text;
-            string contraseña = contraseñaBox.Text;
-            string mensaje = "3/Inicio de Sesión/" + username + "/" + contraseña;
+            if (usuarioBox.Text == "" || contraseñaBox.Text == "") //evitar campos vacíos
+            {
+                if (usuarioBox.Text == "" && contraseñaBox.Text == "")
+                {
+                    MessageBox.Show("Por favor rellene los campos.");
+                }
+                else
+                {
+                    MessageBox.Show("Por favor rellene todos los campos.");
+                }
+            }
 
-            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            MessageBox.Show(mensaje);
+            else
+            {
+                string username = usuarioBox.Text;
+                string contraseña = contraseñaBox.Text;
+                string mensaje = "3/Inicio de Sesión/" + username + "/" + contraseña;
+
+                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
+                byte[] msg2 = new byte[80];
+                server.Receive(msg2);
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                MessageBox.Show(mensaje);
+            }
         }
 
         private void Show_Hide_CheckedChanged(object sender, EventArgs e)

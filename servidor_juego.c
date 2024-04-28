@@ -90,7 +90,7 @@ void *AtenderCliente(void *socket)
 			strcpy(contrasena, p);
 			
 			printf("nombre: %s \n", nombre);
-			printf("contraseña: %s\n", contrasena);
+			printf("contrase a: %s\n", contrasena);
 			
 			char Existe[300];
 			strcpy (Existe, "SELECT username FROM Jugador WHERE username = '");
@@ -121,7 +121,7 @@ void *AtenderCliente(void *socket)
 				
 				char registro[300];
 				
-				strcpy (registro,"INSERT INTO Jugador VALUES ("); //INSERT INTO Jugador VALUES (5, nombre, contraseña)
+				strcpy (registro,"INSERT INTO Jugador VALUES ("); //INSERT INTO Jugador VALUES (5, nombre, contrase a)
 				sprintf (registro, "%s%d",registro,numjug ); 
 				strcat(registro, ",'");
 				strcat (registro, nombre);
@@ -202,7 +202,7 @@ void *AtenderCliente(void *socket)
 			strcpy(contrasena, p);
 			
 			printf("nombre: %s \n", nombre);
-			printf("contraseña: %s\n", contrasena);
+			printf("contrase a: %s\n", contrasena);
 			
 			strcpy(sesion,"SELECT id_jugador FROM Jugador WHERE username = '");
 			strcat(sesion,nombre);
@@ -222,14 +222,14 @@ void *AtenderCliente(void *socket)
 			resultado = mysql_store_result(conn);
 			int res = resultado;
 			sprintf(respuesta, "Jugador con identificacion: %d",res);
-			// canviem l'identificador de connectat ara que ja s'ha fet la conexió amb èxit
+			// canviem l'identificador de connectat ara que ja s'ha fet la conexi  amb  xit
 			strcpy(conectado, "UPDATE Jugador SET conectado = 1 WHERE username = '");
 			strcat(conectado,nombre);
 			strcat(conectado,"';");
 			err=mysql_query (conn, conectado);
 			
 		}
-		else if(codigo ==4)//consulta 4: contraseña de un usuario
+		else if(codigo ==4)//consulta 4: contrase a de un usuario
 		{	
 			char jugador[16];
 			p = strtok( NULL, "/");
@@ -253,17 +253,17 @@ void *AtenderCliente(void *socket)
 			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
-				// la columna 0 contiene la contraseña del jugador
+				// la columna 0 contiene la contrase a del jugador
 				printf ("%s\n", row[0]);
 			sprintf (respuesta,"%s\n", row[0]);
 			
 			//mysql_close (conn);
 			//exit(0);
 		}
-		else if (codigo == 5) // petició d'usuaris connectats
+		else if (codigo == 5) // petici  d'usuaris connectats
 		{
 			char consulta[100];
-			strcpy(consulta, "SELECT * FROM Jugador WHERE conectado = 1;");
+			strcpy(consulta, "SELECT * FROM Conectados;");
 			err=mysql_query (conn, consulta);
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
@@ -272,17 +272,20 @@ void *AtenderCliente(void *socket)
 			}
 			
 			resultado = mysql_store_result (conn);
-			row = mysql_fetch_row (resultado);
+			row = mysql_fetch_table (resultado);
 			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
-				// la columna 0 contiene la contraseña del jugador
-				printf ("%s\n", row[0]);
-			sprintf (respuesta,"%s\n", row[0]);
+				while (row != NULL)
+				{
+					sprintf(respuesta, "%s,%s,%s\n", row[0], row[1], row[2]);
+ 					row = mysql_fetch_table (resultado);
+				}
 			
 			//mysql_close (conn);
 			//exit(0);
-			
+		
+	
 		}
 		else if (codigo == 6)
 		{

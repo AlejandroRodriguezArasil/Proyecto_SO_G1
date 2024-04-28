@@ -28,106 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Registrarse = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.id_p = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.persona = new System.Windows.Forms.TextBox();
-            this.cons = new System.Windows.Forms.Button();
-            this.ResultLbl = new System.Windows.Forms.Label();
+            this.nueva_partida_button = new System.Windows.Forms.Button();
+            this.activas_button = new System.Windows.Forms.Button();
+            this.busqueda_button = new System.Windows.Forms.Button();
+            this.acabadas_button = new System.Windows.Forms.Button();
+            this.conectados_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // Registrarse
+            // nueva_partida_button
             // 
-            this.Registrarse.Location = new System.Drawing.Point(62, 55);
-            this.Registrarse.Margin = new System.Windows.Forms.Padding(4);
-            this.Registrarse.Name = "Registrarse";
-            this.Registrarse.Size = new System.Drawing.Size(219, 28);
-            this.Registrarse.TabIndex = 5;
-            this.Registrarse.Text = "Quién ha quedado segundo?";
-            this.Registrarse.UseVisualStyleBackColor = true;
-            this.Registrarse.Click += new System.EventHandler(this.Registrarse_Click);
+            this.nueva_partida_button.Location = new System.Drawing.Point(164, 42);
+            this.nueva_partida_button.Name = "nueva_partida_button";
+            this.nueva_partida_button.Size = new System.Drawing.Size(424, 59);
+            this.nueva_partida_button.TabIndex = 0;
+            this.nueva_partida_button.Text = "Nueva partida";
+            this.nueva_partida_button.UseVisualStyleBackColor = true;
+            this.nueva_partida_button.Click += new System.EventHandler(this.nueva_partida_button_Click);
             // 
-            // label1
+            // activas_button
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(579, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Introduce ID de partida";
+            this.activas_button.Location = new System.Drawing.Point(63, 145);
+            this.activas_button.Name = "activas_button";
+            this.activas_button.Size = new System.Drawing.Size(235, 57);
+            this.activas_button.TabIndex = 1;
+            this.activas_button.Text = "Activas";
+            this.activas_button.UseVisualStyleBackColor = true;
+            this.activas_button.Click += new System.EventHandler(this.activas_button_Click);
             // 
-            // id_p
+            // busqueda_button
             // 
-            this.id_p.Location = new System.Drawing.Point(348, 59);
-            this.id_p.Name = "id_p";
-            this.id_p.Size = new System.Drawing.Size(162, 22);
-            this.id_p.TabIndex = 7;
+            this.busqueda_button.Location = new System.Drawing.Point(463, 145);
+            this.busqueda_button.Name = "busqueda_button";
+            this.busqueda_button.Size = new System.Drawing.Size(261, 57);
+            this.busqueda_button.TabIndex = 2;
+            this.busqueda_button.Text = "Busqueda";
+            this.busqueda_button.UseVisualStyleBackColor = true;
+            this.busqueda_button.Click += new System.EventHandler(this.busqueda_button_Click);
             // 
-            // button1
+            // acabadas_button
             // 
-            this.button1.Location = new System.Drawing.Point(62, 181);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 28);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Consulta la contraseña";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.acabadas_button.Location = new System.Drawing.Point(63, 260);
+            this.acabadas_button.Name = "acabadas_button";
+            this.acabadas_button.Size = new System.Drawing.Size(235, 47);
+            this.acabadas_button.TabIndex = 3;
+            this.acabadas_button.Text = "Acabadas";
+            this.acabadas_button.UseVisualStyleBackColor = true;
+            this.acabadas_button.Click += new System.EventHandler(this.acabadas_button_Click);
             // 
-            // persona
+            // conectados_button
             // 
-            this.persona.Location = new System.Drawing.Point(348, 187);
-            this.persona.Name = "persona";
-            this.persona.Size = new System.Drawing.Size(162, 22);
-            this.persona.TabIndex = 9;
-            // 
-            // cons
-            // 
-            this.cons.Location = new System.Drawing.Point(62, 253);
-            this.cons.Name = "cons";
-            this.cons.Size = new System.Drawing.Size(219, 23);
-            this.cons.TabIndex = 10;
-            this.cons.Text = "Cuantas Consultas";
-            this.cons.UseVisualStyleBackColor = true;
-            this.cons.Click += new System.EventHandler(this.cons_Click);
-            // 
-            // ResultLbl
-            // 
-            this.ResultLbl.AutoSize = true;
-            this.ResultLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResultLbl.Location = new System.Drawing.Point(348, 253);
-            this.ResultLbl.Name = "ResultLbl";
-            this.ResultLbl.Size = new System.Drawing.Size(0, 18);
-            this.ResultLbl.TabIndex = 11;
+            this.conectados_button.Location = new System.Drawing.Point(463, 260);
+            this.conectados_button.Name = "conectados_button";
+            this.conectados_button.Size = new System.Drawing.Size(261, 47);
+            this.conectados_button.TabIndex = 4;
+            this.conectados_button.Text = "Conectados";
+            this.conectados_button.UseVisualStyleBackColor = true;
+            this.conectados_button.Click += new System.EventHandler(this.conectados_button_Click);
             // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ResultLbl);
-            this.Controls.Add(this.cons);
-            this.Controls.Add(this.persona);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.id_p);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.Registrarse);
+            this.Controls.Add(this.conectados_button);
+            this.Controls.Add(this.acabadas_button);
+            this.Controls.Add(this.busqueda_button);
+            this.Controls.Add(this.activas_button);
+            this.Controls.Add(this.nueva_partida_button);
             this.Name = "Consultas";
             this.Text = "Consultas";
+            this.Load += new System.EventHandler(this.Consultas_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button Registrarse;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox id_p;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox persona;
-        private System.Windows.Forms.Button cons;
-        private System.Windows.Forms.Label ResultLbl;
+        private System.Windows.Forms.Button nueva_partida_button;
+        private System.Windows.Forms.Button activas_button;
+        private System.Windows.Forms.Button busqueda_button;
+        private System.Windows.Forms.Button acabadas_button;
+        private System.Windows.Forms.Button conectados_button;
     }
 }

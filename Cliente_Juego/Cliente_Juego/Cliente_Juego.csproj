@@ -52,6 +52,18 @@
     <Compile Include="Consultas.Designer.cs">
       <DependentUpon>Consultas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lista_Usuarios_Conectados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista_Usuarios_Conectados.Designer.cs">
+      <DependentUpon>Lista_Usuarios_Conectados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tablero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablero.Designer.cs">
+      <DependentUpon>Tablero.cs</DependentUpon>
+    </Compile>
     <Compile Include="Identificacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +86,12 @@
     </Compile>
     <EmbeddedResource Include="Consultas.resx">
       <DependentUpon>Consultas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista_Usuarios_Conectados.resx">
+      <DependentUpon>Lista_Usuarios_Conectados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablero.resx">
+      <DependentUpon>Tablero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Identificacion.resx">
       <DependentUpon>Identificacion.cs</DependentUpon>
@@ -109,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stick_fight.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tablero.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tablero con cartas v1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

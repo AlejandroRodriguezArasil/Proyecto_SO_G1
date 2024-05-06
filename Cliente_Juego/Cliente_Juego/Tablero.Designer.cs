@@ -36,6 +36,7 @@
             this.cantidad_mezclar = new System.Windows.Forms.TextBox();
             this.cantidad_cel = new System.Windows.Forms.TextBox();
             this.cantidad_ataquedir = new System.Windows.Forms.TextBox();
+            this.notificaciones = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cantidad_no
@@ -95,6 +96,13 @@
             this.cantidad_ataquedir.Size = new System.Drawing.Size(100, 22);
             this.cantidad_ataquedir.TabIndex = 7;
             // 
+            // notificaciones
+            // 
+            this.notificaciones.Location = new System.Drawing.Point(1194, 41);
+            this.notificaciones.Name = "notificaciones";
+            this.notificaciones.Size = new System.Drawing.Size(100, 22);
+            this.notificaciones.TabIndex = 8;
+            // 
             // Tablero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -103,6 +111,7 @@
             this.BackgroundImage = global::Cliente_Juego.Properties.Resources.Tablero_con_cartas_v1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1444, 867);
+            this.Controls.Add(this.notificaciones);
             this.Controls.Add(this.cantidad_ataquedir);
             this.Controls.Add(this.cantidad_cel);
             this.Controls.Add(this.cantidad_mezclar);
@@ -112,7 +121,7 @@
             this.Controls.Add(this.cantidad_rda);
             this.Controls.Add(this.cantidad_no);
             this.Name = "Tablero";
-            this.Text = "Form1";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -129,5 +138,6 @@
         private System.Windows.Forms.TextBox cantidad_mezclar;
         private System.Windows.Forms.TextBox cantidad_cel;
         private System.Windows.Forms.TextBox cantidad_ataquedir;
+        private System.Windows.Forms.TextBox notificaciones;
     }
 }

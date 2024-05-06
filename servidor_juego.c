@@ -272,14 +272,14 @@ void *AtenderCliente(void *socket)
 			}
 			
 			resultado = mysql_store_result (conn);
-			row = mysql_fetch_table (resultado);
+			row = mysql_fetch_row (resultado);
 			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
 				while (row != NULL)
 				{
 					sprintf(respuesta, "%s,%s,%s\n", row[0], row[1], row[2]);
- 					row = mysql_fetch_table (resultado);
+ 					row = mysql_fetch_row (resultado);
 				}
 			
 			//mysql_close (conn);

@@ -12,58 +12,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Cliente_Juego
 {
-    public class UsuarioConectado
-    {
-        int id;
-        string nombre;
-        int puerto;
-        
-        public int GetID()
-        {
-            return id;
-        }
-        public string GetNombre()
-        {
-            return nombre;
-        }
-        public int GetPuerto()
-        {
-            return puerto;
-        }
-        public void SetID(int a)
-        {
-            this.id=a;
-        }
-        public void SetNombre(string a)
-        {
-            this.nombre=a;
-        }
-        public void SetPuerto(int a)
-        {
-            this.puerto=a;
-        }
-    }
-    public class ListaUsuariosConectados
-    {
-        public UsuarioConectado[] userconected = new UsuarioConectado[100];
-        int num = 0;
-        public UsuarioConectado GetUsuarioConectado(int index)
-        {
-            return userconected[index];
-        }
-        public int GetNum()
-        {
-            return num;
-        }
-        public void SetNum(int a)
-        {
-            this.num = a;
-        }
-    }
-    
-
-
-
     public partial class Consultas : Form
     {
         private Socket server;
@@ -151,7 +99,7 @@ namespace Cliente_Juego
 
         private void nueva_partida_button_Click(object sender, EventArgs e)
         {
-
+            Lista_Usuaris_Conectados.actualizarconectados();
         }
 
         private void activas_button_Click(object sender, EventArgs e)
@@ -175,4 +123,7 @@ namespace Cliente_Juego
             ucon.Show();
         }
     }
+    
+    
+
 }

@@ -24,34 +24,11 @@ namespace Cliente_Juego
             InitializeComponent();
            
             actualizarconectados();
+
+            PopulateDataGridView();
             
         }
-        public void actualizarconectados()
-        {
-            ListaUsuariosConectados listauserconec = new ListaUsuariosConectados();
-            string consulta = "5/";
-            byte[] msg = Encoding.ASCII.GetBytes(consulta);
-            server.Send(msg);
-            // recibimos respuesta del servidor
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            string serializedData = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            // Desencriptamos la informacion recibida 
-            string[] rows = serializedData.Split('\n');
-            foreach (string rowData in rows)
-            {
-                string[] fields = rowData.Split(',');
-                UsuarioConectado user = new UsuarioConectado();
-                // Set values for the user
-                user.SetID(Convert.ToInt32(fields[0]));
-                user.SetNombre(fields[1]);
-                user.SetPuerto(Convert.ToInt32(fields[2]));
-                // Add the user to the list
-                int n = listauserconec.GetNum()+1;
-                listauserconec.userconected[n] = user;
-                listauserconec.SetNum(n);
-            }
-        }
+        
         public void PopulateDataGridView()
         {
             // Create a new DataTable
@@ -70,16 +47,9 @@ namespace Cliente_Juego
             }
 
             // Bind DataTable to DataGridView
-            dataGridView.DataSource = dataTable;
+            lista_usuarios_conectados.DataSource = dataTable;
         }
     }
 }
 
-
-
-          
-           
-
-           
-
-        
+     

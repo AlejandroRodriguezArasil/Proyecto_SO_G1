@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Cliente_Juego.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +14,7 @@ namespace Cliente_Juego
 {
     public partial class Tablero : Form
     {
+        ListaUsuariosConectados userpartida;
         public Tablero()
         {
             InitializeComponent();
@@ -33,13 +36,13 @@ namespace Cliente_Juego
             Tablero.Controls.Clear();
 
             // Iterate over connected players
-            foreach (string playerName in connectedPlayers)
+            foreach (UsuarioConectado user in userpartida)
             {
                 // Create a new picture box
                 PictureBox pictureBox = new PictureBox();
 
                 // Set properties of the picture box
-                pictureBox.Image = Properties.Resources.defaultImage; // Assuming you have a default image in your resources
+                pictureBox.Image = Resources.persona.png; // Assuming you have a default image in your resources
                 pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBox.Width = 100; // Set width (adjust as needed)
                 pictureBox.Height = 100; // Set height (adjust as needed)
@@ -47,7 +50,7 @@ namespace Cliente_Juego
 
                 // Add a tooltip with player's name
                 ToolTip toolTip = new ToolTip();
-                toolTip.SetToolTip(pictureBox, playerName);
+                toolTip.SetToolTip(pictureBox, user);
 
                 // Add the picture box to the container control
                 flowLayoutPanel1.Controls.Add(pictureBox);

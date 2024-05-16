@@ -145,5 +145,8 @@
   <ItemGroup>
     <None Include="Resources\Tablero con cartas v1.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\persona.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

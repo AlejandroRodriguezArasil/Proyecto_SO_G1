@@ -60,7 +60,7 @@ namespace Cliente_Juego
             }
         }
 
-        public DataTable PopulateDataGridView()
+        public DataTable PopulateDataGridView(ListaUsuariosConectados lista)
         {
             // Create a new DataTable
             DataTable dataTable = new DataTable();
@@ -69,7 +69,7 @@ namespace Cliente_Juego
             dataTable.Columns.Add("Puerto", typeof(int));
 
             // Iterate through the userconected array and add data to the DataTable
-            foreach (UsuarioConectado user in userconlist)
+            foreach (UsuarioConectado user in lista)
             {
                 if (user != null) // Check if the slot is not null
                 {

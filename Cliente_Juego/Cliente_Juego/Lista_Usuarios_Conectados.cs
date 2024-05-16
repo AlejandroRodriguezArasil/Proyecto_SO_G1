@@ -26,7 +26,7 @@ namespace Cliente_Juego
            
             userconlist.actualizarconectados();
 
-            lista_usuarios_conectados.DataSource = userconlist.PopulateDataGridView();
+            lista_usuarios_conectados.DataSource = userconlist.PopulateDataGridView(userconlist);
             
         }
         

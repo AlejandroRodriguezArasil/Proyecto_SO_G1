@@ -67,5 +67,10 @@ namespace Cliente_Juego
             else
             { contraseñaBox.UseSystemPasswordChar = true; }
         }
+
+        private void Registro_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

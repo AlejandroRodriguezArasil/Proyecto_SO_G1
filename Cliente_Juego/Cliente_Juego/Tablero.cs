@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,16 @@ namespace Cliente_Juego
     public partial class Tablero : Form
     {
         ListaUsuariosConectados userpartida;
+        private Socket server;
+        private int id_partida;
+        private int id_jugador;
+        private int turno_actual;
+        private bool turno = false;
         public Tablero()
         {
             InitializeComponent();
+            Identificarpartida();
+            Identificarjugador();
             DisplayPlayerBoxes();
         }
 
@@ -57,6 +65,46 @@ namespace Cliente_Juego
                 //flowLayoutPanel1.
                 Controls.Add(pictureBox);
             }
+        }
+
+        
+        private void Checkturno()
+        {
+            string consulta = "7/" + this.id_partida;
+            byte[] msg = Encoding.ASCII.GetBytes(consulta);
+            server.Send(msg);
+            // recibimos respuesta del servidor
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            string serializedData = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            turno_actual = Convert.ToInt32(serializedData);
+            if (this.turno_actual == this.id_jugador)
+            {
+                turno = true;
+            }
+
+
+        }
+
+        private void Robarcarta()
+        {
+            string consulta = "8/" + this.id_partida + "/" + this.id_jugador;
+            byte[] msg = Encoding.ASCII.GetBytes(consulta);
+            server.Send(msg);
+            // recibimos respuesta del servidor
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            string serializedData = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+        }
+
+
+        public void Identificarpartida()
+        {
+            this.id_partida = 0; // a pasar mas tarde des de otro formulario
+        }
+        public void Identificarjugador()
+        {
+            this.id_jugador = 0; // a pasar mas tarde des de otro formulario
         }
     }
 }

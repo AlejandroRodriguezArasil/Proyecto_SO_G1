@@ -69,7 +69,7 @@ namespace Cliente_Juego
             dataTable.Columns.Add("Puerto", typeof(int));
 
             // Iterate through the userconected array and add data to the DataTable
-            foreach (UsuarioConectado user in lista)
+            foreach (UsuarioConectado user in lista.userconected)
             {
                 if (user != null) // Check if the slot is not null
                 {

@@ -33,16 +33,16 @@ namespace Cliente_Juego
         private void DisplayPlayerBoxes()
         {
             // Clear existing controls from the container (if any)
-            Tablero.Controls.Clear();
+            Controls.Clear();
 
             // Iterate over connected players
-            foreach (UsuarioConectado user in userpartida)
+            foreach (UsuarioConectado user in userpartida.userconected)
             {
                 // Create a new picture box
                 PictureBox pictureBox = new PictureBox();
 
                 // Set properties of the picture box
-                pictureBox.Image = Resources.persona.png; // Assuming you have a default image in your resources
+                pictureBox.Image = Resources.persona; // Assuming you have a default image in your resources
                 pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBox.Width = 100; // Set width (adjust as needed)
                 pictureBox.Height = 100; // Set height (adjust as needed)
@@ -50,10 +50,12 @@ namespace Cliente_Juego
 
                 // Add a tooltip with player's name
                 ToolTip toolTip = new ToolTip();
-                toolTip.SetToolTip(pictureBox, user);
+                string name = user.GetNombre();
+                toolTip.SetToolTip(pictureBox, name);
 
                 // Add the picture box to the container control
-                flowLayoutPanel1.Controls.Add(pictureBox);
+                //flowLayoutPanel1.
+                Controls.Add(pictureBox);
             }
         }
     }

@@ -65,3 +65,6 @@ C:\Users\aleks\OneDrive\Documents\Uniberisti\Q6\SO\share\project\Proyecto_SO_G1\
 C:\Users\aleks\OneDrive\Documents\Uniberisti\Q6\SO\share\project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.SuggestedBindingRedirects.cache
 C:\Users\aleks\OneDrive\Documents\Uniberisti\Q6\SO\share\project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
 C:\Users\aleks\OneDrive\Documents\Uniberisti\Q6\SO\share\project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
+C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.cargar_partida.resources
+C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Usuarios_Conectados.resources
+C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Tablero.resources

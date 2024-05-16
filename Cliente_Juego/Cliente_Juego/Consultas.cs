@@ -21,6 +21,8 @@ namespace Cliente_Juego
             this.server = server;
         }
 
+        public ListaUsuariosConectados userconlist = new ListaUsuariosConectados();
+
         //private void Registrarse_Click(object sender, EventArgs e)
         //{
         //    try
@@ -47,7 +49,7 @@ namespace Cliente_Juego
         //    catch 
         //    { MessageBox.Show ("Por favor introduzca un número entero como id de partida"); }
 
-            
+
         //}
 
         //private void button1_Click(object sender, EventArgs e)
@@ -99,7 +101,10 @@ namespace Cliente_Juego
 
         private void nueva_partida_button_Click(object sender, EventArgs e)
         {
-            Lista_Usuaris_Conectados.actualizarconectados();
+            userconlist.actualizarconectados();
+            cargar_partida carg = new cargar_partida();
+            carg.ShowDialog();
+
         }
 
         private void activas_button_Click(object sender, EventArgs e)

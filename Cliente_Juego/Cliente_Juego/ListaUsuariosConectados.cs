@@ -59,6 +59,27 @@ namespace Cliente_Juego
                 listauserconec.SetNum(n);
             }
         }
+
+        public DataTable PopulateDataGridView()
+        {
+            // Create a new DataTable
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("ID", typeof(int));
+            dataTable.Columns.Add("Nombre", typeof(string));
+            dataTable.Columns.Add("Puerto", typeof(int));
+
+            // Iterate through the userconected array and add data to the DataTable
+            foreach (UsuarioConectado user in userconlist)
+            {
+                if (user != null) // Check if the slot is not null
+                {
+                    dataTable.Rows.Add(user.GetID(), user.GetNombre(), user.GetPuerto());
+                }
+            }
+
+            return dataTable;
+
+        }
     }
 
 }

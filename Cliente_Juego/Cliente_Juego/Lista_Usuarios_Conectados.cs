@@ -19,35 +19,21 @@ namespace Cliente_Juego
     public partial class Usuarios_Conectados : Form
     {
         private Socket server;
+        ListaUsuariosConectados userconlist;
         public Usuarios_Conectados()
         {
             InitializeComponent();
            
-            actualizarconectados();
+            userconlist.actualizarconectados();
 
-            PopulateDataGridView();
+            lista_usuarios_conectados.DataSource = userconlist.PopulateDataGridView();
             
         }
         
-        public void PopulateDataGridView()
+
+        private void Usuarios_Conectados_Load(object sender, EventArgs e)
         {
-            // Create a new DataTable
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("ID", typeof(int));
-            dataTable.Columns.Add("Nombre", typeof(string));
-            dataTable.Columns.Add("Puerto", typeof(int));
 
-            // Iterate through the userconected array and add data to the DataTable
-            foreach (UsuarioConectado user in listauserconec.userconected)
-            {
-                if (user != null) // Check if the slot is not null
-                {
-                    dataTable.Rows.Add(user.GetID(), user.GetNombre(), user.GetPuerto());
-                }
-            }
-
-            // Bind DataTable to DataGridView
-            lista_usuarios_conectados.DataSource = dataTable;
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Cliente_Juego
         private int turno_actual;
         private bool turno = false;
         private string mimazo;
+        private int[10] mimazodesglosado;
         private string mazopartida;
         private int lastcard;
         private int cartajugada;
@@ -156,7 +157,29 @@ namespace Cliente_Juego
         }
 
 
+        public void Crearmazo (int longitud)
+        {
+            Random random = new Random();
+            int[] cartas = new int[longitud];
+            for (int i = 0; i < longitud; i++)
+            {
+                cartas[i] = random.Next(10); 
+            }
+            string mazocartas = string.Join("/", cartas);
+            this.mazopartida = mazocartas;
+        }
 
+        public void DesglosarMazo()
+        {
+            int[] counts = new int[10];
+            string[] numbers = this.mimazo.Split('/');
+            foreach (string number in numbers)
+            {
+                int digit = int.Parse(number);
+                counts[digit]++;
+            }
+            this.mimazodesglosado = counts;
+        }
 
         public void Identificarpartida()
         {

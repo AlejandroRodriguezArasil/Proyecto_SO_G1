@@ -338,11 +338,132 @@ void *AtenderCliente(void *socket)
 			
 			
 		}
-		else if (codigo == 8) //proceso de coger una carta del mazo
+		else if (codigo == 8) //proceso de coger el mazo entero
 		{
 			int partida = strtok( NULL, "/");
 			int jugador = strtok( NULL, "/");
+			char consulta[100];
+
+			strcpy (consulta,"SELECT cartas FROM Mazo WHERE id_j=");
+			strcat (consulta, jugador);
+			strcat (consulta, "AND id_p = ");
+			strcat (consulta, partida);
+			strcat(consulta,";");
+
+			err=mysql_query (conn, consulta);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+			
+			resultado = mysql_store_result (conn);
+			res = mysql_fetch_row (resultado);
+			if (res == NULL)
+				printf ("No se han obtenido datos en la consulta\n");
+			else
+				printf ("%s\n", res);
+			sprintf (respuesta,"%s-\n", res);
+
+			strcpy (consulta,"SELECT cartas FROM Mazo WHERE id_j=0 AND id_p = '");
+			strcat (consulta, partida);
+			strcat(consulta,"';");
+
+			err=mysql_query (conn, consulta);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+			
+			resultado = mysql_store_result (conn);
+			res = mysql_fetch_row (resultado);
+			if (res == NULL)
+				printf ("No se han obtenido datos en la consulta\n");
+			else
+				printf ("%s-\n", res);
+			strcat (respuesta, res);
+
+			strcpy (consulta,"SELECT lastcard FROM Auxiliar WHERE id_j=");
+			strcat (consulta, jugador);
+			strcat (consulta, "AND id_p = ");
+			strcat (consulta, partida);
+			strcat(consulta,";");
+
+			err=mysql_query (conn, consulta);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+			
+			resultado = mysql_store_result (conn);
+			res = mysql_fetch_row (resultado);
+			if (res == NULL)
+				printf ("No se han obtenido datos en la consulta\n");
+			else
+				printf ("%s-\n", res);
+			strcat (respuesta, res);
+
+			//mysql_close (conn);
+			//exit(0);
+			
 		}
+		else if (codigo == 9) // proceso de actualizar mazos
+		{
+			int partida = strtok( NULL, "/");
+			int jugador = strtok( NULL, "/");
+			char mazojugador[100];
+			p = strtok( NULL, "-");
+			strcpy (mazojugador, p);
+			char mazopartida[100];
+			p = strtok( NULL, "-");
+			strcpy (mazopartida, p);
+			int lastcard = strtok( NULL, "-");
+
+			char update[100];
+
+			strcpy(update, "UPDATE Mazo SET cartas = '");
+			strcat(update,mazojugador);
+			strcat(update,"' WHERE id_j = ");
+			strcat(conectado,jugador);
+			strcat(update,"AND WHERE id_p = ");
+			strcat(conectado,partida);
+			strcat(conectado,";");
+			err=mysql_query (conn, conectado);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+
+			strcpy(update, "UPDATE Mazo SET cartas = '");
+			strcat(update,mazopartida);
+			strcat(update,"' WHERE id_p = ");
+			strcat(conectado,jugador);
+			strcat(update,"AND WHERE id_j = 0;");
+			err=mysql_query (conn, conectado);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+			
+			strcpy(update, "UPDATE Auxiliar SET lastcard = ");
+			strcat(update,lastcard);
+			strcat(update,";");
+			err=mysql_query (conn, conectado);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+
+
+			
+
+		}
+
 
 
 		

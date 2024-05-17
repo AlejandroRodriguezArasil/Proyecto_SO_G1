@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,15 @@ namespace Cliente_Juego
         private int id_jugador;
         private int turno_actual;
         private bool turno = false;
+        private string mimazo;
+        private string mazopartida;
+        private int lastcard;
+        private int cartajugada;
+
+        // Identificadores de cartas (nums 0-9) en orden del tablero
+        // 0-bomba
+        // 1-no  2-roba de abajo  3-ataque  4-mira el futuro  5-saltar  6-mezclar  7-cambia el futuro  8-ataque dirigido
+        // 9-desactivacion (no en el tablero)
         public Tablero()
         {
             InitializeComponent();
@@ -86,7 +96,7 @@ namespace Cliente_Juego
 
         }
 
-        private void Robarcarta()
+        private void RecibirMazos()  //nota: estructura del mazo  numcarta/numcarta/numcarta...
         {
             string consulta = "8/" + this.id_partida + "/" + this.id_jugador;
             byte[] msg = Encoding.ASCII.GetBytes(consulta);
@@ -95,7 +105,57 @@ namespace Cliente_Juego
             byte[] msg2 = new byte[80];
             server.Receive(msg2);
             string serializedData = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            this.mimazo = serializedData.Split('-')[0];
+            this.mazopartida = serializedData.Split('-')[1];
+            this.lastcard = Convert.ToInt32(serializedData.Split('-')[2]);
+
         }
+
+        private void EnviarMazos()
+        {
+            string consulta = "9/" + this.id_partida + "/" + this.id_jugador + "-" + this.mimazo + "-" + this.mazopartida + "-" + this.cartajugada;
+            byte[] msg = Encoding.ASCII.GetBytes(consulta);
+            server.Send(msg);
+            // no recibimos respuesta del servidor
+        }
+        
+        private void Robarcarta (int pos)
+        {
+            if (this.turno != true)
+            {
+                return; 
+            }
+
+            int nuevacarta;
+
+            if (pos == 0) // robar carta normal
+            {
+                int indexOfSeparator = this.mazopartida.IndexOf('/');
+                string primeracarta = this.mazopartida.Substring(0, indexOfSeparator);
+                nuevacarta = int.Parse(primeracarta);
+                this.mazopartida = this.mazopartida.Substring(indexOfSeparator + 1);
+            }
+            else if (pos == 1) // robar carta de abajo
+            {
+                int indexOfLastSeparator = this.mazopartida.LastIndexOf('/');
+                string ultimacarta = this.mazopartida.Substring(indexOfLastSeparator + 1);
+                nuevacarta = int.Parse(ultimacarta);
+                this.mazopartida = this.mazopartida.Substring(0, indexOfLastSeparator);
+            }
+            else
+            {
+                return; 
+            }
+
+            //if(nuevacarta == 0)
+            //{
+            //    logica de haber explotado
+            //}
+
+            this.mimazo = this.mimazo + "/" + Convert.ToString(nuevacarta);
+        }
+
+
 
 
         public void Identificarpartida()

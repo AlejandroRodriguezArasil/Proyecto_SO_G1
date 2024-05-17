@@ -23,7 +23,7 @@ namespace Cliente_Juego
         private int turno_actual;
         private bool turno = false;
         private string mimazo;
-        private int[10] mimazodesglosado;
+        private int[] mimazodesglosado = new int[10];
         private string mazopartida;
         private int lastcard;
         private int cartajugada;
@@ -156,6 +156,20 @@ namespace Cliente_Juego
             this.mimazo = this.mimazo + "/" + Convert.ToString(nuevacarta);
         }
 
+        public void VerSiguientes()
+        {
+
+            string[] cartas = this.mazopartida.Split('/');
+
+            // Create an array to store the first three digits
+            int[] siguientestres = new int[Math.Min(3, cartas.Length)];
+
+            // Copy the first three digits into the array
+            for (int i = 0; i < siguientestres.Length; i++)
+            {
+                siguientestres[i] = int.Parse(cartas[i]);
+            }
+        }
 
         public void Crearmazo (int longitud)
         {

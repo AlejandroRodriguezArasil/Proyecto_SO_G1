@@ -182,7 +182,7 @@ void *AtenderCliente(void *socket)
 				
 				char borrar[300];
 				
-				strcpy (borrar,"DELETE * FROM Jugador WHERE username = '"); 
+				strcpy (borrar,"DELETE FROM Jugador WHERE username = '"); 
 				strcat (borrar,nombre ); 
 				strcat(borrar, "' AND password = '");
 				strcat (borrar, contrasena);
@@ -203,8 +203,9 @@ void *AtenderCliente(void *socket)
 				
 				//mysql_close (conn);
 				//exit(0);
+			}
 		}
-		else if(codigo ==3)// consulta 3: icnicio sesion, consulta la base de datos para saber si existe esa persona
+		else if(codigo ==3)// consulta 3: icnicio sesion, consulta la base de datos para saber si existe esa persona y la añade a la tabla conectados
 		{	
 			char sesion[300];
 			char nombre[100];
@@ -240,18 +241,51 @@ void *AtenderCliente(void *socket)
 			}
 			else
 			{
-				sprintf(respuesta, "Inicio de sesion correcto");
+				
 				Nconectados +=1;
-				// canviem l'identificador de connectat ara que ja s'ha fet la conexi  amb  xit
-				strcpy(conectado, "UPDATE Jugador SET conectado = 1 WHERE username = '");
-				strcat(conectado,nombre);
-				strcat(conectado,"';");
-				err=mysql_query (conn, conectado);
+				
+				//buscar la id del jugador
+				
+				char pregunta[100];
+				strcpy (pregunta,"SELECT id_jugador FROM Jugador WHERE username = '");
+				strcat (pregunta, nombre);
+				strcat(pregunta,"';");
+				
+				
+				err=mysql_query (conn, pregunta);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					//exit (1);
+				}
+				
+				resultado = mysql_store_result (conn);
+				row = mysql_fetch_row (resultado);
+				int id;
+				if (row == NULL)
+					printf ("No se han obtenido datos en la consulta\n");
+				else
+				
+					id = atoi(row[0]);
+				printf("ID inici de sessio: %d\n",id);
+				printf("SOCKET inici de sessio: %d\n",sock_conn);
+				
+				char conexion[300]; //añadir al jugador a la tabla conectados
+				sprintf(conexion, "INSERT INTO Conectados VALUES(%d,'%s',%d);",id,nombre,sock_conn);
+				
+				err=mysql_query (conn, conexion);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					//exit (1);
+				}
+				
+				strcpy(respuesta, "Inicio de sesion correcto");
 			}
 			printf("Conectados: %d\n",Nconectados);
 			
 		}
-		else if(codigo ==4)//consulta 4: contrase a de un usuario
+		else if(codigo ==4)//consulta 4: contrasena de un usuario
 		{	
 			char jugador[16];
 			p = strtok( NULL, "/");
@@ -277,7 +311,7 @@ void *AtenderCliente(void *socket)
 			else
 				// la columna 0 contiene la contrase a del jugador
 				printf ("%s\n", row[0]);
-			sprintf (respuesta,"%s\n", row[0]);
+				sprintf (respuesta,"%s\n", row[0]);
 			
 			//mysql_close (conn);
 			//exit(0);
@@ -325,12 +359,12 @@ void *AtenderCliente(void *socket)
 			}
 			
 			resultado = mysql_store_result (conn);
-			res = mysql_fetch_row (resultado);
-			if (res == NULL)
+			row = mysql_fetch_row (resultado);
+			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
-				printf ("%s\n", res);
-			sprintf (respuesta,"%s\n", res);
+				printf ("%s\n", row[0]);
+			sprintf (respuesta,"%s\n", row[0]);
 			
 			//mysql_close (conn);
 			//exit(0);
@@ -358,12 +392,12 @@ void *AtenderCliente(void *socket)
 			}
 			
 			resultado = mysql_store_result (conn);
-			res = mysql_fetch_row (resultado);
-			if (res == NULL)
+			row = mysql_fetch_row (resultado);
+			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
-				printf ("%s\n", res);
-			sprintf (respuesta,"%s-\n", res);
+				printf ("%s\n", row[0]);
+			sprintf (respuesta,"%s-\n", row[0]);
 
 			strcpy (consulta,"SELECT cartas FROM Mazo WHERE id_j=0 AND id_p = '");
 			strcat (consulta, partida);
@@ -377,12 +411,12 @@ void *AtenderCliente(void *socket)
 			}
 			
 			resultado = mysql_store_result (conn);
-			res = mysql_fetch_row (resultado);
-			if (res == NULL)
+			row= mysql_fetch_row (resultado);
+			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
-				printf ("%s-\n", res);
-			strcat (respuesta, res);
+				printf ("%s-\n", row[0]);
+			strcat (respuesta, row[0]);
 
 			strcpy (consulta,"SELECT lastcard FROM Auxiliar WHERE id_j=");
 			strcat (consulta, jugador);
@@ -398,12 +432,12 @@ void *AtenderCliente(void *socket)
 			}
 			
 			resultado = mysql_store_result (conn);
-			res = mysql_fetch_row (resultado);
-			if (res == NULL)
+			row = mysql_fetch_row (resultado);
+			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
-				printf ("%s-\n", res);
-			strcat (respuesta, res);
+				printf ("%s-\n", row[0]);
+			strcat (respuesta, row[0]);
 
 			//mysql_close (conn);
 			//exit(0);
@@ -426,11 +460,8 @@ void *AtenderCliente(void *socket)
 			strcpy(update, "UPDATE Mazo SET cartas = '");
 			strcat(update,mazojugador);
 			strcat(update,"' WHERE id_j = ");
-			strcat(conectado,jugador);
 			strcat(update,"AND WHERE id_p = ");
-			strcat(conectado,partida);
-			strcat(conectado,";");
-			err=mysql_query (conn, conectado);
+			err=mysql_query (conn, update);
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
 						mysql_errno(conn), mysql_error(conn));
@@ -440,9 +471,8 @@ void *AtenderCliente(void *socket)
 			strcpy(update, "UPDATE Mazo SET cartas = '");
 			strcat(update,mazopartida);
 			strcat(update,"' WHERE id_p = ");
-			strcat(conectado,jugador);
 			strcat(update,"AND WHERE id_j = 0;");
-			err=mysql_query (conn, conectado);
+			err=mysql_query (conn, update);
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
 						mysql_errno(conn), mysql_error(conn));
@@ -452,7 +482,7 @@ void *AtenderCliente(void *socket)
 			strcpy(update, "UPDATE Auxiliar SET lastcard = ");
 			strcat(update,lastcard);
 			strcat(update,";");
-			err=mysql_query (conn, conectado);
+			err=mysql_query (conn, update);
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
 						mysql_errno(conn), mysql_error(conn));

@@ -69,5 +69,11 @@ namespace Cliente_Juego
             else
             { contraseñaBox.UseSystemPasswordChar = true; }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BorrarCuenta borrar = new BorrarCuenta(server);
+            borrar.Show();
+        }
     }
 }

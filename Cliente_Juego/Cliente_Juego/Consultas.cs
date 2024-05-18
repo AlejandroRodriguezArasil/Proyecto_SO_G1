@@ -119,7 +119,8 @@ namespace Cliente_Juego
 
         private void acabadas_button_Click(object sender, EventArgs e)
         {
-
+            Acabadas acabadas = new Acabadas();
+            acabadas.Show();
         }
 
         private void conectados_button_Click(object sender, EventArgs e)

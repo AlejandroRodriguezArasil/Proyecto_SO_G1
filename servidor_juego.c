@@ -463,6 +463,73 @@ void *AtenderCliente(void *socket)
 			
 
 		}
+		else if (codigo == 10) //partidas acabadas se envia como formato al cliente 10/id_partida/datafin/datainicial/ganador
+		{
+			// llega del cliente como 10/
+			// p = strtok(NULL, "/");
+			// int id_jugador = atoi(p);
+			
+			char jugador [300];
+			strcpy(jugador, "SELECT id_jugador FROM Conectados WHERE port = socket_conn");
+			resultado = mysql_store_result(conn);
+			MYSQL_ROW row0;
+			row0 = mysql_fetch_row(resultado);
+			char id_jugador [10];
+			strcpy(id_jugador, row0[0]);
+			
+			char consulta[300];
+			strcpy(consulta,"SELECT id_p FROM Partida,Puntos WHERE Puntos.id_j = '");
+			strcat(consulta, id_jugador);
+			strcat(consulta,"' AND Partida.acabada = 1 AND Partida.id_partida = Puntos.id_p'");
+			strcat(consulta,"';");
+			
+			
+			err=mysql_query (conn, consulta);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+			
+			
+			resultado = mysql_store_result(conn);
+			row = mysql_fetch_row(resultado);
+			while(row == NULL)
+			{
+				char partida [10];
+				strcpy(partida, row[0]);
+				char iniciopartida [300];
+				char finalpartida [300];
+				char ganador[300];
+				MYSQL_ROW row1;
+				MYSQL_ROW row2;
+				MYSQL_ROW row3;
+				
+				strcpy(iniciopartida, "SELECT inicio FROM Partida WHERE id_partida = '");
+				strcat(iniciopartida, partida);
+				strcat(iniciopartida,"';");
+				resultado = mysql_store_result(conn);
+				row1 = mysql_fetch_row(resultado);
+				
+				strcpy(finalpartida, "SELECT final FROM Partida WHERE id_partida = '");
+				strcat(finalpartida, partida);
+				strcat(finalpartida,"';");
+				resultado = mysql_store_result(conn);
+				row2 = mysql_fetch_row(resultado);
+				
+				strcpy(ganador, "SELECT ganador FROM Partida WHERE id_partida = '");
+				strcat(ganador, partida);
+				strcat(ganador,"';");
+				resultado = mysql_store_result(conn);
+				row3 = mysql_fetch_row(resultado);
+				
+				char respuesta [50];
+				strcpy(respuesta, "10/%s/%s/%s/%s", partida, row1[0], row2[0], row3[0]); //nose porque da error del strcpy, la verdad
+				write(sock_conn, respuesta, strlen(respuesta));
+				row = mysql_fetch_row(resultado);
+			}
+			
+		}
 
 
 

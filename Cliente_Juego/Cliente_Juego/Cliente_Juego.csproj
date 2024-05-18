@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acabadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Acabadas.Designer.cs">
+      <DependentUpon>Acabadas.cs</DependentUpon>
+    </Compile>
     <Compile Include="BorrarCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <Compile Include="Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Acabadas.resx">
+      <DependentUpon>Acabadas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BorrarCuenta.resx">
       <DependentUpon>BorrarCuenta.cs</DependentUpon>
     </EmbeddedResource>

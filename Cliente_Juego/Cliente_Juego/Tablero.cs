@@ -23,7 +23,7 @@ namespace Cliente_Juego
         private int turno_actual;
         private bool turno = false;
         private string mimazo;
-        private int[10] mimazodesglosado;
+        private int[] mimazodesglosado = new int[10];
         private string mazopartida;
         private int lastcard;
         private int cartajugada;

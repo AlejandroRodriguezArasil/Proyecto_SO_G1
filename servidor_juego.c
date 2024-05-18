@@ -285,36 +285,19 @@ void *AtenderCliente(void *socket)
 			printf("Conectados: %d\n",Nconectados);
 			
 		}
-		else if(codigo ==4)//consulta 4: contrasena de un usuario
+		else if(codigo ==4)//consulta 4: tancament de sessio
 		{	
-			char jugador[16];
-			p = strtok( NULL, "/");
-			strcpy (jugador, p);
+			char cerrar[300];
 			
-			char pregunta[100];
-			strcpy (pregunta,"SELECT password FROM Jugador WHERE username = '");
-			strcat (pregunta, jugador);
-			strcat(pregunta,"';");
+			sprintf(borrar, "DELETE FROM Conectados WHERE port = '%d';",sock_conn);
 			
-			
-			err=mysql_query (conn, pregunta);
+			err=mysql_query (conn, borrar); //err = 1 si existeix ja alguna PRIMARY KEY dins la taula Jugadores
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
 						mysql_errno(conn), mysql_error(conn));
 				//exit (1);
 			}
-			
-			resultado = mysql_store_result (conn);
-			row = mysql_fetch_row (resultado);
-			if (row == NULL)
-				printf ("No se han obtenido datos en la consulta\n");
-			else
-				// la columna 0 contiene la contrase a del jugador
-				printf ("%s\n", row[0]);
-				sprintf (respuesta,"%s\n", row[0]);
-			
-			//mysql_close (conn);
-			//exit(0);
+		
 		}
 		else if (codigo == 5) // petici  d'usuaris connectats
 		{

@@ -26,7 +26,8 @@ namespace Cliente_Juego
         private int[] mimazodesglosado = new int[10];
         private string mazopartida;
         private int lastcard;
-        private int cartajugada;
+        private int cartajugada = -1;
+        private static Random rng = new Random();
 
         // Identificadores de cartas (nums 0-9) en orden del tablero
         // 0-bomba
@@ -117,6 +118,7 @@ namespace Cliente_Juego
             string consulta = "9/" + this.id_partida + "/" + this.id_jugador + "-" + this.mimazo + "-" + this.mazopartida + "-" + this.cartajugada;
             byte[] msg = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg);
+            this.cartajugada = -1;
             // no recibimos respuesta del servidor
         }
         
@@ -154,6 +156,7 @@ namespace Cliente_Juego
             //}
 
             this.mimazo = this.mimazo + "/" + Convert.ToString(nuevacarta);
+            DesglosarMazo();
         }
 
 
@@ -179,6 +182,19 @@ namespace Cliente_Juego
                 counts[digit]++;
             }
             this.mimazodesglosado = counts;
+            PopulateCantidadCartas();
+        }
+
+        public void PopulateCantidadCartas()
+        {
+            cantidad_no.Text = mimazodesglosado[0].ToString();
+            cantidad_rda.Text = mimazodesglosado[1].ToString();
+            cantidad_ataque.Text = mimazodesglosado[2].ToString();
+            cantidad_mef.Text = mimazodesglosado[3].ToString();
+            cantidad_saltar.Text = mimazodesglosado[4].ToString();
+            cantidad_mezclar.Text = mimazodesglosado[5].ToString();
+            cantidad_cel.Text = mimazodesglosado[6].ToString();
+            cantidad_ataquedir.Text = mimazodesglosado[7].ToString();
         }
 
         public void Identificarpartida()
@@ -189,5 +205,145 @@ namespace Cliente_Juego
         {
             this.id_jugador = 0; // a pasar mas tarde des de otro formulario
         }
+
+
+        // 1-no  2-roba de abajo  3-ataque  4-mira el futuro  5-saltar  6-mezclar  7-cambia el futuro  8-ataque dirigido
+        public void JugarTurno()
+        {
+            if (turno == true)
+            {
+                DesglosarMazo();
+                // primero, comprobamos cuál ha sido la ultima carta
+                if ((lastcard == 3) || (lastcard == 8))
+                {
+                    Robarcarta(0);
+                    Robarcarta(0);
+                }
+                //si no es un ataque
+                else
+                {
+                    if (cartajugada != -1)
+                    {
+                        if (cartajugada == 1) // no
+                        {
+                            // turno al anterior
+                        }
+                        else if (cartajugada == 2) // roba de abajo
+                        {
+                            Robarcarta(1);
+                            // turno al siguiente
+                        }
+                        else if (cartajugada == 3) //ataque
+                        {
+                            // turno al siguiente
+                        }
+                        else if (cartajugada == 4) //miraelfuturo
+                        {
+                            string[] numbers = this.mazopartida.Split('/');
+                            int[] firstThreeDigits = new int[Math.Min(3, numbers.Length)];
+                            for (int i = 0; i < firstThreeDigits.Length; i++)
+                            {
+                                firstThreeDigits[i] = int.Parse(numbers[i]);
+                            }
+                            MessageBox.Show($"Las proximas cartas son:\n{firstThreeDigits}\n1-no  2-roba de abajo  3-ataque  4-mira el futuro  5-saltar  6-mezclar  7-cambia el futuro  8-ataque dirigido");
+                        }
+                        else if (cartajugada == 5) // saltar
+                        {
+                            // turno al siguiente
+                        }
+                        else if (cartajugada == 6) // mezclar
+                        {
+                            string[] parts = this.mazopartida.Split('/');
+                            parts = parts.OrderBy(x => rng.Next()).ToArray();
+                            this.mazopartida = string.Join("/", parts);
+                            Robarcarta(1);
+                            // turno al siguiente
+                        }
+                        else if (cartajugada == 7) // cambia el futuro
+                        {
+                            Robarcarta(1);
+                            // turno al siguiente
+
+                        }
+                        else if (cartajugada == 8) // ataque dirigido
+                        {
+                            // turno a alguien determinado
+                        }
+                    }
+                    if (cartajugada == -1)
+                    {
+                        MessageBox.Show("Selecciona carta a jugar");
+                    }
+                }
+                EnviarMazos();
+            }
+            else
+            {
+                MessageBox.Show("No es tu turno");
+            }
+        }
+
+        private void Lanzarcarta(int carta)
+        {
+            if (turno == true)
+            {
+                if (mimazodesglosado[carta] > 0)
+                {
+                    cartajugada = carta;
+                    int index = mimazo.IndexOf(carta.ToString());
+                    if (index != -1)
+                    {
+                        mimazo = mimazo.Remove(index, 1);
+                    }
+                }
+            }    
+        }
+        
+        
+        private void no_button_Click(object sender, EventArgs e)
+        {
+            Lanzarcarta(1);
+        }
+
+        private void jugar_rda_Click(object sender, EventArgs e)
+        {
+            Lanzarcarta(2);
+        }
+
+        private void jugar_ataque_Click(object sender, EventArgs e)
+        {
+            Lanzarcarta(3);
+        }
+
+        private void mef_button_Click(object sender, EventArgs e)
+        {
+            Lanzarcarta(4);
+        }
+
+        private void saltar_jugar_Click(object sender, EventArgs e)
+        {
+            Lanzarcarta(5);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Lanzarcarta(6);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Lanzarcarta(7);
+        }
+
+        private void atdir_button_Click(object sender, EventArgs e)
+        {
+            Lanzarcarta(8);
+        }
+
+        private void jugar_turno_Click(object sender, EventArgs e)
+        {
+            JugarTurno();
+        }
     }
+
 }

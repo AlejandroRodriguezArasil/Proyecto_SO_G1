@@ -534,14 +534,68 @@ void *AtenderCliente(void *socket)
 				row3 = mysql_fetch_row(resultado);
 				
 				char respuesta [50];
-				sprintf(respuesta, "&d/%s", partida, row3[0]); //nose porque da error del strcpy, la verdad
+				sprintf(respuesta, "10/&d/%s", partida, row3[0]); //nose porque da error del strcpy, la verdad
 				write(sock_conn, respuesta, strlen(respuesta));
 				row = mysql_fetch_row(resultado);
 			}
 			
 		}
 		
+		else if (codigo == 11) //partidas acativas que se envian como formato al cliente 11/id_partida/turno
+		{
+			
+			char jugador [300];
+			sprintf(jugador, "SELECT id_jugador FROM Conectados WHERE port = '%d';",sock_conn);
+			
+			resultado = mysql_store_result(conn);
+			row = mysql_fetch_row(resultado);
+			char id_jugador [10];
+			strcpy(id_jugador, row[0]);
+			
+			char consulta[300];
+			strcpy(consulta,"SELECT id_p FROM Partida,Puntos WHERE Puntos.id_j = '");
+			strcat(consulta, id_jugador);
+			strcat(consulta,"' AND Partida.acabada = 0 AND Partida.id_partida = Puntos.id_p'");
+			strcat(consulta,"';");
+			
+			
+			err=mysql_query (conn, consulta);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+			
+			
+			resultado = mysql_store_result(conn);
+			row = mysql_fetch_row(resultado);
+			while(row == NULL)
+			{
+				char partida [10];
+				strcpy(partida, row[0]);
+				char turno[300];
+				MYSQL_ROW row3;
+				
+				strcpy(turno, "SELECT turno FROM Partida,Auxiliar WHERE id_partida = '");
+				strcat(turno, partida);
+				strcat(turno,"' AND Partida.id_partida = Auxiliar.id_p'");
+				strcat(turno,"';");
+				resultado = mysql_store_result(conn);
+				row3 = mysql_fetch_row(resultado);
+				
+				char respuesta [50];
+				sprintf(respuesta, "11/&d/%s", partida, row3[0]); //nose porque da error del strcpy, la verdad
+				write(sock_conn, respuesta, strlen(respuesta));
+				row = mysql_fetch_row(resultado);
+			}
+			
+		}
 		
+		else if(codigo == 12) //cliente entra en la partida con id que le llegue
+		{
+			int id_partida = atoi(strtok(NULL, "/"));
+			//faltaria poner el como entrar a dicho id_partida
+		}
 		
 		if (codigo !=0)
 		{

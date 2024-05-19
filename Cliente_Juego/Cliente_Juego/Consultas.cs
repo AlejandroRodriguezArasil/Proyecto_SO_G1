@@ -109,7 +109,8 @@ namespace Cliente_Juego
 
         private void activas_button_Click(object sender, EventArgs e)
         {
-
+            Activas activas = new Activas();
+            activas.Show();
         }
 
         private void busqueda_button_Click(object sender, EventArgs e)

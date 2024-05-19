@@ -202,7 +202,7 @@ void *AtenderCliente(void *socket)
 				}
 				
 				//mysql_close (conn);
-				//exit(0);
+			}//exit(0);
 		}
 		else if(codigo ==3)// consulta 3: icnicio sesion, consulta la base de datos para saber si existe esa persona
 		{	
@@ -325,12 +325,12 @@ void *AtenderCliente(void *socket)
 			}
 			
 			resultado = mysql_store_result (conn);
-			res = mysql_fetch_row (resultado);
-			if (res == NULL)
+			row = mysql_fetch_row (resultado);
+			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
-				printf ("%s\n", res);
-			sprintf (respuesta,"%s\n", res);
+				printf ("%s\n", row);
+			sprintf (respuesta,"%s\n", row);
 			
 			//mysql_close (conn);
 			//exit(0);
@@ -358,12 +358,12 @@ void *AtenderCliente(void *socket)
 			}
 			
 			resultado = mysql_store_result (conn);
-			res = mysql_fetch_row (resultado);
-			if (res == NULL)
+			row = mysql_fetch_row (resultado);
+			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
-				printf ("%s\n", res);
-			sprintf (respuesta,"%s-\n", res);
+				printf ("%s\n", row);
+			sprintf (respuesta,"%s-\n", row);
 
 			strcpy (consulta,"SELECT cartas FROM Mazo WHERE id_j=0 AND id_p = '");
 			strcat (consulta, partida);
@@ -377,12 +377,12 @@ void *AtenderCliente(void *socket)
 			}
 			
 			resultado = mysql_store_result (conn);
-			res = mysql_fetch_row (resultado);
-			if (res == NULL)
+			row = mysql_fetch_row (resultado);
+			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
-				printf ("%s-\n", res);
-			strcat (respuesta, res);
+				printf ("%s-\n", row);
+			strcat (respuesta, row);
 
 			strcpy (consulta,"SELECT lastcard FROM Auxiliar WHERE id_j=");
 			strcat (consulta, jugador);
@@ -398,12 +398,12 @@ void *AtenderCliente(void *socket)
 			}
 			
 			resultado = mysql_store_result (conn);
-			res = mysql_fetch_row (resultado);
-			if (res == NULL)
+			row = mysql_fetch_row (resultado);
+			if (row == NULL)
 				printf ("No se han obtenido datos en la consulta\n");
 			else
-				printf ("%s-\n", res);
-			strcat (respuesta, res);
+				printf ("%s-\n", row);
+			strcat (respuesta, row);
 
 			//mysql_close (conn);
 			//exit(0);
@@ -426,11 +426,11 @@ void *AtenderCliente(void *socket)
 			strcpy(update, "UPDATE Mazo SET cartas = '");
 			strcat(update,mazojugador);
 			strcat(update,"' WHERE id_j = ");
-			strcat(conectado,jugador);
+			strcat(update,jugador);
 			strcat(update,"AND WHERE id_p = ");
-			strcat(conectado,partida);
-			strcat(conectado,";");
-			err=mysql_query (conn, conectado);
+			strcat(update,partida);
+			strcat(update,";");
+			err=mysql_query (conn, update);
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
 						mysql_errno(conn), mysql_error(conn));
@@ -440,9 +440,9 @@ void *AtenderCliente(void *socket)
 			strcpy(update, "UPDATE Mazo SET cartas = '");
 			strcat(update,mazopartida);
 			strcat(update,"' WHERE id_p = ");
-			strcat(conectado,jugador);
+			strcat(update,jugador);
 			strcat(update,"AND WHERE id_j = 0;");
-			err=mysql_query (conn, conectado);
+			err=mysql_query (conn, update);
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
 						mysql_errno(conn), mysql_error(conn));
@@ -452,7 +452,7 @@ void *AtenderCliente(void *socket)
 			strcpy(update, "UPDATE Auxiliar SET lastcard = ");
 			strcat(update,lastcard);
 			strcat(update,";");
-			err=mysql_query (conn, conectado);
+			err=mysql_query (conn, update);
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
 						mysql_errno(conn), mysql_error(conn));
@@ -524,7 +524,7 @@ void *AtenderCliente(void *socket)
 				row3 = mysql_fetch_row(resultado);
 				
 				char respuesta [50];
-				strcpy(respuesta, "10/%s/%s/%s/%s", partida, row1[0], row2[0], row3[0]); //nose porque da error del strcpy, la verdad
+				sprintf(respuesta, "10/%s/%s/%s/%s", partida, row1[0], row2[0], row3[0]); //nose porque da error del strcpy, la verdad
 				write(sock_conn, respuesta, strlen(respuesta));
 				row = mysql_fetch_row(resultado);
 			}
@@ -572,7 +572,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9185);
+	serv_adr.sin_port = htons(9249);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind\n");
 	

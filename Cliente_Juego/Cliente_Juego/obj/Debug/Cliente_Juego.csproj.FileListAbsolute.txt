@@ -68,3 +68,5 @@ C:\Users\aleks\OneDrive\Documents\Uniberisti\Q6\SO\share\project\Proyecto_SO_G1\
 C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.cargar_partida.resources
 C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Usuarios_Conectados.resources
 C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Tablero.resources
+C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Acabadas.resources
+C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.BorrarCuenta.resources

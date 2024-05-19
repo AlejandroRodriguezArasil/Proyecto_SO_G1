@@ -27,7 +27,7 @@ namespace Cliente_Juego
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9185);
+            IPEndPoint ipep = new IPEndPoint(direc, 9581);
 
 
             //Creamos el socket 
@@ -94,6 +94,19 @@ namespace Cliente_Juego
                 MessageBox.Show("Primero debes conectarte al servidor");
             }
             
+        }
+
+        private void cerrarSesiónToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string mensaje = "4/";
+
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            MessageBox.Show(mensaje);
         }
     }
 }

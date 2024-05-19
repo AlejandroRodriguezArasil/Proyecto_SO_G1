@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Cliente_Juego
 {
     public partial class Identificación : Form
     {
         private Socket server;
+        
+
         public Identificación(Socket server)
         {
             InitializeComponent();
@@ -57,7 +60,11 @@ namespace Cliente_Juego
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(mensaje);
+                string[] trozos = mensaje.Split('/');
+                MessageBox.Show(trozos[0]);
+                GlobalData.Instance.Set_idjugador(Convert.ToInt32(trozos[2]));
+                GlobalData.Instance.Set_nombrejugador(username);
+                GlobalData.Instance.Set_socketconn(Convert.ToInt32(trozos[1]));
             }
         }
 

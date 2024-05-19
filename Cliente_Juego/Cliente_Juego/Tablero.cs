@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Cliente_Juego
 {
     public partial class Tablero : Form
@@ -20,6 +21,8 @@ namespace Cliente_Juego
         private Socket server;
         private int id_partida;
         private int id_jugador;
+        private string jugador_nombre;
+        private int socketconn;
         private int turno_actual;
         private bool turno = false;
         private string mimazo;
@@ -36,9 +39,11 @@ namespace Cliente_Juego
         public Tablero()
         {
             InitializeComponent();
-            Identificarpartida();
-            Identificarjugador();
             DisplayPlayerBoxes();
+            this.id_jugador = GlobalData.Instance.id_jugador;
+            this.id_partida = GlobalData.Instance.id_partida;
+            this.jugador_nombre = GlobalData.Instance.nombre_jugador;
+            this.socketconn = GlobalData.Instance.socketconn;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -196,17 +201,6 @@ namespace Cliente_Juego
             cantidad_cel.Text = mimazodesglosado[6].ToString();
             cantidad_ataquedir.Text = mimazodesglosado[7].ToString();
         }
-
-        public void Identificarpartida()
-        {
-            this.id_partida = 0; // a pasar mas tarde des de otro formulario
-        }
-        public void Identificarjugador()
-        {
-            this.id_jugador = 0; // a pasar mas tarde des de otro formulario
-        }
-
-
         // 1-no  2-roba de abajo  3-ataque  4-mira el futuro  5-saltar  6-mezclar  7-cambia el futuro  8-ataque dirigido
         public void JugarTurno()
         {

@@ -64,6 +64,7 @@
     <Compile Include="BorrarCuenta.Designer.cs">
       <DependentUpon>BorrarCuenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalData.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

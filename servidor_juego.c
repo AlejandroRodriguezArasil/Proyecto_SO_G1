@@ -69,8 +69,11 @@ void *AtenderCliente(void *socket)
 		int codigo =  atoi (p);
 		printf("Codigo: %d\n",codigo);
 		
-		if (codigo ==0){ //petici?n de desconexi?n
-		if(codigo == 1)// consulta 1: Registrarse
+		if (codigo ==0)
+		{
+			terminar = 1;		
+		}//petici?n de desconexi?n
+		else if(codigo == 1)// consulta 1: Registrarse
 		{	
 			
 			char nombre[100];
@@ -84,6 +87,29 @@ void *AtenderCliente(void *socket)
 			printf("nombre: %s \n", nombre);
 			printf("contrase a: %s\n", contrasena);
 			
+			int numjug = 1;
+			char contar[300];
+			strcpy (contar,"SELECT * FROM Jugador WHERE id_jugador > 0");
+			
+			err=mysql_query (conn, contar); //err = 1 si existeix ja alguna PRIMARY KEY dins la taula Jugadores
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+			
+			
+			resultado = mysql_store_result(conn);
+			row = mysql_fetch_row(resultado);
+			
+			while (row != NULL)
+			{
+				numjug +=1;
+				row = mysql_fetch_row(resultado);
+			}
+			
+			printf("El jugador tindrà la id: %d\n",numjug);
+			
 			char Existe[300];
 			strcpy (Existe, "SELECT username FROM Jugador WHERE username = '");
 			strcat(Existe,nombre);
@@ -96,6 +122,7 @@ void *AtenderCliente(void *socket)
 				//exit (1);
 			}
 			
+						
 			resultado = mysql_store_result(conn);
 			row = mysql_fetch_row(resultado);
 			
@@ -107,9 +134,6 @@ void *AtenderCliente(void *socket)
 			}
 			else 
 			{
-				int numjug;
-				p = strtok(NULL, "/");
-				numjug = atoi(p);
 				
 				char registro[300];
 				
@@ -279,12 +303,13 @@ void *AtenderCliente(void *socket)
 				}
 				pthread_mutex_unlock(&mutex);
 				
-				strcpy(respuesta, "Inicio de sesion correcto");
+				sprintf(respuesta, "Inicio de sesion correcto/%d/%d",sock_conn,id);
+				
 			}
 			printf("Conectados: %d\n",Nconectados);
 			
 		}
-		else if(codigo == 4)//consulta 4: tancament de sessio
+		else if(codigo ==4)//consulta 4: tancament de sessio
 		{	
 			
 			printf("hem arribat aqui");
@@ -312,10 +337,10 @@ void *AtenderCliente(void *socket)
 			//exit(0);
 			
 		}
-		else if (codigo == 5) // petici  d'usuaris connectats
+		else if (codigo == 5) // peticio  d'usuaris connectats
 		{
 			char consulta[100];
-			strcpy(consulta, "SELECT * FROM Jugador WHERE conectado = 1;");
+			strcpy(consulta, "SELECT nickname FROM Conectados;");
 			err=mysql_query (conn, consulta);
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
@@ -325,12 +350,19 @@ void *AtenderCliente(void *socket)
 			
 			resultado = mysql_store_result (conn);
 			row = mysql_fetch_row (resultado);
-			if (row == NULL)
-				printf ("No se han obtenido datos en la consulta\n");
-			else
-				// la columna 0 contiene la contrase a del jugador
-				printf ("%s\n", row[0]);
-			sprintf (respuesta,"%s\n", row[0]);
+			while (row != NULL)
+			{
+				if (row == NULL)
+					printf ("No se han obtenido datos en la consulta\n");
+				else
+					// la columna 0 contiene la contrase a del jugador
+					printf ("%s\n", row[0]);
+					strcat(respuesta, row[0]);
+					strcat(respuesta,"/");
+					
+				row = mysql_fetch_row(resultado);
+			}
+			
 			
 			//mysql_close (conn);
 			//exit(0);
@@ -545,18 +577,25 @@ void *AtenderCliente(void *socket)
 		{
 			
 			char jugador [300];
-			sprintf(jugador, "SELECT id_jugador FROM Conectados WHERE port = '%d';",sock_conn);
+			sprintf(jugador, "SELECT id_j FROM Conectados WHERE port = %d;",sock_conn);
+			
+			err=mysql_query (conn, jugador);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
 			
 			resultado = mysql_store_result(conn);
 			row = mysql_fetch_row(resultado);
-			char id_jugador [10];
-			strcpy(id_jugador, row[0]);
+			
+			int id_jugador;
+			id_jugador = atoi(row[0]);
 			
 			char consulta[300];
-			strcpy(consulta,"SELECT id_p FROM Partida,Puntos WHERE Puntos.id_j = '");
+			strcpy(consulta,"SELECT id_p FROM Partida,Puntos WHERE Puntos.id_j = ");
 			strcat(consulta, id_jugador);
-			strcat(consulta,"' AND Partida.acabada = 0 AND Partida.id_partida = Puntos.id_p'");
-			strcat(consulta,"';");
+			strcat(consulta," AND Partida.acabada = 0 AND Partida.id_partida = Puntos.id_p;");
 			
 			
 			err=mysql_query (conn, consulta);
@@ -569,22 +608,29 @@ void *AtenderCliente(void *socket)
 			
 			resultado = mysql_store_result(conn);
 			row = mysql_fetch_row(resultado);
-			while(row == NULL)
+			while(row != NULL)
 			{
 				char partida [10];
 				strcpy(partida, row[0]);
 				char turno[300];
 				MYSQL_ROW row3;
 				
-				strcpy(turno, "SELECT turno FROM Partida,Auxiliar WHERE id_partida = '");
+				strcpy(turno, "SELECT turno FROM Partida,Auxiliar WHERE id_partida = ");
 				strcat(turno, partida);
-				strcat(turno,"' AND Partida.id_partida = Auxiliar.id_p'");
-				strcat(turno,"';");
+				strcat(turno," AND Partida.id_partida = Auxiliar.id_p;");
+				
+				err=mysql_query (conn, turno);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					//exit (1);
+				}
+				
 				resultado = mysql_store_result(conn);
 				row3 = mysql_fetch_row(resultado);
 				
 				char respuesta [50];
-				sprintf(respuesta, "11/&d/%s", partida, row3[0]); //nose porque da error del strcpy, la verdad
+				sprintf(respuesta, "11/&d/%s", partida, row3[0]); // 11/partida1/torn1/11/partida2/torn2
 				write(sock_conn, respuesta, strlen(respuesta));
 				row = mysql_fetch_row(resultado);
 			}
@@ -593,7 +639,8 @@ void *AtenderCliente(void *socket)
 		
 		else if(codigo == 12) //cliente entra en la partida con id que le llegue
 		{
-			int id_partida = atoi(strtok(NULL, "/"));
+			p = strtok(NULL,"/");
+			int id_partida = atoi(p);
 			//faltaria poner el como entrar a dicho id_partida
 		}
 		
@@ -634,7 +681,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9581);
+	serv_adr.sin_port = htons(9751);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind\n");
 	

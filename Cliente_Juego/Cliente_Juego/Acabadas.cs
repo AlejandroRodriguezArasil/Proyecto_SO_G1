@@ -34,18 +34,12 @@ namespace Cliente_Juego
                 string mensaje1 = Encoding.ASCII.GetString(msg).Split('\0')[0];
                 string[] trozos = mensaje1.Split('/');
                 int num = Convert.ToInt32(trozos[0]);
-                switch (num)
-                {
-                    case 10:
-                        dataGridView1.Columns.Add("Columna1", "ID de la Partida");
-                        dataGridView1.Columns.Add("Columna2", "Inicio de la Partida");
-                        dataGridView1.Columns.Add("Columna3", "Final de la Partida");
-                        dataGridView1.Columns.Add("Columna4", "Ganador de la Partida");
 
-                        // Añadir una fila con los datos en una sola línea de código
-                        dataGridView1.Rows.Add(trozos[1], trozos[2], trozos[3], trozos[4]);
+                dataGridView1.Columns.Add("Columna1", "ID de la Partida");
+                dataGridView1.Columns.Add("Columna2", "Ganador de la Partida");
 
-                }
+                // Añadir una fila con los datos en una sola línea de código
+                dataGridView1.Rows.Add(trozos[0], trozos[1]);
             }
 
 

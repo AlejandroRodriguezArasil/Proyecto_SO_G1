@@ -155,10 +155,12 @@ namespace Cliente_Juego
                 return; 
             }
 
-            //if(nuevacarta == 0)
-            //{
-            //    logica de haber explotado
-            //}
+            if(nuevacarta == 0)
+            {
+                string consulta = "13/" + this.id_jugador + "/" + this.id_partida ;
+                byte[] msg = Encoding.ASCII.GetBytes(consulta);
+                server.Send(msg);    //    logica de haber explotado
+            }
 
             this.mimazo = this.mimazo + "/" + Convert.ToString(nuevacarta);
             DesglosarMazo();
@@ -204,14 +206,17 @@ namespace Cliente_Juego
         // 1-no  2-roba de abajo  3-ataque  4-mira el futuro  5-saltar  6-mezclar  7-cambia el futuro  8-ataque dirigido
         public void JugarTurno()
         {
+            Checkturno();
             if (turno == true)
             {
+                RecibirMazos();
                 DesglosarMazo();
                 // primero, comprobamos cuál ha sido la ultima carta
                 if ((lastcard == 3) || (lastcard == 8))
                 {
                     Robarcarta(0);
                     Robarcarta(0);
+                    AsignarProximoTurno(0);
                 }
                 //si no es un ataque
                 else
@@ -220,16 +225,16 @@ namespace Cliente_Juego
                     {
                         if (cartajugada == 1) // no
                         {
-                            // turno al anterior
+                            AsignarProximoTurno(1);
                         }
                         else if (cartajugada == 2) // roba de abajo
                         {
                             Robarcarta(1);
-                            // turno al siguiente
+                            AsignarProximoTurno(0);
                         }
                         else if (cartajugada == 3) //ataque
                         {
-                            // turno al siguiente
+                            AsignarProximoTurno(0);
                         }
                         else if (cartajugada == 4) //miraelfuturo
                         {
@@ -243,7 +248,7 @@ namespace Cliente_Juego
                         }
                         else if (cartajugada == 5) // saltar
                         {
-                            // turno al siguiente
+                            AsignarProximoTurno(0);
                         }
                         else if (cartajugada == 6) // mezclar
                         {
@@ -251,7 +256,7 @@ namespace Cliente_Juego
                             parts = parts.OrderBy(x => rng.Next()).ToArray();
                             this.mazopartida = string.Join("/", parts);
                             Robarcarta(1);
-                            // turno al siguiente
+                            AsignarProximoTurno(0);
                         }
                         else if (cartajugada == 7) // cambia el futuro
                         {
@@ -291,6 +296,32 @@ namespace Cliente_Juego
                     }
                 }
             }    
+        }
+
+        private void AsignarProximoTurno (int direccion)  // direccion 0 -> adelante, direccion 1 -> atras
+        {
+            string consulta = "14/"+id_partida;
+            byte[] msg = Encoding.ASCII.GetBytes(consulta);
+            server.Send(msg);
+            // recibimos respuesta del servidor
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            string listajugadoresvivos = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            listajugadoresvivos = listajugadoresvivos.TrimEnd('/');
+            string[] numbers = listajugadoresvivos.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            int index = Array.IndexOf(numbers, id_jugador);
+            int nextIndex = id_jugador;
+            if (direccion == 0)
+            {
+                nextIndex = (index + 1) % numbers.Length;
+            }
+            if (direccion == 1)
+            {
+                nextIndex = (index - 1) % numbers.Length;
+            }
+            string update = "15/" + id_partida + nextIndex;
+            byte[] msg3 = Encoding.ASCII.GetBytes(consulta);
+            server.Send(msg3);
         }
         
         

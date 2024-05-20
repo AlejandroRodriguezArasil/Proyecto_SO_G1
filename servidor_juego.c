@@ -492,7 +492,10 @@ void *AtenderCliente(void *socket)
 			strcpy(update, "UPDATE Mazo SET cartas = '");
 			strcat(update,mazojugador);
 			strcat(update,"' WHERE id_j = ");
+			strcat(update, jugador);
 			strcat(update,"AND WHERE id_p = ");
+			strcat(update, partida);
+			strcat(update, ";");
 			err=mysql_query (conn, update);
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
@@ -503,6 +506,7 @@ void *AtenderCliente(void *socket)
 			strcpy(update, "UPDATE Mazo SET cartas = '");
 			strcat(update,mazopartida);
 			strcat(update,"' WHERE id_p = ");
+			strcat(update, jugador);
 			strcat(update,"AND WHERE id_j = 0;");
 			err=mysql_query (conn, update);
 			if (err!=0) {
@@ -648,6 +652,103 @@ void *AtenderCliente(void *socket)
 			p = strtok(NULL,"/");
 			int id_partida = atoi(p);
 			//faltaria poner el como entrar a dicho id_partida
+		}
+		else if(codigo == 13) //se actualiza persona eliminada
+		{
+			p = strtok(NULL,"/");
+			int id_elim = atoi(p);
+			p = strtok(NULL,"/");
+			int id_partida = atoi(p);
+			char update [100];
+			strcpy (update, "UPDATE Auxiliar SET vivo = 0 WHERE id_j =");
+			strcat(update, id_elim);
+			strcat(update,"AND WHERE id_p = ");
+			strcat(update, id_partida);
+			strcat(update, ";");
+			err=mysql_query (conn, update);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+		}
+		else if (codigo == 14) // peticio  d'usuaris vius
+		{
+			p = strtok(NULL,"/");
+			int id_partida = atoi(p);
+			char consulta[100];
+			strcpy(consulta, "SELECT id_j FROM Auxiliar WHERE vivo = 1 AND id_p = ");
+			strcat(consulta, id_partida);
+			strcat(consulta, ";");
+			err=mysql_query (conn, consulta);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+			
+			resultado = mysql_store_result (conn);
+			row = mysql_fetch_row (resultado);
+			if (row == NULL)
+				printf ("No se han obtenido datos en la consulta\n");
+			else{
+				while (row != NULL)
+				{
+					
+					strcat(respuesta, row[0]);
+					strcat(respuesta,"/");
+					
+					row = mysql_fetch_row(resultado);
+				}
+			}
+			
+			
+			//mysql_close (conn);
+			//exit(0);
+			
+		}
+		else if (codigo == 15) // assignació nou torn
+		{
+			p = strtok(NULL,"/");
+			int id_partida = atoi(p);
+			p = strtok(NULL,"/");
+			int id_jug = atoi(p);
+			char update[100];
+			strcpy (update, "UPDATE Auxiliar SET turno = ");
+			strcat(update, id_jug);
+			strcat(update,"AND WHERE id_p = ");
+			strcat(update, id_partida);
+			strcat(update, ";");
+			err=mysql_query (conn, update);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+			char consulta[100];
+			strcpy (consulta, "SELECT port FROM conectados WHERE id_j = ");
+			strcat (consulta, id_jug);
+			strcat (consulta, ";");
+			err=mysql_query (conn, consulta);
+			if (err!=0) {
+				printf ("Error al consultar datos de la base %u %s\n",
+						mysql_errno(conn), mysql_error(conn));
+				//exit (1);
+			}
+			
+			resultado = mysql_store_result (conn);
+			row = mysql_fetch_row (resultado);
+			if (row == NULL)
+				printf ("No se han obtenido datos en la consulta\n");
+			else
+			{
+				char respuesta [100];
+				// enviar notificació de torn a tothom fent un for per a tots els sockets
+			}
+			
+			//mysql_close (conn);
+			//exit(0);
+			
 		}
 		
 		if (codigo !=0)

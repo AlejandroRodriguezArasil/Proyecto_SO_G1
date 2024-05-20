@@ -33,18 +33,12 @@ namespace Cliente_Juego
         {
             this.num = a;
         }
-        public void actualizarconectados()
+        public void actualizarconectados(string serializedData)
         {
-            ListaUsuariosConectados listauserconec = new ListaUsuariosConectados();
-            string consulta = "5/";
-            byte[] msg = Encoding.ASCII.GetBytes(consulta);
-            server.Send(msg);
-            // recibimos respuesta del servidor
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            string serializedData = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+
+            
             // Desencriptamos la informacion recibida 
-            string[] rows = serializedData.Split('\n');
+            string[] rows = serializedData.Split('/');
             foreach (string rowData in rows)
             {
                 string[] fields = rowData.Split(',');
@@ -54,10 +48,12 @@ namespace Cliente_Juego
                 user.SetNombre(fields[1]);
                 user.SetPuerto(Convert.ToInt32(fields[2]));
                 // Add the user to the list
-                int n = listauserconec.GetNum() + 1;
-                listauserconec.userconected[n] = user;
-                listauserconec.SetNum(n);
+                int n = this.GetNum() ;
+                this.userconected[n] = user;
+                this.SetNum(n + 1);
+                
             }
+
         }
 
         public DataTable PopulateDataGridView(ListaUsuariosConectados lista)

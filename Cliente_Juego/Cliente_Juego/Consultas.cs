@@ -101,15 +101,15 @@ namespace Cliente_Juego
 
         private void nueva_partida_button_Click(object sender, EventArgs e)
         {
-            userconlist.actualizarconectados();
-            cargar_partida carg = new cargar_partida();
-            carg.ShowDialog();
+            //userconlist.actualizarconectados(userconlist);
+            //cargar_partida carg = new cargar_partida(server);
+            //carg.ShowDialog();
 
         }
 
         private void activas_button_Click(object sender, EventArgs e)
         {
-            Activas activas = new Activas();
+            Activas activas = new Activas(server);
             activas.Show();
         }
 
@@ -120,13 +120,13 @@ namespace Cliente_Juego
 
         private void acabadas_button_Click(object sender, EventArgs e)
         {
-            Acabadas acabadas = new Acabadas();
+            Acabadas acabadas = new Acabadas(server);
             acabadas.Show();
         }
 
         private void conectados_button_Click(object sender, EventArgs e)
         {
-            Usuarios_Conectados ucon = new Usuarios_Conectados();
+            Usuarios_Conectados ucon = new Usuarios_Conectados(server);
             ucon.Show();
         }
     }

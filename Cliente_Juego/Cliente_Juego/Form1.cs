@@ -20,7 +20,7 @@ namespace Cliente_Juego
 
         private void cargar_partida_Load(object sender, EventArgs e)
         {
-            userconlist.actualizarconectados();
+            //userconlist.actualizarconectados(userconlist);
             dgvcarga.DataSource=userconlist.PopulateDataGridView(userconlist);
         }
 

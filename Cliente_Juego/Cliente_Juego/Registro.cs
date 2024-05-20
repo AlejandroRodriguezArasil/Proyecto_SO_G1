@@ -41,7 +41,7 @@ namespace Cliente_Juego
                 string username = usuarioBox.Text;
                 string contraseña = contraseñaBox.Text;
                 string id = IdTB.Text;
-                string mensaje = "1/Registro/" + username + "/" + contraseña + "/"+ id + "/quiere registrarse.";
+                string mensaje = "1/" + username + "/" + contraseña + "/"+ id ;
 
 
                 byte[] msg = Encoding.ASCII.GetBytes(mensaje);

@@ -76,5 +76,22 @@ namespace Cliente_Juego
             else
             { contraseñaBox.UseSystemPasswordChar = true; }
         }
+        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string mensaje = "4/";
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            MessageBox.Show(mensaje);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BorrarCuenta borrar = new BorrarCuenta(server);
+            borrar.Show();
+        }
     }
 }

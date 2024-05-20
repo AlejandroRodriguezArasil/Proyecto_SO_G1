@@ -14,9 +14,10 @@ namespace Cliente_Juego
     public partial class Acabadas : Form
     {
         private Socket server;
-        public Acabadas()
+        public Acabadas(Socket server)
         {
             InitializeComponent();
+            this.server = server;
         }
 
         private void Acabadas_Load(object sender, EventArgs e)

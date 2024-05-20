@@ -14,9 +14,10 @@ namespace Cliente_Juego
     public partial class BorrarCuenta : Form
     {
         private Socket server;
-        public BorrarCuenta()
+        public BorrarCuenta(Socket server)
         {
             InitializeComponent();
+            this.server = server;
         }
 
         private void BorrarCuenta_Load(object sender, EventArgs e)
@@ -44,7 +45,7 @@ namespace Cliente_Juego
                 {
                     string username = usuarioBox.Text;
                     string password = contraseñaBox.Text;
-                    string mensaje = "2/Borrar cuenta/" + username + "/" + password;
+                    string mensaje = "2/" + username + "/" + password;
 
                     byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                     server.Send(msg);

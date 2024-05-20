@@ -14,9 +14,10 @@ namespace Cliente_Juego
     public partial class Activas : Form
     {
         private Socket server;
-        public Activas()
+        public Activas(Socket server)
         {
             InitializeComponent();
+            this.server = server;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -28,7 +29,7 @@ namespace Cliente_Juego
                 object firstCellValue = clickedRow.Cells[0].Value;
                 Convert.ToString(firstCellValue);
                 string mensaje = "12/";
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
 
 
@@ -43,7 +44,7 @@ namespace Cliente_Juego
             dataGridView1.Rows.Clear();
             dataGridView1.Columns.Clear();
             string mensaje = "11/";
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
 
             while (true)

@@ -340,7 +340,7 @@ void *AtenderCliente(void *socket)
 		else if (codigo == 5) // peticio  d'usuaris connectats
 		{
 			char consulta[100];
-			strcpy(consulta, "SELECT nickname FROM Conectados;");
+			strcpy(consulta, "SELECT * FROM Conectados;");
 			err=mysql_query (conn, consulta);
 			if (err!=0) {
 				printf ("Error al consultar datos de la base %u %s\n",
@@ -350,17 +350,21 @@ void *AtenderCliente(void *socket)
 			
 			resultado = mysql_store_result (conn);
 			row = mysql_fetch_row (resultado);
-			while (row != NULL)
-			{
-				if (row == NULL)
-					printf ("No se han obtenido datos en la consulta\n");
-				else
-					// la columna 0 contiene la contrase a del jugador
-					printf ("%s\n", row[0]);
+			if (row == NULL)
+				printf ("No se han obtenido datos en la consulta\n");
+			else{
+				while (row != NULL)
+				{
+					
 					strcat(respuesta, row[0]);
+					strcat(respuesta,",");
+					strcat(respuesta,row[1]);
+					strcat(respuesta,",");
+					strcat(respuesta,row[2]);
 					strcat(respuesta,"/");
 					
-				row = mysql_fetch_row(resultado);
+					row = mysql_fetch_row(resultado);
+				}
 			}
 			
 			
@@ -526,6 +530,8 @@ void *AtenderCliente(void *socket)
 			// llega del cliente como 10/
 			// p = strtok(NULL, "/");
 			// int id_jugador = atoi(p);
+			
+			printf("estas aqui");
 			
 			char jugador [300];
 			sprintf(jugador, "SELECT id_jugador FROM Conectados WHERE port = '%d';",sock_conn);

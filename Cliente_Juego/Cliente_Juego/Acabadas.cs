@@ -22,28 +22,51 @@ namespace Cliente_Juego
 
         private void Acabadas_Load(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
+            dataGridView1.DataSource = null;
+
             string mensaje = "10/";
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
+            byte[] msg1 = new byte[80];
+            server.Receive(msg1);
+            string mensaje1 = Encoding.ASCII.GetString(msg).Split('\0')[0];
+            mensaje1.TrimEnd('/');
 
-            while(true)
+            if(mensaje1 != null)
             {
-                byte[] msg1 = new byte[80];
-                server.Receive(msg1);
-                string mensaje1 = Encoding.ASCII.GetString(msg).Split('\0')[0];
-                string[] trozos = mensaje1.Split('/');
-                int num = Convert.ToInt32(trozos[0]);
+                try
+                {
+                    string[] trozos = mensaje1.Split('/');
 
-                dataGridView1.Columns.Add("Columna1", "ID de la Partida");
-                dataGridView1.Columns.Add("Columna2", "Ganador de la Partida");
+                    DataTable dataTable = new DataTable();
+                    dataTable.Clear();
+                    dataTable.Columns.Add("ID Partida", typeof(int));
 
-                // Añadir una fila con los datos en una sola línea de código
-                dataGridView1.Rows.Add(trozos[0], trozos[1]);
+                    foreach(string data in trozos)
+                    {
+                        string[] fields = data.Split(',');
+                        if(fields.Length == 2 && fields[0] == "10")
+                        {
+                            int id = Convert.ToInt32(fields[1]);
+                            dataTable.Rows.Add(id);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Invalid row data: {data}");
+                        }
+                    }
+                }
+                catch (FormatException ex)
+                {
+                    // Handle format exceptions that occur during conversion
+                    MessageBox.Show($"Error converting data: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    // Handle any other exceptions that might occur
+                    MessageBox.Show($"An error occurred: {ex.Message}");
+                }
             }
-
-
 
         }
 

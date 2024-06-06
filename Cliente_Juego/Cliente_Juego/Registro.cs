@@ -24,9 +24,9 @@ namespace Cliente_Juego
         private void Registrarse_Click(object sender, EventArgs e)
         {
             // comprueba errores en los campos de información, si existe un usuario no permite el registro, de lo contrario registra a ese usuario en la base de datos
-            if (usuarioBox.Text == "" || contraseñaBox.Text == "" || IdTB.Text == "") //evitar campos vacíos
+            if (usuarioBox.Text == "" || contraseñaBox.Text == "") //evitar campos vacíos
             {
-                if (usuarioBox.Text == "" &&  contraseñaBox.Text == "" && IdTB.Text == "")
+                if (usuarioBox.Text == "" &&  contraseñaBox.Text == "")
                 {
                     MessageBox.Show("Por favor rellene los campos.");
                 }
@@ -40,8 +40,7 @@ namespace Cliente_Juego
             {
                 string username = usuarioBox.Text;
                 string contraseña = contraseñaBox.Text;
-                string id = IdTB.Text;
-                string mensaje = "1/" + username + "/" + contraseña + "/"+ id ;
+                string mensaje = "1/" + username + "/" + contraseña;
 
 
                 byte[] msg = Encoding.ASCII.GetBytes(mensaje);

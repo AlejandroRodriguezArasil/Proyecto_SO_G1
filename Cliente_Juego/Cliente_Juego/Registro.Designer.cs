@@ -34,8 +34,6 @@
             this.contraseñaBox = new System.Windows.Forms.TextBox();
             this.Registrarse = new System.Windows.Forms.Button();
             this.Show_Hide = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.IdTB = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -100,33 +98,11 @@
             this.Show_Hide.UseVisualStyleBackColor = true;
             this.Show_Hide.CheckedChanged += new System.EventHandler(this.Show_Hide_CheckedChanged);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(213, 383);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 16);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "ID (temporal)";
-            // 
-            // IdTB
-            // 
-            this.IdTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdTB.Location = new System.Drawing.Point(516, 383);
-            this.IdTB.Margin = new System.Windows.Forms.Padding(4);
-            this.IdTB.MaxLength = 8;
-            this.IdTB.Name = "IdTB";
-            this.IdTB.Size = new System.Drawing.Size(132, 22);
-            this.IdTB.TabIndex = 7;
-            // 
             // Registro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.IdTB);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.Show_Hide);
             this.Controls.Add(this.Registrarse);
             this.Controls.Add(this.contraseñaBox);
@@ -150,7 +126,5 @@
         private System.Windows.Forms.TextBox contraseñaBox;
         private System.Windows.Forms.Button Registrarse;
         private System.Windows.Forms.CheckBox Show_Hide;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox IdTB;
     }
 }

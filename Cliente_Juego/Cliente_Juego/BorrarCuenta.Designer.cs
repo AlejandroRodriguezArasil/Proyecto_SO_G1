@@ -45,6 +45,7 @@
             this.Show_Hide.TabIndex = 10;
             this.Show_Hide.Text = "Show";
             this.Show_Hide.UseVisualStyleBackColor = true;
+            this.Show_Hide.CheckedChanged += new System.EventHandler(this.Show_Hide_CheckedChanged);
             // 
             // contraseñaBox
             // 

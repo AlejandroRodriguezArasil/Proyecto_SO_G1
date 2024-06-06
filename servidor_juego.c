@@ -139,7 +139,7 @@ void *AtenderCliente(void *socket)
 				else 
 				{
 					
-					char registro[300];
+					char registro[400];
 					
 					pthread_mutex_lock(&mutex);
 					strcpy (registro,"INSERT INTO Jugador VALUES ("); //INSERT INTO Jugador VALUES (5, nombre, contrase a)
@@ -471,7 +471,7 @@ void *AtenderCliente(void *socket)
 				//mysql_close (conn);
 				//exit(0);
 				break;
-					
+				
 			}
 			case 9: // proceso de actualizar mazos
 			{
@@ -519,7 +519,7 @@ void *AtenderCliente(void *socket)
 			
 				break;
 			}
-			case 10: //partidas acabadas se envia como formato al cliente 10/id_partida
+			case 10: //partidas acabadas se envia como formato al cliente 10,id_partida
 			{
 				
 				printf("tenim el codi 10");
@@ -547,11 +547,13 @@ void *AtenderCliente(void *socket)
 				
 				resultado = mysql_store_result(conn);
 				row = mysql_fetch_row(resultado);
-				strcpy(respuesta,"");
+				strcpy(respuesta,"10/");
 				while(row != NULL)
 				{
-					int partida = atoi(row[0]);
-					sprintf(respuesta, "%s10,%d/",respuesta, partida); 
+					char partida[10];
+					sprintf(partida,"%s",row[0]);
+					strcat(respuesta, partida); 
+					strcat(respuesta,",");
 					printf("respuesta: %s\n", respuesta);
 					row = mysql_fetch_row(resultado);
 				}
@@ -560,6 +562,7 @@ void *AtenderCliente(void *socket)
 			}
 			case 11: //partidas acativas que se envian como formato al cliente 11/id_partida/turno
 			{
+				printf("estas en el codi 11");
 				
 				char jugador [300];
 				sprintf(jugador, "SELECT id_j FROM Conectados WHERE port = %d;",sock_conn);

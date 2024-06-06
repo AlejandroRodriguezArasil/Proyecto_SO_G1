@@ -30,7 +30,6 @@ namespace Cliente_Juego
             byte[] msg1 = new byte[80];
             server.Receive(msg1);
             string mensaje1 = Encoding.ASCII.GetString(msg).Split('\0')[0];
-            mensaje1.TrimEnd('/');
 
             if(mensaje1 != null)
             {
@@ -42,12 +41,13 @@ namespace Cliente_Juego
                     dataTable.Clear();
                     dataTable.Columns.Add("ID Partida", typeof(int));
 
-                    foreach(string data in trozos)
+                    string[] trozos1 = trozos[1].Split(',');
+
+                    foreach(string data in trozos1)
                     {
-                        string[] fields = data.Split(',');
-                        if(fields.Length == 2 && fields[0] == "10")
+                        if(trozos[0] == "10")
                         {
-                            int id = Convert.ToInt32(fields[1]);
+                            int id = Convert.ToInt32(data);
                             dataTable.Rows.Add(id);
                         }
                         else

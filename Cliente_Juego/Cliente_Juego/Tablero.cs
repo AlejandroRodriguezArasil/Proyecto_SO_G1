@@ -319,7 +319,7 @@ namespace Cliente_Juego
             {
                 nextIndex = (index - 1) % numbers.Length;
             }
-            string update = "15/" + id_partida + nextIndex;
+            string update = "15/" + id_partida + "/" + nextIndex;
             byte[] msg3 = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg3);
         }

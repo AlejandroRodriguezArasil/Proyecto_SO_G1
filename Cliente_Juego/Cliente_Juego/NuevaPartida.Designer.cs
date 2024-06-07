@@ -31,6 +31,7 @@
             this.cargar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvcarga = new System.Windows.Forms.DataGridView();
+            this.invitar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcarga)).BeginInit();
             this.SuspendLayout();
             // 
@@ -38,7 +39,7 @@
             // 
             this.cargar.Location = new System.Drawing.Point(406, 24);
             this.cargar.Name = "cargar";
-            this.cargar.Size = new System.Drawing.Size(75, 23);
+            this.cargar.Size = new System.Drawing.Size(97, 45);
             this.cargar.TabIndex = 0;
             this.cargar.Text = "cargar";
             this.cargar.UseVisualStyleBackColor = true;
@@ -56,18 +57,29 @@
             // dgvcarga
             // 
             this.dgvcarga.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvcarga.Location = new System.Drawing.Point(241, 158);
+            this.dgvcarga.Location = new System.Drawing.Point(94, 118);
             this.dgvcarga.Name = "dgvcarga";
             this.dgvcarga.RowHeadersWidth = 51;
             this.dgvcarga.RowTemplate.Height = 24;
-            this.dgvcarga.Size = new System.Drawing.Size(240, 150);
+            this.dgvcarga.Size = new System.Drawing.Size(387, 234);
             this.dgvcarga.TabIndex = 2;
+            // 
+            // invitar
+            // 
+            this.invitar.Location = new System.Drawing.Point(638, 24);
+            this.invitar.Name = "invitar";
+            this.invitar.Size = new System.Drawing.Size(111, 44);
+            this.invitar.TabIndex = 3;
+            this.invitar.Text = "Invitar";
+            this.invitar.UseVisualStyleBackColor = true;
+            this.invitar.Click += new System.EventHandler(this.invitar_Click);
             // 
             // cargar_partida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.invitar);
             this.Controls.Add(this.dgvcarga);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cargar);
@@ -85,5 +97,6 @@
         private System.Windows.Forms.Button cargar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvcarga;
+        private System.Windows.Forms.Button invitar;
     }
 }

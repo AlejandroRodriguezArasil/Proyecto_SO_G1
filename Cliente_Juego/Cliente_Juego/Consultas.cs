@@ -101,10 +101,8 @@ namespace Cliente_Juego
 
         private void nueva_partida_button_Click(object sender, EventArgs e)
         {
-            //userconlist.actualizarconectados(userconlist);
-            //cargar_partida carg = new cargar_partida(server);
-            //carg.ShowDialog();
-
+            cargar_partida partida = new cargar_partida(server);
+            partida.Show();
         }
 
         private void activas_button_Click(object sender, EventArgs e)

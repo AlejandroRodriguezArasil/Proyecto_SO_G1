@@ -34,7 +34,7 @@ namespace Cliente_Juego
 
 
                 //entras en la partida seleccionafa si clicas en una fila del datagridview
-                Partida partida = new Partida();
+                Partida partida = new Partida(server);
                 partida.Show();
             }
         }
@@ -43,7 +43,7 @@ namespace Cliente_Juego
         {
             dataGridView1.Rows.Clear();
             dataGridView1.Columns.Clear();
-            string mensaje = "11/";
+            string mensaje = "10/";
             byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
 

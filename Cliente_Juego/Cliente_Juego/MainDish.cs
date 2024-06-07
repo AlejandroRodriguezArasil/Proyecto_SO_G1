@@ -26,7 +26,7 @@ namespace Cliente_Juego
         {
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse("10.4.119.5");
+            IPAddress direc = IPAddress.Parse("10.0.3.15");
             IPEndPoint ipep = new IPEndPoint(direc, 50063);
 
 
@@ -79,7 +79,33 @@ namespace Cliente_Juego
 
         private void MainDish_Load(object sender, EventArgs e)
         {
-            //Conectarse();
+            while (conexion == true)
+            {
+                int op;
+                byte[] msg = new byte[80];
+                // recibo mensaje del servidor
+                server.Receive(msg);
+                string mensaje = Encoding.ASCII.GetString(msg);
+                string[] trozos = mensaje.Split('/');
+                op = Convert.ToInt32(trozos[0]);
+                // Averiguo el tipo de mensaje
+                switch (op)
+                {
+                    case 16: //Nombre del anterior
+                        string missatge = trozos[1];
+                        if (missatge != "")
+                        {
+                            if(MessageBox.Show(missatge, "Aceptar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                string mensaje16 = "17/" + trozos[2];
+                                byte[] msg16 = Encoding.ASCII.GetBytes(mensaje16);
+                                server.Send(msg16);
+                            }
+                        }
+                        break;
+                }
+
+            }
         }
 
         private void consultasToolStripMenuItem_Click(object sender, EventArgs e)

@@ -24,7 +24,7 @@ namespace Cliente_Juego
         {
             dataGridView1.DataSource = null;
 
-            string mensaje = "10/";
+            string mensaje = "11/";
             byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
             byte[] msg1 = new byte[80];

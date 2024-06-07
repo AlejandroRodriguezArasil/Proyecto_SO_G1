@@ -60,11 +60,18 @@ namespace Cliente_Juego
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                if (mensaje == "-")
+                {
+                    MessageBox.Show("Error al iniciar sesión");
+                }
                 string[] trozos = mensaje.Split('/');
-                MessageBox.Show(trozos[0]);
-                GlobalData.Instance.Set_idjugador(Convert.ToInt32(trozos[2]));
-                GlobalData.Instance.Set_nombrejugador(username);
-                GlobalData.Instance.Set_socketconn(Convert.ToInt32(trozos[1]));
+                try
+                {
+                    GlobalData.Instance.Set_idjugador(Convert.ToInt32(trozos[2]));
+                    GlobalData.Instance.Set_nombrejugador(username);
+                    GlobalData.Instance.Set_socketconn(Convert.ToInt32(trozos[1]));
+                }
+                catch { }
             }
         }
 

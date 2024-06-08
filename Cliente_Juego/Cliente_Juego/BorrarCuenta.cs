@@ -59,6 +59,7 @@ namespace Cliente_Juego
                         MessageBox.Show(mensaje);
                     }
                 }
+                Close();
             }
         }
 

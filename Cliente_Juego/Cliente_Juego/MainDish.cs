@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Text;
 
 namespace Cliente_Juego
 {
@@ -27,7 +28,7 @@ namespace Cliente_Juego
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9001);
+            IPEndPoint ipep = new IPEndPoint(direc, 9010);
 
 
             //Creamos el socket 
@@ -51,6 +52,7 @@ namespace Cliente_Juego
             {
                 Identificación identificación = new Identificación(server);
                 identificación.Show();
+                
             }
             else
             {
@@ -76,33 +78,39 @@ namespace Cliente_Juego
             server.Shutdown(SocketShutdown.Both);
             server.Close();
         }
-
         private void MainDish_Load(object sender, EventArgs e)
         {
             while (conexion == true)
             {
                 int op;
                 byte[] msg = new byte[80];
-                // recibo mensaje del servidor
                 server.Receive(msg);
                 string mensaje = Encoding.ASCII.GetString(msg);
                 string[] trozos = mensaje.Split('/');
                 op = Convert.ToInt32(trozos[0]);
-                // Averiguo el tipo de mensaje
+                
                 switch (op)
                 {
-                    case 16: //Nombre del anterior
-                        string missatge = trozos[1];
-                        if (missatge != "")
+                    case 20: 
                         {
-                            if(MessageBox.Show(missatge, "Aceptar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            string missatge = trozos[1];
+                            int id_partida = Convert.ToInt32(trozos[2]);
+                            int id_jugador_invitado = Convert.ToInt32(trozos[3]);
+                            if (missatge != "")
                             {
-                                string mensaje16 = "17/" + trozos[2];
-                                byte[] msg16 = Encoding.ASCII.GetBytes(mensaje16);
-                                server.Send(msg16);
+                                DialogResult resultado = MessageBox.Show(missatge, "Selecciona opción", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (resultado == DialogResult.Yes)
+                                {
+                                    string mensaje1 = "21/" + id_partida + "/" + id_jugador_invitado;
+                                    byte[] msg1 = Encoding.ASCII.GetBytes(mensaje1);
+                                    server.Send(msg1);
+                                    //ENTRA EN PARTIDA (supuestamente) si la lógica está implementada
+                                    Tablero tablero = new Tablero();
+                                    tablero.ShowDialog();
+                                }
                             }
+                            break;
                         }
-                        break;
                 }
 
             }
@@ -120,6 +128,29 @@ namespace Cliente_Juego
                 MessageBox.Show("Primero debes conectarte al servidor");
             }
             
+            
+        }
+
+        private void MainDish_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string mensaje = "4/";
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            MessageBox.Show(mensaje);
+        }
+
+        private void MainDish_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string mensaje = "4/";
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            MessageBox.Show(mensaje);
         }
     }
 }

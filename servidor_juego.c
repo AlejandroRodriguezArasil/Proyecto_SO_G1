@@ -76,8 +76,23 @@ void *AtenderCliente(void *socket)
 			case 0:
 			{
 				terminar = 1;
+				char cerrar[100];
+				pthread_mutex_lock(&mutex);
+				sprintf(cerrar, "DELETE FROM Conectados WHERE port = %d;",sock_conn);
+				
+				err=mysql_query (conn, cerrar); //err = 1 si existeix ja alguna PRIMARY KEY dins la taula Jugadores
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					//exit (1);
+				}
+				else
+				{
+					strcpy(respuesta,"Cierre de sesion exitoso");
+				}
+				pthread_mutex_unlock(&mutex);
 				break;
-			}//petici?n de desconexi?n
+			}//peticion de desconexi?n
 			case 1:// consulta 1: Registrarse
 			{	
 					
@@ -97,12 +112,12 @@ void *AtenderCliente(void *socket)
 				strcpy (contar,"SELECT * FROM Jugador");
 				
 				err=mysql_query (conn, contar); //err = 1 si existeix ja alguna PRIMARY KEY dins la taula Jugadores
-				if (err!=0) {
+				if (err!=0) 
+				{
 					printf ("Error al consultar datos de la base %u %s\n",
 							mysql_errno(conn), mysql_error(conn));
 					//exit (1);
 				}
-				
 				
 				resultado = mysql_store_result(conn);
 				row = mysql_fetch_row(resultado);
@@ -208,15 +223,15 @@ void *AtenderCliente(void *socket)
 					
 					pthread_mutex_lock(&mutex);
 					strcpy (borrar,"DELETE FROM Jugador WHERE username = '"); 
-					strcat (borrar,nombre ); 
+					strcat (borrar,nombre); 
 					strcat(borrar, "' AND password = '");
 					strcat (borrar, contrasena);
 					strcat(borrar, "';");
 					
-					
 					// DELETE * FROM Jugador WHERE username = 'nombre' AND password = 'contrasena';
 					
 					printf("%s\n", borrar);
+					
 					strcpy (respuesta,"Usuario borrado correctamente.");
 					
 					
@@ -233,7 +248,7 @@ void *AtenderCliente(void *socket)
 				}
 				break;
 			}
-			case 3:// consulta 3: icnicio sesion, consulta la base de datos para saber si existe esa persona y la aï¿½ade a la tabla conectados
+			case 3:// consulta 3: inicio sesion, consulta la base de datos para saber si existe esa persona y la añade a la tabla conectados
 			{	
 				char sesion[300];
 				char nombre[100];
@@ -265,7 +280,7 @@ void *AtenderCliente(void *socket)
 				row = mysql_fetch_row(resultado);
 				if(row == NULL)
 				{
-					strcpy(respuesta,"Error al iniciar sesion");
+					strcpy(respuesta,"-");
 				}
 				else
 				{
@@ -299,7 +314,7 @@ void *AtenderCliente(void *socket)
 					printf("SOCKET inici de sessio: %d\n",sock_conn);
 					
 					pthread_mutex_lock(&mutex);
-					char conexion[300]; //aï¿½adir al jugador a la tabla conectados
+					char conexion[300]; //añadir al jugador a la tabla conectados
 					sprintf(conexion, "INSERT INTO Conectados VALUES(%d,'%s',%d);",id,nombre,sock_conn);
 					
 					err=mysql_query (conn, conexion);
@@ -321,8 +336,7 @@ void *AtenderCliente(void *socket)
 			{	
 							
 				char cerrar[300];
-				
-				
+			
 				pthread_mutex_lock(&mutex);
 				sprintf(cerrar, "DELETE FROM Conectados WHERE port = %d;",sock_conn);
 				
@@ -332,7 +346,8 @@ void *AtenderCliente(void *socket)
 							mysql_errno(conn), mysql_error(conn));
 					//exit (1);
 				}
-				else{
+				else
+				{
 					strcpy(respuesta,"Cierre de sesion exitoso");
 				}
 				pthread_mutex_unlock(&mutex);
@@ -357,7 +372,10 @@ void *AtenderCliente(void *socket)
 				row = mysql_fetch_row (resultado);
 				strcpy(respuesta,"");
 				if (row == NULL)
+				{
 					printf ("No se han obtenido datos en la consulta\n");
+					strcpy(respuesta," ");
+				}
 				else{
 					while (row != NULL)
 					{
@@ -717,112 +735,173 @@ void *AtenderCliente(void *socket)
 				//exit(0);
 				break;
 			}
-			case 16:
+			case 16:	//crear partida
 			{
+				char nova[300];
+				strcpy(nova, "SELECT id_partida FROM Partida ORDER BY id_partida DESC LIMIT 1");
 				
-				char nova [300];
-				strcpy(nova,"SELECT id_partida FROM Partida ORDER BY id_partida DESC");
-				
-				err=mysql_query (conn, nova);
-				if (err!=0) {
-					printf ("Error al consultar datos de la base %u %s\n",
-							mysql_errno(conn), mysql_error(conn));
-					//exit (1);
-				}
-				
-				resultado = mysql_store_result (conn);
-				row = mysql_fetch_row (resultado);
-				
-				int id_nova = atoi(row[0])+1;
-				
-				sprintf(respuesta,"16/Te estan invitando a una partida/%d",id_nova);
-				
-				p = strtok(NULL,"/");
-				char ids [30];
-				strcpy(ids,p);
-				p = strtok(ids,"-");
-				
-				while (p != NULL)
-				{
-					int id = atoi(p);
-					char consulta[100];
-					sprintf(consulta, "SELECT port FROM Conectados WHERE id_j = %d;",id);
+				err = mysql_query(conn, nova);
+				if (err != 0) {
+					printf("Error al consultar datos de la base %u %s\n", mysql_errno(conn), mysql_error(conn));
+					strcpy(respuesta, "Error al crear nueva partida");
+				} else {
+					resultado = mysql_store_result(conn);
+					row = mysql_fetch_row(resultado);
 					
-					err=mysql_query (conn, consulta);
+					int id_nova = (row == NULL) ? 1 : atoi(row[0]) + 1; // Si no hay partidas, empezamos en 1
+					char jugador [300];
+					sprintf(jugador, "SELECT id_j FROM Conectados WHERE port = %d;", sock_conn);
+					
+					err=mysql_query (conn, jugador);
 					if (err!=0) {
 						printf ("Error al consultar datos de la base %u %s\n",
 								mysql_errno(conn), mysql_error(conn));
 						//exit (1);
 					}
 					
+					resultado = mysql_store_result(conn);
+					MYSQL_ROW row0;
+					row0 = mysql_fetch_row(resultado);
+					
+					int id_jugador;
+					id_jugador = atoi(row0[0]);
+					// Insertar nueva partida en la base de datos
+					char insert_nova[300];
+					sprintf(insert_nova, "INSERT INTO Partida (id_partida, acabada, ganador) VALUES (%d, 0, 'PENE69');", id_nova);
+					
+					char insert [200];
+					sprintf(insert,"INSERT INTO Puntos (id_p, id_j, puntos) VALUES (%d,%d,0);",id_nova, id_jugador);
+					
+					err = mysql_query(conn, insert_nova);
+					if (err != 0) {
+						printf("Error al insertar datos en la base %u %s\n", mysql_errno(conn), mysql_error(conn));
+						strcpy(respuesta, "Error al crear nueva partida");
+					} else {
+						sprintf(respuesta, "Te has unido a la nueva partida con id %d", id_nova);
+					}
+					err = mysql_query(conn, insert);
+				}
+				
+				write(sock_conn, respuesta, strlen(respuesta));
+				break;
+			}
+			case 17:	//invitar a partida	formato 17/id_j1/id_j2...
+			{
+				char jugador [300];
+				sprintf(jugador, "SELECT nickname FROM Conectados WHERE port = %d;", sock_conn);
+				
+				err=mysql_query (conn, jugador);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					//exit (1);
+				}
+				
+				resultado = mysql_store_result(conn);
+				MYSQL_ROW row0;
+				row0 = mysql_fetch_row(resultado);
+				
+				char nickname[100];
+				strcpy(nickname, row0[0]);
+				mysql_free_result(resultado);
+				
+				char id [300];
+				sprintf(id, "SELECT Puntos.id_j FROM Conectados, Puntos WHERE Conectados.id_j = Puntos.id_j AND Conectados.port = %d;", sock_conn);
+				
+				err=mysql_query (conn, id);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					//exit (1);
+				}
+				
+				resultado = mysql_store_result(conn);
+				row0 = mysql_fetch_row(resultado);
+				
+				
+				int id_j = atoi(row0[0]);
+				
+				
+				char partida[200];
+				sprintf(partida, "SELECT id_p FROM Puntos WHERE id_j = %d", id_j);
+				err=mysql_query (conn, partida);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					//exit (1);
+				}
+				
+				resultado = mysql_store_result(conn);
+				row0 = mysql_fetch_row(resultado);
+				
+				
+				int id_partida = atoi(row0[0]);
+				mysql_free_result(resultado);
+				
+				p = strtok(NULL, "/");
+				int sockets[20];
+				int i = 0;
+			    while (p != NULL)
+				{
+					char consulta [200];
+					char respuesta[2000];
+					int id_j = atoi (p);
+					sprintf(consulta, "SELECT port FROM Conectados WHERE id_j = %d;", id_j);
+					err = mysql_query (conn, consulta);
+					if (err!=0) {
+						printf ("Error al consultar datos de la base %u %s\n",
+								mysql_errno(conn), mysql_error(conn));
+					}
+					
 					resultado = mysql_store_result (conn);
 					row = mysql_fetch_row (resultado);
 					
 					int port = atoi(row[0]);
-					for (int j = 0; j<100 ; j++)
-					{
-						if (sockets[j] = port)
-						{ write (sockets[j],respuesta,strlen(respuesta));}
-					}
+					sockets[i] = port;
 					
-					p = strtok(NULL,"-");
+					mysql_free_result(resultado);
+					
+					//sprintf(respuesta, "20/%s te ha invitado a una partida, deseas unirte?/%d/%d", nickname, id_partida, id_j);
+					
+					p = strtok(NULL, "/");
+					i = i + 1;
+				}
+				for (int j = 0; j < i; j++)
+				{
+					char id [300];
+					sprintf(id, "SELECT id_j FROM Conectados WHERE port = %d;", sockets[j]);
+					err=mysql_query (conn, id);
+					if (err!=0) {
+						printf ("Error al consultar datos de la base %u %s\n",
+								mysql_errno(conn), mysql_error(conn));
+						//exit (1);
+					}
+					resultado = mysql_store_result(conn);
+					row0 = mysql_fetch_row(resultado);
+					int id_j = atoi(row0[0]);
+					
+					sprintf(respuesta, "20/%s te ha invitado a una partida, deseas unirte?/%d/%d", nickname, id_partida, id_j);
+					write(sockets[j], respuesta, strlen(respuesta));
 				}
 				
-				char consulta[100];
-				sprintf(consulta, "SELECT id_j FROM Conectados WHERE port = %d;",sock_conn);
-				
-				err=mysql_query (conn, consulta);
-				if (err!=0) {
-					printf ("Error al consultar datos de la base %u %s\n",
-							mysql_errno(conn), mysql_error(conn));
-					//exit (1);
-				}
-				resultado = mysql_store_result (conn);
-				row = mysql_fetch_row (resultado);
-				
-				int id_in = atoi(row[0]);
-				
-				char insert [300];
-				sprintf(insert,"INSERT INTO Puntos VALUES(%d,%d,0)",id_nova,id_in);
-				
-				err=mysql_query (conn, insert);
-				if (err!=0) {
-					printf ("Error al consultar datos de la base %u %s\n",
-							mysql_errno(conn), mysql_error(conn));
-					//exit (1);
-				}
-				
+				break;
 			}
-			case 17:
+		case 21: //aceptar invitación y entra en la partida	formato 21/id_partida/id_jugador_invitado
 			{
-				char consulta [200];
-				sprintf(consulta, "SELECT id_j FROM Conectados WHERE port = %d;",sock_conn);
-				
-				err=mysql_query (conn, consulta);
-				if (err!=0) {
-					printf ("Error al consultar datos de la base %u %s\n",
-							mysql_errno(conn), mysql_error(conn));
-					//exit (1);
-				}
-				resultado = mysql_store_result (conn);
-				row = mysql_fetch_row (resultado);
-				
-				int id_j = atoi(row[0]);
-				
-				p = strtok(NULL,"/");
-				int id_p = atoi(p);
+				int id_p = atoi (strtok(NULL, "/"));
+				int id_j = atoi (strtok(NULL, "/"));
 				
 				char insert [200];
-				sprintf(insert,"INSERT INTO Puntos VALUES(%d,%d,0)",id_p,id_j);
+				sprintf(insert, "INSERT INTO Puntos (id_p, id_j, puntos) VALUES (%d,%d,0)",id_p,id_j);
 				
-				err=mysql_query (conn, insert);
+				err = mysql_query (conn, insert);
 				if (err!=0) {
 					printf ("Error al consultar datos de la base %u %s\n",
 							mysql_errno(conn), mysql_error(conn));
 					//exit (1);
 				}
-			};
-			
+			}
+			break;
 		}
 		
 		if (codigo !=0)
@@ -837,7 +916,6 @@ void *AtenderCliente(void *socket)
 			contador += 1;
 		}
 	}
-	// Se acabo el servicio para este cliente
 	close(sock_conn);
 	//exit(0);
 }
@@ -862,7 +940,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9000);
+	serv_adr.sin_port = htons(9010);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind\n");
 	
@@ -889,5 +967,6 @@ int main(int argc, char *argv[])
 		pthread_create (&thread,NULL,AtenderCliente,&sockets[i]);
 		i += 1;
 	}
+	
 }
 

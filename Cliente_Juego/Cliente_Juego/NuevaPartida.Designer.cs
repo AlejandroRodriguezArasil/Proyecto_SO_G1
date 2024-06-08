@@ -37,11 +37,11 @@
             // 
             // cargar
             // 
-            this.cargar.Location = new System.Drawing.Point(406, 24);
+            this.cargar.Location = new System.Drawing.Point(388, 24);
             this.cargar.Name = "cargar";
-            this.cargar.Size = new System.Drawing.Size(97, 45);
+            this.cargar.Size = new System.Drawing.Size(120, 45);
             this.cargar.TabIndex = 0;
-            this.cargar.Text = "cargar";
+            this.cargar.Text = "cargar tablero";
             this.cargar.UseVisualStyleBackColor = true;
             this.cargar.Click += new System.EventHandler(this.cargar_Click);
             // 

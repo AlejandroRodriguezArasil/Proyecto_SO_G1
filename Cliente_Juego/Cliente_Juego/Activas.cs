@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Cliente_Juego
 {
@@ -43,24 +44,23 @@ namespace Cliente_Juego
         {
             dataGridView1.Rows.Clear();
             dataGridView1.Columns.Clear();
-            string mensaje = "10/";
+            string mensaje = "11/";
             byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
 
-            while (true)
-            {
-                byte[] msg1 = new byte[80];
-                server.Receive(msg1);
-                string mensaje1 = Encoding.ASCII.GetString(msg).Split('\0')[0];
-                string[] trozos = mensaje1.Split('/');
-                int num = Convert.ToInt32(trozos[0]);
+            Thread.Sleep(1000);
 
-                dataGridView1.Columns.Add("Columna1", "ID de la Partida");
-                dataGridView1.Columns.Add("Columna2", "Turno de la Partida");
+            byte[] msg1 = new byte[80];
+            server.Receive(msg1);
+            string mensaje1 = Encoding.ASCII.GetString(msg).Split('\0')[0];
+            string[] trozos = mensaje1.Split('/');
+            int num = Convert.ToInt32(trozos[0]);
 
-                // Añadir una fila con los datos en una sola línea de código
-                dataGridView1.Rows.Add(trozos[0], trozos[1]);
-            }
+            dataGridView1.Columns.Add("Columna1", "ID de la Partida");
+            dataGridView1.Columns.Add("Columna2", "Turno de la Partida");
+
+            // Añadir una fila con los datos en una sola línea de código
+            dataGridView1.Rows.Add(trozos[1], trozos[2]);
         }
     }
 }

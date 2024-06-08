@@ -70,21 +70,21 @@
             // identificaciónToolStripMenuItem
             // 
             this.identificaciónToolStripMenuItem.Name = "identificaciónToolStripMenuItem";
-            this.identificaciónToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.identificaciónToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.identificaciónToolStripMenuItem.Text = "Identificación";
             this.identificaciónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSessionToolStripMenuItem_Click);
             // 
             // consultasToolStripMenuItem
             // 
             this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.consultasToolStripMenuItem.Text = "Consultas";
             this.consultasToolStripMenuItem.Click += new System.EventHandler(this.consultasToolStripMenuItem_Click);
             // 
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.cerrarSesiónToolStripMenuItem.Text = "Desconectarse";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
@@ -100,6 +100,8 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainDish";
             this.Text = "MainDish";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainDish_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainDish_FormClosed);
             this.Load += new System.EventHandler(this.MainDish_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -39,8 +39,10 @@ namespace Cliente_Juego
             // recibimos respuesta del servidor
             byte[] msg2 = new byte[80];
             server.Receive(msg2);
-            if (Encoding.ASCII.GetString(msg2) == "")
-            { MessageBox.Show("No hay conectados"); }
+            if (Encoding.ASCII.GetString(msg2) == " ")
+            { 
+                MessageBox.Show("No hay conectados"); 
+            }
             else
             {
 

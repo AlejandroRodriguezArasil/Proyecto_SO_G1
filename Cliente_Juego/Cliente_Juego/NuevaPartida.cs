@@ -94,6 +94,9 @@ namespace Cliente_Juego
             {
                 MessageBox.Show("No hay usuarios conectados");
             }
+            string mensaje1 = "16/";
+            byte[] msg1 = Encoding.ASCII.GetBytes(mensaje1);
+            server.Send(msg1);
         }
 
         private void cargar_Click(object sender, EventArgs e)
@@ -116,17 +119,24 @@ namespace Cliente_Juego
 
         private void dgvcarga_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int fila = e.RowIndex;
-            int id_j = Convert.ToInt32(dgvcarga.Rows[fila].Cells[0].Value);
-            invitacio = invitacio + "-" + id_j;
+            if (e.RowIndex >= 0 && dgvcarga.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                int fila = e.RowIndex;
+                int id_j = Convert.ToInt32(dgvcarga.Rows[fila].Cells[0].Value);
+                invitacio = invitacio + "/" + id_j.ToString();
+            }
+            else 
+            {
+                MessageBox.Show("No va esto");
+            }
+
         }
 
         private void invitar_Click(object sender, EventArgs e)
         {
-            string mensaje1 = "16/" + invitacio;
-            byte[] msg1 = Encoding.ASCII.GetBytes(mensaje1);
-            server.Send(msg1);
-
+            string mensaje = "17/2" + invitacio;    //el string invitacio no se actualiza por clicks en dgv así que manualmente se introduce para probar
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
         }
     }
 }

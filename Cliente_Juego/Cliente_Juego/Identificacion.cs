@@ -26,13 +26,13 @@ namespace Cliente_Juego
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void Registro_Click(object sender, EventArgs e)
         {
             Registro registro = new Registro(server);
             registro.Show();
+            
         }
 
         private void InicioSesion_Click(object sender, EventArgs e)
@@ -64,7 +64,13 @@ namespace Cliente_Juego
                 {
                     MessageBox.Show("Error al iniciar sesión");
                 }
+                else
+                {
+                    MessageBox.Show("Sesión iniciada correctamente");
+ 
+                }
                 string[] trozos = mensaje.Split('/');
+                
                 try
                 {
                     GlobalData.Instance.Set_idjugador(Convert.ToInt32(trozos[2]));
@@ -72,6 +78,7 @@ namespace Cliente_Juego
                     GlobalData.Instance.Set_socketconn(Convert.ToInt32(trozos[1]));
                 }
                 catch { }
+                
             }
         }
 

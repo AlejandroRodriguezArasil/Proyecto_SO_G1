@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using System.Threading;
 
 namespace Cliente_Juego
 {
@@ -18,9 +19,11 @@ namespace Cliente_Juego
 
         Socket server;
         public bool conexion = false;
+        private BackgroundWorker backgroundWorker;
         public MainDish()
         {
             InitializeComponent();
+            InitializeBackgroundWorker();
         }
 
         public void Conectarse()
@@ -80,6 +83,12 @@ namespace Cliente_Juego
         }
         private void MainDish_Load(object sender, EventArgs e)
         {
+            atenderservidor();
+            backgroundWorker.RunWorkerAsync();
+        }
+
+        private void atenderservidor ()
+        {
             while (conexion == true)
             {
                 int op;
@@ -88,10 +97,10 @@ namespace Cliente_Juego
                 string mensaje = Encoding.ASCII.GetString(msg);
                 string[] trozos = mensaje.Split('/');
                 op = Convert.ToInt32(trozos[0]);
-                
+
                 switch (op)
                 {
-                    case 20: 
+                    case 20:
                         {
                             string missatge = trozos[1];
                             int id_partida = Convert.ToInt32(trozos[2]);
@@ -152,5 +161,33 @@ namespace Cliente_Juego
             mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
             MessageBox.Show(mensaje);
         }
+        private void InitializeBackgroundWorker()
+        {
+            backgroundWorker = new BackgroundWorker();
+            backgroundWorker.WorkerSupportsCancellation = true;
+            backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
+        }
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (!backgroundWorker.CancellationPending)
+            {
+                // The code to be executed periodically goes here
+                atenderservidor();
+                // Sleep for a while to simulate periodic work
+                Thread.Sleep(1); // 1000 milliseconds = 1 second
+            }
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (backgroundWorker.IsBusy)
+            {
+                backgroundWorker.CancelAsync();
+            }
+            base.OnFormClosing(e);
+        }
+
+
+
+
     }
 }

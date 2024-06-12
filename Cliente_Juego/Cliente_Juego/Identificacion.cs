@@ -10,13 +10,14 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Cliente_Juego
 {
     public partial class Identificación : Form
     {
         private Socket server;
-        
 
         public Identificación(Socket server)
         {
@@ -32,7 +33,6 @@ namespace Cliente_Juego
         {
             Registro registro = new Registro(server);
             registro.Show();
-            
         }
 
         private void InicioSesion_Click(object sender, EventArgs e)
@@ -56,29 +56,7 @@ namespace Cliente_Juego
                 string mensaje = "3/" + username + "/" + contraseña;
 
                 byte[] msg = Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                if (mensaje == "-")
-                {
-                    MessageBox.Show("Error al iniciar sesión");
-                }
-                else
-                {
-                    MessageBox.Show("Sesión iniciada correctamente");
- 
-                }
-                string[] trozos = mensaje.Split('/');
-                
-                try
-                {
-                    GlobalData.Instance.Set_idjugador(Convert.ToInt32(trozos[2]));
-                    GlobalData.Instance.Set_nombrejugador(username);
-                    GlobalData.Instance.Set_socketconn(Convert.ToInt32(trozos[1]));
-                }
-                catch { }
-                
+                server.Send(msg);   
             }
         }
 
@@ -96,16 +74,79 @@ namespace Cliente_Juego
             string mensaje = "4/";
             byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            MessageBox.Show(mensaje);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             BorrarCuenta borrar = new BorrarCuenta(server);
             borrar.Show();
+        }
+
+        private void atender_server()
+        {
+            while (true)
+            {
+                int op;
+                byte[] msg = new byte[80];
+                server.Receive(msg);
+                string mensaje = Encoding.ASCII.GetString(msg).Split('\0')[0];
+                string[] trozos = mensaje.Split('/');
+                op = Convert.ToInt32(trozos[0]);
+
+                switch (op)
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        if (Convert.ToInt32(trozos[1]) == 1)
+                        {
+                            GlobalData.Instance.Set_idjugador(Convert.ToInt32(trozos[2]));
+                            GlobalData.Instance.Set_nombrejugador(trozos[3]);
+                            GlobalData.Instance.Set_socketconn(Convert.ToInt32(trozos[1]));
+                            MessageBox.Show("Has iniciado sesión correctamente");
+                        }
+                        else
+                            MessageBox.Show("No has podido iniciar sesión");
+                        break;
+                    case 4:
+                        if (Convert.ToInt32(trozos[1]) == 1)
+                            MessageBox.Show("Has cerrado sesión correctamente");
+                        else
+                            MessageBox.Show("No has podido cerrar sesión");
+                        break;
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                    case 8:
+                        break;
+                    case 9:
+                        break;
+                    case 10:
+                        break;
+                    case 11:
+                        break;
+                    case 12:
+                        break;
+                    case 13:
+                        break;
+                    case 14:
+                        break;
+                    case 15:
+                        break;
+                    case 16:
+                        break;
+                    case 17:
+                        break;
+                    case 18:
+                        break;
+                }
+            }
         }
     }
 }

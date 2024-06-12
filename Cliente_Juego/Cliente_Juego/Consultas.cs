@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -15,10 +16,12 @@ namespace Cliente_Juego
     public partial class Consultas : Form
     {
         private Socket server;
-        public Consultas(Socket server)
+        Thread atender;
+        public Consultas(Socket server,Thread atender)
         {
             InitializeComponent();
             this.server = server;
+            this.atender = atender;
         }
 
         public ListaUsuariosConectados userconlist = new ListaUsuariosConectados();
@@ -96,18 +99,18 @@ namespace Cliente_Juego
 
         private void Consultas_Load(object sender, EventArgs e)
         {
-
+            atender.Start();
         }
 
         private void nueva_partida_button_Click(object sender, EventArgs e)
         {
-            cargar_partida partida = new cargar_partida(server);
+            cargar_partida partida = new cargar_partida(server, atender);
             partida.Show();
         }
 
         private void activas_button_Click(object sender, EventArgs e)
         {
-            Activas activas = new Activas(server);
+            Activas activas = new Activas(server, atender);
             activas.Show();
         }
 
@@ -118,7 +121,7 @@ namespace Cliente_Juego
 
         private void acabadas_button_Click(object sender, EventArgs e)
         {
-            Acabadas acabadas = new Acabadas(server);
+            Acabadas acabadas = new Acabadas(server, atender);
             acabadas.Show();
         }
 
@@ -128,7 +131,4 @@ namespace Cliente_Juego
             ucon.Show();
         }
     }
-    
-    
-
 }

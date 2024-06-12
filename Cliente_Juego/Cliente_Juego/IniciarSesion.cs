@@ -4,37 +4,34 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Net;
+using System.Net.Sockets;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Cliente_Juego
 {
-    public partial class Registro : Form
+    public partial class IniciarSesion : Form
     {
         private Socket server;
-
-        public Registro(Socket server)
+        public IniciarSesion(Socket server)
         {
             InitializeComponent();
             this.server = server;
+
         }
 
-        private void show_CheckedChanged(object sender, EventArgs e)
+        private void IniciarSesion_Load(object sender, EventArgs e)
         {
-            if (show.Checked)
-            { contraseñaBox.UseSystemPasswordChar = false; }
 
-            else
-            { contraseñaBox.UseSystemPasswordChar = true; }
         }
 
-        private void registrarse_Click(object sender, EventArgs e)
+        private void iniciosesion_Click(object sender, EventArgs e)
         {
-            // comprueba errores en los campos de información, si existe un usuario no permite el registro, de lo contrario registra a ese usuario en la base de datos
             if (usuarioBox.Text == "" || contraseñaBox.Text == "") //evitar campos vacíos
             {
                 if (usuarioBox.Text == "" && contraseñaBox.Text == "")
@@ -51,12 +48,20 @@ namespace Cliente_Juego
             {
                 string username = usuarioBox.Text;
                 string contraseña = contraseñaBox.Text;
-                string mensaje = "1/" + username + "/" + contraseña;
-
+                string mensaje = "3/" + username + "/" + contraseña;
 
                 byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
             }
+        }
+
+        private void show_CheckedChanged(object sender, EventArgs e)
+        {
+            if (show.Checked)
+            { contraseñaBox.UseSystemPasswordChar = false; }
+
+            else
+            { contraseñaBox.UseSystemPasswordChar = true; }
         }
     }
 }

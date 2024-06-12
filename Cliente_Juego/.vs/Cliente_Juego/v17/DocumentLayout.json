@@ -1,58 +1,54 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\",
+  "WorkspaceRootPath": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\maindish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\maindish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|c:\\users\\alex\\desktop\\1\\cliente_juego\\cliente_juego\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|c:\\share_so\\1\\proyecto_so_g1\\cliente_juego\\cliente_juego\\nuevapartida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\nuevapartida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\acabadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\acabadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\maindish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\maindish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\acabadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\acabadas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\identificacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\identificacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\activas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\activas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\consultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\consultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\activas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\activas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\identificacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\identificacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\conectados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\conectados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\lista_usuarios_conectados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\lista_usuarios_conectados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\conectados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\conectados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\nuevapartida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\nuevapartida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\borrarcuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\borrarcuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\iniciarsesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\iniciarsesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\consultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\consultas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\activas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\activas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\iniciarsesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\iniciarsesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\borrarcuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\borrarcuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\cliente_juego\\lista_usuarios_conectados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\lista_usuarios_conectados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\cliente_juego\\borrarcuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7379242-58A1-4E47-AA24-BE6F77EABAF4}|Cliente_Juego\\Cliente_Juego.csproj|solutionrelative:cliente_juego\\borrarcuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,169 +58,146 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "BorrarCuenta.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\BorrarCuenta.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\BorrarCuenta.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\BorrarCuenta.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Cliente_Juego\\BorrarCuenta.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T07:59:37.784Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainDish.cs",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\MainDish.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\MainDish.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\MainDish.cs",
-              "RelativeToolTip": "Cliente_Juego\\MainDish.cs",
-              "ViewState": "AQIAAFwAAAAAAAAAAADgv2kAAAA0AAAA",
+              "Title": "Principal.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Principal.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\Principal.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Principal.cs",
+              "RelativeToolTip": "Cliente_Juego\\Principal.cs",
+              "ViewState": "AQIAAKABAAAAAAAAAAAQwKgBAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T00:15:25.542Z",
+              "WhenOpened": "2024-06-12T17:20:41.643Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Consultas.cs",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Consultas.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\Consultas.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Consultas.cs",
-              "RelativeToolTip": "Cliente_Juego\\Consultas.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAGcAAAA+AAAA",
+              "Title": "Activas.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Activas.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\Activas.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Activas.cs",
+              "RelativeToolTip": "Cliente_Juego\\Activas.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAArwDAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T11:43:44.697Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NuevaPartida.cs",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\NuevaPartida.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\NuevaPartida.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\NuevaPartida.cs",
-              "RelativeToolTip": "Cliente_Juego\\NuevaPartida.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAYwBsAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T10:40:30.87Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Identificacion.cs",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Identificacion.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\Identificacion.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Identificacion.cs",
-              "RelativeToolTip": "Cliente_Juego\\Identificacion.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAiwBsAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T10:34:24.719Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Identificacion.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Identificacion.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\Identificacion.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Identificacion.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Cliente_Juego\\Identificacion.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T10:34:23.28Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-06-12T19:59:06.165Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MainDish.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\MainDish.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\MainDish.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\MainDish.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Cliente_Juego\\MainDish.cs [Dise\u00F1o]",
+              "Title": "Acabadas.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Acabadas.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\Acabadas.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Acabadas.cs",
+              "RelativeToolTip": "Cliente_Juego\\Acabadas.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABkAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T00:15:20.708Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-06-12T19:59:01.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Acabadas.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Acabadas.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\Acabadas.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Acabadas.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Cliente_Juego\\Acabadas.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T19:58:16.973Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Activas.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Activas.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\Activas.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Activas.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Cliente_Juego\\Activas.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T18:10:31.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Conectados.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Conectados.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\Conectados.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Conectados.cs",
+              "RelativeToolTip": "Cliente_Juego\\Conectados.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAuwBkAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T18:09:22.867Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Lista_Usuarios_Conectados.cs",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Lista_Usuarios_Conectados.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\Lista_Usuarios_Conectados.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Lista_Usuarios_Conectados.cs",
-              "RelativeToolTip": "Cliente_Juego\\Lista_Usuarios_Conectados.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAYwCkAAAA0AAAA",
+              "Title": "Conectados.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Conectados.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\Conectados.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Conectados.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Cliente_Juego\\Conectados.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T16:09:39.829Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "NuevaPartida.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\NuevaPartida.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\NuevaPartida.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\NuevaPartida.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Cliente_Juego\\NuevaPartida.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T08:49:34.964Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-06-12T18:01:36.468Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "Activas.cs",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Activas.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\Activas.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Activas.cs",
-              "RelativeToolTip": "Cliente_Juego\\Activas.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAYwD8AAAAJAAAA",
+              "Title": "IniciarSesion.cs",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\IniciarSesion.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\IniciarSesion.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\IniciarSesion.cs",
+              "RelativeToolTip": "Cliente_Juego\\IniciarSesion.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T08:20:35.379Z"
+              "WhenOpened": "2024-06-12T17:49:48.458Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Consultas.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Consultas.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\Consultas.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Consultas.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Cliente_Juego\\Consultas.cs [Dise\u00F1o]",
+              "DocumentIndex": 7,
+              "Title": "Registro.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Registro.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\Registro.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Registro.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Cliente_Juego\\Registro.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T11:43:42.641Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Lista_Usuarios_Conectados.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Lista_Usuarios_Conectados.cs",
-              "RelativeDocumentMoniker": "Cliente_Juego\\Lista_Usuarios_Conectados.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\Lista_Usuarios_Conectados.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Cliente_Juego\\Lista_Usuarios_Conectados.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T16:09:34.86Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2024-06-12T17:24:44.363Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "BorrarCuenta.cs",
-              "DocumentMoniker": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\BorrarCuenta.cs",
+              "Title": "BorrarCuenta.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\BorrarCuenta.cs",
               "RelativeDocumentMoniker": "Cliente_Juego\\BorrarCuenta.cs",
-              "ToolTip": "C:\\Share_SO\\1\\Proyecto_SO_G1\\Cliente_Juego\\Cliente_Juego\\BorrarCuenta.cs",
-              "RelativeToolTip": "Cliente_Juego\\BorrarCuenta.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAqwD0AAAAYAAAA",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\Cliente_Juego\\Cliente_Juego\\BorrarCuenta.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\..\\Cliente_Juego\\Cliente_Juego\\BorrarCuenta.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T07:59:42.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-12T17:24:28.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IniciarSesion.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\IniciarSesion.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\IniciarSesion.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\IniciarSesion.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Cliente_Juego\\IniciarSesion.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T17:22:15.533Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Principal.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Principal.cs",
+              "RelativeDocumentMoniker": "Cliente_Juego\\Principal.cs",
+              "ToolTip": "C:\\Users\\Alex\\Desktop\\1\\Cliente_Juego\\Cliente_Juego\\Principal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Cliente_Juego\\Principal.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T17:20:18.875Z"
             }
           ]
         }

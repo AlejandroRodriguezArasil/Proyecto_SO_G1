@@ -1,94 +1,55 @@
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.SuggestedBindingRedirects.cache
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Identificación.resources
-C:\Users\Samuel\Desktop\UPC\Curs 3A\Sistemes Operatius\Proyecto_Y_Ejercicios\Proyecto\Versión 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.MainDish.resources
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Identificación.resources
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.MainDish.resources
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
-C:\Share_SO\Version 1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Identificación.resources
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.MainDish.resources
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
-C:\Users\popia\Desktop\Uni\Q6\SO\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Identificación.resources
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.MainDish.resources
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Consultas.resources
-C:\share\Project\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
-C:\share\Project\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
-C:\share\Project\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
-C:\share\Project\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
-C:\share\Project\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Consultas.resources
-C:\share\Project\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Identificación.resources
-C:\share\Project\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.MainDish.resources
-C:\share\Project\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
-C:\share\Project\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
-C:\share\Project\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
-C:\share\Project\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
-C:\share\Project\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
-C:\share\Project\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
-C:\Users\aleks\OneDrive\Documents\Uniberisti\Q6\SO\share\project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
-C:\Users\aleks\OneDrive\Documents\Uniberisti\Q6\SO\share\project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.SuggestedBindingRedirects.cache
-C:\Users\aleks\OneDrive\Documents\Uniberisti\Q6\SO\share\project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
-C:\Users\aleks\OneDrive\Documents\Uniberisti\Q6\SO\share\project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.cargar_partida.resources
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Usuarios_Conectados.resources
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Tablero.resources
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Acabadas.resources
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.BorrarCuenta.resources
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Activas.resources
-C:\share\Project\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Partida.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Acabadas.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Activas.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.BorrarCuenta.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Consultas.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.cargar_partida.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Usuarios_Conectados.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Partida.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Tablero.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Identificación.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.MainDish.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
-C:\Share_SO\1\Proyecto_SO_G1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.SuggestedBindingRedirects.cache
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Acabadas.resources
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Activas.resources
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.BorrarCuenta.resources
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Conectados.resources
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.IniciarSesion.resources
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Invitación.resources
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Principal.resources
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Tablero.resources
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
+D:\SO\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
+D:\SO\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
+D:\SO\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
+D:\SO\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Acabadas.resources
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Activas.resources
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.BorrarCuenta.resources
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Conectados.resources
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.IniciarSesion.resources
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Invitación.resources
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Principal.resources
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Tablero.resources
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
+C:\Users\Alex\Desktop\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe.config
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.exe
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\bin\Debug\Cliente_Juego.pdb
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.AssemblyReference.cache
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Acabadas.resources
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Activas.resources
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.BorrarCuenta.resources
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Conectados.resources
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.IniciarSesion.resources
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Invitación.resources
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Principal.resources
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Properties.Resources.resources
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Registro.resources
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.Tablero.resources
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.GenerateResource.cache
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.csproj.CoreCompileInputs.cache
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.exe
+C:\Users\Alex\Desktop\1\Cliente_Juego\Cliente_Juego\obj\Debug\Cliente_Juego.pdb

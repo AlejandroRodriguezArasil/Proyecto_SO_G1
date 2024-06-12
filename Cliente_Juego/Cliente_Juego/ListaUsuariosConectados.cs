@@ -35,7 +35,7 @@ namespace Cliente_Juego
         }
         public void actualizarconectados(string serializedData)
         {
-                        
+
             // Desencriptamos la informacion recibida 
             string[] rows = serializedData.Split('/');
             foreach (string rowData in rows)
@@ -47,7 +47,7 @@ namespace Cliente_Juego
                 user.SetNombre(fields[1]);
                 user.SetPuerto(Convert.ToInt32(fields[2]));
                 // Add the user to the list
-                int n = this.GetNum() ;
+                int n = this.GetNum();
                 this.userconected[n] = user;
                 this.SetNum(n + 1);
             }

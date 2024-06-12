@@ -12,7 +12,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 namespace Cliente_Juego
 {
     public partial class Tablero : Form
@@ -36,6 +35,7 @@ namespace Cliente_Juego
         // 0-bomba
         // 1-no  2-roba de abajo  3-ataque  4-mira el futuro  5-saltar  6-mezclar  7-cambia el futuro  8-ataque dirigido
         // 9-desactivacion (no en el tablero)
+
         public Tablero()
         {
             InitializeComponent();
@@ -46,12 +46,7 @@ namespace Cliente_Juego
             this.socketconn = GlobalData.Instance.socketconn;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void Tablero_Load(object sender, EventArgs e)
         {
 
         }
@@ -84,7 +79,7 @@ namespace Cliente_Juego
             }
         }
 
-        
+
         private void Checkturno()
         {
             string consulta = "7/" + this.id_partida;
@@ -126,12 +121,12 @@ namespace Cliente_Juego
             this.cartajugada = -1;
             // no recibimos respuesta del servidor
         }
-        
-        private void Robarcarta (int pos)
+
+        private void Robarcarta(int pos)
         {
             if (this.turno != true)
             {
-                return; 
+                return;
             }
 
             int nuevacarta;
@@ -152,12 +147,12 @@ namespace Cliente_Juego
             }
             else
             {
-                return; 
+                return;
             }
 
-            if(nuevacarta == 0)
+            if (nuevacarta == 0)
             {
-                string consulta = "13/" + this.id_jugador + "/" + this.id_partida ;
+                string consulta = "13/" + this.id_jugador + "/" + this.id_partida;
                 byte[] msg = Encoding.ASCII.GetBytes(consulta);
                 server.Send(msg);    //    logica de haber explotado
             }
@@ -167,13 +162,13 @@ namespace Cliente_Juego
         }
 
 
-        public void Crearmazo (int longitud)
+        public void Crearmazo(int longitud)
         {
             Random random = new Random();
             int[] cartas = new int[longitud];
             for (int i = 0; i < longitud; i++)
             {
-                cartas[i] = random.Next(10); 
+                cartas[i] = random.Next(10);
             }
             string mazocartas = string.Join("/", cartas);
             this.mazopartida = mazocartas;
@@ -295,12 +290,12 @@ namespace Cliente_Juego
                         mimazo = mimazo.Remove(index, 1);
                     }
                 }
-            }    
+            }
         }
 
-        private void AsignarProximoTurno (int direccion)  // direccion 0 -> adelante, direccion 1 -> atras
+        private void AsignarProximoTurno(int direccion)  // direccion 0 -> adelante, direccion 1 -> atras
         {
-            string consulta = "14/"+id_partida;
+            string consulta = "14/" + id_partida;
             byte[] msg = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg);
             // recibimos respuesta del servidor
@@ -323,8 +318,8 @@ namespace Cliente_Juego
             byte[] msg3 = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg3);
         }
-        
-        
+
+
         private void no_button_Click(object sender, EventArgs e)
         {
             Lanzarcarta(1);
@@ -370,5 +365,4 @@ namespace Cliente_Juego
             JugarTurno();
         }
     }
-
 }

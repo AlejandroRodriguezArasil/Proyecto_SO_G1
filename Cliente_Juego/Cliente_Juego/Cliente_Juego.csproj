@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EFE0F5AC-E78C-4420-9B8F-3B1C68E33C62}</ProjectGuid>
+    <ProjectGuid>{A7379242-58A1-4E47-AA24-BE6F77EABAF4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Cliente_Juego</RootNamespace>
     <AssemblyName>Cliente_Juego</AssemblyName>
@@ -64,50 +64,31 @@
     <Compile Include="BorrarCuenta.Designer.cs">
       <DependentUpon>BorrarCuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalData.cs" />
-    <Compile Include="NuevaPartida.cs">
+    <Compile Include="Conectados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NuevaPartida.Designer.cs">
-      <DependentUpon>NuevaPartida.cs</DependentUpon>
+    <Compile Include="Conectados.Designer.cs">
+      <DependentUpon>Conectados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalData.cs" />
+    <Compile Include="IniciarSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IniciarSesion.Designer.cs">
+      <DependentUpon>IniciarSesion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Invitación.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invitación.Designer.cs">
+      <DependentUpon>Invitación.cs</DependentUpon>
     </Compile>
     <Compile Include="ListaUsuariosConectados.cs" />
-    <Compile Include="Partida.cs">
+    <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Partida.Designer.cs">
-      <DependentUpon>Partida.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UsuarioConectado.cs" />
-    <Compile Include="Consultas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Consultas.Designer.cs">
-      <DependentUpon>Consultas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Lista_Usuarios_Conectados.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Lista_Usuarios_Conectados.Designer.cs">
-      <DependentUpon>Lista_Usuarios_Conectados.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Tablero.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Tablero.Designer.cs">
-      <DependentUpon>Tablero.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Identificacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Identificacion.Designer.cs">
-      <DependentUpon>Identificacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainDish.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainDish.Designer.cs">
-      <DependentUpon>MainDish.cs</DependentUpon>
+    <Compile Include="Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,6 +98,13 @@
     <Compile Include="Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tablero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablero.Designer.cs">
+      <DependentUpon>Tablero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioConectado.cs" />
     <EmbeddedResource Include="Acabadas.resx">
       <DependentUpon>Acabadas.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,26 +114,17 @@
     <EmbeddedResource Include="BorrarCuenta.resx">
       <DependentUpon>BorrarCuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Consultas.resx">
-      <DependentUpon>Consultas.cs</DependentUpon>
+    <EmbeddedResource Include="Conectados.resx">
+      <DependentUpon>Conectados.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NuevaPartida.resx">
-      <DependentUpon>NuevaPartida.cs</DependentUpon>
+    <EmbeddedResource Include="IniciarSesion.resx">
+      <DependentUpon>IniciarSesion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lista_Usuarios_Conectados.resx">
-      <DependentUpon>Lista_Usuarios_Conectados.cs</DependentUpon>
+    <EmbeddedResource Include="Invitación.resx">
+      <DependentUpon>Invitación.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Partida.resx">
-      <DependentUpon>Partida.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Tablero.resx">
-      <DependentUpon>Tablero.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Identificacion.resx">
-      <DependentUpon>Identificacion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainDish.resx">
-      <DependentUpon>MainDish.cs</DependentUpon>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -160,6 +139,9 @@
     <EmbeddedResource Include="Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tablero.resx">
+      <DependentUpon>Tablero.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -173,17 +155,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\stick_fight.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tablero.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Tablero con cartas v1.jpg" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\persona.png" />
+    <Content Include="Resources\stick_fight.jpg" />
+    <Content Include="Resources\Tablero con cartas v1.jpg" />
+    <Content Include="Resources\tablero.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

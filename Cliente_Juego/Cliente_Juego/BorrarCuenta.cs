@@ -8,6 +8,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+
 
 namespace Cliente_Juego
 {
@@ -25,7 +27,7 @@ namespace Cliente_Juego
 
         }
 
-        private void BorrarBtn_Click(object sender, EventArgs e)
+        private void borrar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Tu cuenta será borrada.", "Confirma la acción.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -49,23 +51,14 @@ namespace Cliente_Juego
 
                     byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                     server.Send(msg);
-                    byte[] msg2 = new byte[80];
-                    server.Receive(msg2);
-
-                    mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-
-                    if (mensaje != "")
-                    {
-                        MessageBox.Show(mensaje);
-                    }
                 }
                 Close();
             }
         }
 
-        private void Show_Hide_CheckedChanged(object sender, EventArgs e)
+        private void show_CheckedChanged(object sender, EventArgs e)
         {
-            if(Show_Hide.Checked)
+            if (show.Checked)
             { contraseñaBox.UseSystemPasswordChar = false; }
 
             else

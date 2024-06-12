@@ -16,7 +16,7 @@ namespace Cliente_Juego
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainDish());
+            Application.Run(new Principal());
         }
     }
 }

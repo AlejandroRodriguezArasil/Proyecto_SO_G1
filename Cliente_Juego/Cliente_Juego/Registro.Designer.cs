@@ -28,91 +28,84 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.registrarse = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.usuarioBox = new System.Windows.Forms.TextBox();
             this.contraseñaBox = new System.Windows.Forms.TextBox();
-            this.Registrarse = new System.Windows.Forms.Button();
-            this.Show_Hide = new System.Windows.Forms.CheckBox();
+            this.show = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // registrarse
+            // 
+            this.registrarse.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.registrarse.Location = new System.Drawing.Point(434, 274);
+            this.registrarse.Name = "registrarse";
+            this.registrarse.Size = new System.Drawing.Size(100, 31);
+            this.registrarse.TabIndex = 0;
+            this.registrarse.Text = "Registrarse";
+            this.registrarse.UseVisualStyleBackColor = true;
+            this.registrarse.Click += new System.EventHandler(this.registrarse_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(195, 129);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(308, 149);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nombre de Usuario";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(213, 198);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Contraseña";
+            this.label1.Size = new System.Drawing.Size(120, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Nombre de usuario";
             // 
             // usuarioBox
             // 
-            this.usuarioBox.Location = new System.Drawing.Point(516, 129);
-            this.usuarioBox.Margin = new System.Windows.Forms.Padding(4);
-            this.usuarioBox.MaxLength = 16;
+            this.usuarioBox.Location = new System.Drawing.Point(434, 146);
             this.usuarioBox.Name = "usuarioBox";
-            this.usuarioBox.Size = new System.Drawing.Size(132, 22);
+            this.usuarioBox.Size = new System.Drawing.Size(100, 20);
             this.usuarioBox.TabIndex = 2;
             // 
             // contraseñaBox
             // 
-            this.contraseñaBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contraseñaBox.Location = new System.Drawing.Point(516, 190);
-            this.contraseñaBox.Margin = new System.Windows.Forms.Padding(4);
-            this.contraseñaBox.MaxLength = 8;
+            this.contraseñaBox.Location = new System.Drawing.Point(434, 191);
             this.contraseñaBox.Name = "contraseñaBox";
-            this.contraseñaBox.Size = new System.Drawing.Size(132, 22);
+            this.contraseñaBox.Size = new System.Drawing.Size(100, 20);
             this.contraseñaBox.TabIndex = 3;
-            this.contraseñaBox.UseSystemPasswordChar = true;
             // 
-            // Registrarse
+            // show
             // 
-            this.Registrarse.Location = new System.Drawing.Point(516, 247);
-            this.Registrarse.Margin = new System.Windows.Forms.Padding(4);
-            this.Registrarse.Name = "Registrarse";
-            this.Registrarse.Size = new System.Drawing.Size(133, 28);
-            this.Registrarse.TabIndex = 4;
-            this.Registrarse.Text = "Registrarse";
-            this.Registrarse.UseVisualStyleBackColor = true;
-            this.Registrarse.Click += new System.EventHandler(this.Registrarse_Click);
+            this.show.AutoSize = true;
+            this.show.Location = new System.Drawing.Point(582, 193);
+            this.show.Name = "show";
+            this.show.Size = new System.Drawing.Size(53, 17);
+            this.show.TabIndex = 4;
+            this.show.Text = "Show";
+            this.show.UseVisualStyleBackColor = true;
+            this.show.CheckedChanged += new System.EventHandler(this.show_CheckedChanged);
             // 
-            // Show_Hide
+            // label2
             // 
-            this.Show_Hide.AutoSize = true;
-            this.Show_Hide.Location = new System.Drawing.Point(701, 192);
-            this.Show_Hide.Name = "Show_Hide";
-            this.Show_Hide.Size = new System.Drawing.Size(62, 20);
-            this.Show_Hide.TabIndex = 5;
-            this.Show_Hide.Text = "Show";
-            this.Show_Hide.UseVisualStyleBackColor = true;
-            this.Show_Hide.CheckedChanged += new System.EventHandler(this.Show_Hide_CheckedChanged);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(350, 190);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 19);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Contraseña";
             // 
             // Registro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.Show_Hide);
-            this.Controls.Add(this.Registrarse);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.show);
             this.Controls.Add(this.contraseñaBox);
             this.Controls.Add(this.usuarioBox);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Controls.Add(this.registrarse);
             this.Name = "Registro";
             this.Text = "Registro";
-            this.Load += new System.EventHandler(this.Registro_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,11 +113,11 @@
 
         #endregion
 
+        private System.Windows.Forms.Button registrarse;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox usuarioBox;
         private System.Windows.Forms.TextBox contraseñaBox;
-        private System.Windows.Forms.Button Registrarse;
-        private System.Windows.Forms.CheckBox Show_Hide;
+        private System.Windows.Forms.CheckBox show;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -54,5 +54,12 @@ namespace Cliente_Juego
                 MessageBox.Show("Error");
             }
         }
+
+        private void añadirbtn_Click(object sender, EventArgs e)
+        {
+            int id_j = Convert.ToInt32(jugador_a_invitar_TB.Text);
+            invitacio = invitacio + "/" + id_j.ToString();
+            jugadores_invitados.Text = invitacio;
+        }
     }
 }

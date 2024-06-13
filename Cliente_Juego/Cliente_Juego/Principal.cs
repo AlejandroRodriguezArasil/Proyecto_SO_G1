@@ -40,7 +40,7 @@ namespace Cliente_Juego
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9456);
+            IPEndPoint ipep = new IPEndPoint(direc, 9457);
 
 
             //Creamos el socket 
@@ -382,11 +382,16 @@ namespace Cliente_Juego
                         GlobalData.Instance.Set_turno(turno);
                         break;
                     case 8:
-                        string mimazo = trozos[1].Split('*')[0];
+                        MessageBox.Show("Longitud trozos: " + Convert.ToString(trozos.Length));
+                        MessageBox.Show(trozos[1]);
+                        MessageBox.Show(trozos[2]);
+                        MessageBox.Show(trozos[3]);
+                        
+                        string mimazo = trozos[1];
+                        string mazopartida = trozos[2];
+                        int lastcard = Convert.ToInt32(trozos[3]);
                         GlobalData.Instance.Set_mimazo(mimazo);
-                        string mazopartida = trozos[1].Split('*')[1];
                         GlobalData.Instance.Set_mazopartida(mazopartida);
-                        int lastcard = Convert.ToInt32(trozos[1].Split('*')[2]);
                         GlobalData.Instance.Set_lastcard(lastcard);
                         break; //
                     case 9:
@@ -480,6 +485,8 @@ namespace Cliente_Juego
                     case 13:
                         break;
                     case 14:
+                        string listajugadoresvivos = trozos[1].TrimEnd('/');
+                        GlobalData.Instance.Set_listajugadoresvivos(listajugadoresvivos);
                         break;
                     case 15:
                         break;
@@ -505,6 +512,7 @@ namespace Cliente_Juego
                                 byte[] msg1 = Encoding.ASCII.GetBytes(mensaje1);
                                 server.Send(msg1);
                                 //FALTA ESCIBIR LA LÓGICA DE ENTRAR EN PARTIDA
+                                GlobalData.Instance.Set_idpartida(id_partida);
                                 ThreadPartida();
                             }
                         }

@@ -12,7 +12,7 @@
 int Nconectados;
 int contador;
 int sockets[100];
-
+int i = 0;
 
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -479,7 +479,9 @@ void *AtenderCliente(void *socket)
 					printf ("No se han obtenido datos en la consulta\n");
 				else
 					printf ("%s\n", row[0]);
-				sprintf (respuesta,"%s*\n", row[0]);
+				strcpy(respuesta,"8/");
+				strcat (respuesta, row[0]);
+				strcat(respuesta,"/");
 				
 				sprintf (consulta,"SELECT cartas FROM Mazo WHERE id_j=0 AND id_p = %d;",partida);
 				
@@ -513,8 +515,9 @@ void *AtenderCliente(void *socket)
 					printf ("No se han obtenido datos en la consulta\n");
 				else
 					printf ("%s*\n", row[0]);
+				strcat(respuesta,"/");
 				strcat (respuesta, row[0]);
-				
+				write(sock_conn, respuesta, strlen(respuesta));
 				//mysql_close (conn);
 				//exit(0);
 				break;
@@ -524,17 +527,22 @@ void *AtenderCliente(void *socket)
 			{
 				p = strtok(NULL,"/");
 				int partida = atoi(p);
-				p = strtok(NULL,"*");
+				p = strtok(NULL,"/");
 				int jugador = atoi(p);
 				
 				char mazojugador[100];
-				p = strtok( NULL, "*");
+				p = strtok( NULL, "/");
 				sprintf (mazojugador,"%s", p);
 				char mazopartida[100];
-				p = strtok( NULL, "*");
+				p = strtok( NULL, "/");
 				sprintf (mazopartida,"%s", p);
-				p = strtok(NULL,"*");
+				p = strtok(NULL,"/");
 				int lastcard = atoi(p);
+				
+				if (mazojugador == NULL)
+				{
+					strcpy(mazojugador,"-1");
+				}
 				
 				char consulta[200];
 				sprintf (consulta,"SELECT * FROM Mazo WHERE id_j = 0 AND id_p = %d;",partida);
@@ -622,7 +630,8 @@ void *AtenderCliente(void *socket)
 				}
 				
 				strcpy(respuesta,"9/\n");
-				printf(respuesta);
+				printf("resposta 9: %s", respuesta);
+				write(sock_conn, respuesta, strlen(respuesta));
 				break;
 			}
 			
@@ -1015,7 +1024,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9456);
+	serv_adr.sin_port = htons(9457);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind\n");
 	
@@ -1025,7 +1034,6 @@ int main(int argc, char *argv[])
 	
 	contador = 0;
 	Nconectados = 0;
-	int i = 0;
 	
 	pthread_t thread;
 	

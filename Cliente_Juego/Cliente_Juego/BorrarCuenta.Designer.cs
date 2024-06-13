@@ -61,7 +61,7 @@
             // usuarioBox
             // 
             this.usuarioBox.Location = new System.Drawing.Point(609, 171);
-            this.usuarioBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.usuarioBox.Margin = new System.Windows.Forms.Padding(4);
             this.usuarioBox.Name = "usuarioBox";
             this.usuarioBox.Size = new System.Drawing.Size(132, 22);
             this.usuarioBox.TabIndex = 2;
@@ -69,16 +69,18 @@
             // contraseñaBox
             // 
             this.contraseñaBox.Location = new System.Drawing.Point(609, 278);
-            this.contraseñaBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.contraseñaBox.Margin = new System.Windows.Forms.Padding(4);
             this.contraseñaBox.Name = "contraseñaBox";
             this.contraseñaBox.Size = new System.Drawing.Size(132, 22);
             this.contraseñaBox.TabIndex = 3;
+            this.contraseñaBox.UseSystemPasswordChar = true;
+            this.contraseñaBox.TextChanged += new System.EventHandler(this.contraseñaBox_TextChanged);
             // 
             // borrar
             // 
             this.borrar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.borrar.Location = new System.Drawing.Point(597, 364);
-            this.borrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.borrar.Margin = new System.Windows.Forms.Padding(4);
             this.borrar.Name = "borrar";
             this.borrar.Size = new System.Drawing.Size(161, 32);
             this.borrar.TabIndex = 4;
@@ -90,7 +92,7 @@
             // 
             this.show.AutoSize = true;
             this.show.Location = new System.Drawing.Point(799, 282);
-            this.show.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.show.Margin = new System.Windows.Forms.Padding(4);
             this.show.Name = "show";
             this.show.Size = new System.Drawing.Size(62, 20);
             this.show.TabIndex = 5;
@@ -110,7 +112,7 @@
             this.Controls.Add(this.usuarioBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BorrarCuenta";
             this.Text = "BorrarCuenta";
             this.Load += new System.EventHandler(this.BorrarCuenta_Load);

@@ -25,7 +25,7 @@ namespace Cliente_Juego
 
         private void show_CheckedChanged(object sender, EventArgs e)
         {
-            if (show.Checked)
+            if (show.Checked == true)
             { contraseñaBox.UseSystemPasswordChar = false; }
 
             else
@@ -57,6 +57,11 @@ namespace Cliente_Juego
                 byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
             }
+        }
+
+        private void contraseñaBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

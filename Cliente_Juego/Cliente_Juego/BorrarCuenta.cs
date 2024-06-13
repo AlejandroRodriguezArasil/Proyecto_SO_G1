@@ -64,5 +64,10 @@ namespace Cliente_Juego
             else
             { contraseñaBox.UseSystemPasswordChar = true; }
         }
+
+        private void contraseñaBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

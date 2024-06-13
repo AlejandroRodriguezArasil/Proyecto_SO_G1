@@ -40,7 +40,7 @@
             // 
             this.show.AutoSize = true;
             this.show.Location = new System.Drawing.Point(755, 234);
-            this.show.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.show.Margin = new System.Windows.Forms.Padding(4);
             this.show.Name = "show";
             this.show.Size = new System.Drawing.Size(62, 20);
             this.show.TabIndex = 0;
@@ -52,7 +52,7 @@
             // 
             this.iniciosesion.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iniciosesion.Location = new System.Drawing.Point(592, 298);
-            this.iniciosesion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iniciosesion.Margin = new System.Windows.Forms.Padding(4);
             this.iniciosesion.Name = "iniciosesion";
             this.iniciosesion.Size = new System.Drawing.Size(133, 32);
             this.iniciosesion.TabIndex = 1;
@@ -74,7 +74,7 @@
             // usuarioBox
             // 
             this.usuarioBox.Location = new System.Drawing.Point(592, 170);
-            this.usuarioBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.usuarioBox.Margin = new System.Windows.Forms.Padding(4);
             this.usuarioBox.Name = "usuarioBox";
             this.usuarioBox.Size = new System.Drawing.Size(132, 22);
             this.usuarioBox.TabIndex = 3;
@@ -93,10 +93,11 @@
             // contraseñaBox
             // 
             this.contraseñaBox.Location = new System.Drawing.Point(592, 231);
-            this.contraseñaBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.contraseñaBox.Margin = new System.Windows.Forms.Padding(4);
             this.contraseñaBox.Name = "contraseñaBox";
             this.contraseñaBox.Size = new System.Drawing.Size(132, 22);
             this.contraseñaBox.TabIndex = 5;
+            this.contraseñaBox.UseSystemPasswordChar = true;
             // 
             // IniciarSesion
             // 
@@ -110,7 +111,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.iniciosesion);
             this.Controls.Add(this.show);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "IniciarSesion";
             this.Text = "IniciarSesion";
             this.Load += new System.EventHandler(this.IniciarSesion_Load);

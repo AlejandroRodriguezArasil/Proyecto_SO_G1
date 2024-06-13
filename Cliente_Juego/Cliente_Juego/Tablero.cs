@@ -60,7 +60,7 @@ namespace Cliente_Juego
             no_button.Location = new Point(HTB,alturaB);
 
 
-            Crearmazo(50);
+            Crearmazo(10);
             EnviarMazos();
 
         }
@@ -113,23 +113,28 @@ namespace Cliente_Juego
             string consulta = "8/" + this.id_partida + "/" + this.id_jugador; //missatge que rebem passar-lo al Principal igual que hem fet amb el codi 7
             byte[] msg = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg);
-            // recibimos respuesta del servidor
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            string serializedData = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            this.mimazo = serializedData.Split('*')[0];
-            this.mazopartida = serializedData.Split('*')[1];
-            this.lastcard = Convert.ToInt32(serializedData.Split('*')[2]);
+            Thread.Sleep(500);
+            this.mimazo = GlobalData.Instance.mimazo;
+            this.mazopartida = GlobalData.Instance.mazopartida;
+            this.lastcard = GlobalData.Instance.lastcard;
             if (this.mazopartida == null)
             {
                 Crearmazo(10);
                 EnviarMazos();
+                this.mimazo = "-1";
             }
         }
 
         private void EnviarMazos()
         {
-            string consulta = "9/" + this.id_partida + "/" + this.id_jugador + "*" + this.mimazo + "*" + this.mazopartida + "*" + this.cartajugada;
+            if (this.mimazo == "")
+            {
+                this.mimazo = "-1";
+            }
+            MessageBox.Show("Mimazo: " + this.mimazo);
+
+            string consulta = "9/" + this.id_partida + "/" + this.id_jugador + "/" + this.mimazo + "/" + this.mazopartida + "/" + this.cartajugada;
+            MessageBox.Show("Enviamos mazos con: " + consulta);
             byte[] msg = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg);
             this.cartajugada = -1;
@@ -192,9 +197,10 @@ namespace Cliente_Juego
             {
                 cartas[i] = random.Next(10);
             }
-            string mazocartas = string.Join("/", cartas);
+            string mazocartas = string.Join("*", cartas);
             this.mazopartida = mazocartas;
             this.mazocreado = true;
+            this.mimazo = "-1";
         }
 
         public void DesglosarMazo()
@@ -202,7 +208,7 @@ namespace Cliente_Juego
             if (this.mimazo != "-1")
             {
                 int[] counts = new int[10];
-                string[] numbers = this.mimazo.Split('/');
+                string[] numbers = this.mimazo.Split('*');
                 foreach (string number in numbers)
                 {
                     int digit = int.Parse(number);
@@ -228,11 +234,13 @@ namespace Cliente_Juego
         public void JugarTurno()
         {
             Checkturno();
+            MessageBox.Show("Mazo partida: " + this.mazopartida);
             
             if (this.turno == true)
             {
-                MessageBox.Show("Es el teu torn");
+                //MessageBox.Show("Es el teu torn");
                 RecibirMazos();
+                Thread.Sleep(500);
                 DesglosarMazo();
                 // primero, comprobamos cuál ha sido la ultima carta
                 if ((lastcard == 3) || (lastcard == 8))
@@ -244,7 +252,6 @@ namespace Cliente_Juego
                 //si no es un ataque
                 else
                 {
-                    MessageBox.Show("No es ataque: " + cartajugada);
                     if (cartajugada != -1)
                     {
                         if (cartajugada == 1) // no
@@ -293,11 +300,12 @@ namespace Cliente_Juego
                             // turno a alguien determinado
                         }
                     }
-                    else if (cartajugada == -1)
+                    else if (cartajugada == -1 || cartajugada == null)
                     {
-                        if(MessageBox.Show("No se ha seleccionado carta.","Deseas no tirar?",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                        if(MessageBox.Show("Deseas no tirar?", "No se ha seleccionado carta.", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             Robarcarta(1);
+                            this.cartajugada = -1;
                         }
                     }
                 }
@@ -332,10 +340,8 @@ namespace Cliente_Juego
             byte[] msg = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg);
             // recibimos respuesta del servidor
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            string listajugadoresvivos = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            listajugadoresvivos = listajugadoresvivos.TrimEnd('/');
+            
+            string listajugadoresvivos = GlobalData.Instance.listajugadoresvivos;
             string[] numbers = listajugadoresvivos.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             int index = Array.IndexOf(numbers, id_jugador);
             int nextIndex = id_jugador;

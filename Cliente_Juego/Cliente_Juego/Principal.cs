@@ -382,6 +382,12 @@ namespace Cliente_Juego
                         GlobalData.Instance.Set_turno(turno);
                         break;
                     case 8:
+                        string mimazo = trozos[1].Split('*')[0];
+                        GlobalData.Instance.Set_mimazo(mimazo);
+                        string mazopartida = trozos[1].Split('*')[1];
+                        GlobalData.Instance.Set_mazopartida(mazopartida);
+                        int lastcard = Convert.ToInt32(trozos[1].Split('*')[2]);
+                        GlobalData.Instance.Set_lastcard(lastcard);
                         break; //
                     case 9:
                         break;

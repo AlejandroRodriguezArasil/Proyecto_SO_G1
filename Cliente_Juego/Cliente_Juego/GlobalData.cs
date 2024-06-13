@@ -18,6 +18,11 @@ namespace Cliente_Juego
 
         public int turno_actual { get; private set; }
 
+        public string mimazo { get; private set; }
+        public string mazopartida { get; private set; }
+        public int lastcard { get; private set; }
+
+
         private GlobalData() { }
 
         public static GlobalData Instance
@@ -58,6 +63,19 @@ namespace Cliente_Juego
         public void Set_turno(int turno)
         {
             this.turno_actual = turno;
+        }
+
+        public void Set_mimazo(string mazo)
+        {
+            this.mimazo = mazo;
+        }
+        public void Set_mazopartida(string mazo)
+        {
+            this.mazopartida = mazo;
+        }
+        public void Set_lastcard(int carta)
+        {
+            this.lastcard = carta;
         }
     }
 }

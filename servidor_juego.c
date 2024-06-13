@@ -728,6 +728,7 @@ void *AtenderCliente(void *socket)
 							mysql_errno(conn), mysql_error(conn));
 					//exit (1);
 				}
+				strcpy(respuesta,"13/");
 				break;
 			}
 			case 14: // peticio  d'usuaris vius

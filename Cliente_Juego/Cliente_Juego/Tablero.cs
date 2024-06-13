@@ -59,6 +59,7 @@ namespace Cliente_Juego
             cantidad_no.Location = new Point(HTB, alturaTB);
             no_button.Location = new Point(HTB,alturaB);
 
+            GlobalData.Instance.Set_vivo(1);
 
             Crearmazo(10);
             EnviarMazos();
@@ -96,14 +97,22 @@ namespace Cliente_Juego
 
         private void Checkturno()
         {
-            string consulta = "7/" + this.id_partida;
-            byte[] msg = Encoding.ASCII.GetBytes(consulta);
-            server.Send(msg);
-            Thread.Sleep(500);
-            this.turno_actual = GlobalData.Instance.turno_actual;
-            if (this.turno_actual == this.id_jugador)
+            if (GlobalData.Instance.vivo == 1)
             {
-                this.turno = true;
+                string consulta = "7/" + this.id_partida;
+                byte[] msg = Encoding.ASCII.GetBytes(consulta);
+                server.Send(msg);
+                Thread.Sleep(500);
+                this.turno_actual = GlobalData.Instance.turno_actual;
+                if (this.turno_actual == this.id_jugador)
+                {
+                    this.turno = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Has explotado, no puedes seguir jugando.");
+                this.turno = false;
             }
 
         }
@@ -147,19 +156,19 @@ namespace Cliente_Juego
             {
                 return;
             }
-
+            
             int nuevacarta;
 
             if (pos == 0) // robar carta normal
             {
-                int indexOfSeparator = this.mazopartida.IndexOf('/');
+                int indexOfSeparator = this.mazopartida.IndexOf('*');
                 string primeracarta = this.mazopartida.Substring(0, indexOfSeparator);
                 nuevacarta = int.Parse(primeracarta);
                 this.mazopartida = this.mazopartida.Substring(indexOfSeparator + 1);
             }
             else if (pos == 1) // robar carta de abajo
             {
-                int indexOfLastSeparator = this.mazopartida.LastIndexOf('/');
+                int indexOfLastSeparator = this.mazopartida.LastIndexOf('*');
                 string ultimacarta = this.mazopartida.Substring(indexOfLastSeparator + 1);
                 nuevacarta = int.Parse(ultimacarta);
                 this.mazopartida = this.mazopartida.Substring(0, indexOfLastSeparator);
@@ -171,6 +180,8 @@ namespace Cliente_Juego
 
             if (nuevacarta == 0)
             {
+                GlobalData.Instance.Set_vivo(0);
+                MessageBox.Show("¡BOOM!");
                 string consulta = "13/" + this.id_jugador + "/" + this.id_partida;
                 byte[] msg = Encoding.ASCII.GetBytes(consulta);
                 server.Send(msg);    //    logica de haber explotado
@@ -191,11 +202,28 @@ namespace Cliente_Juego
 
         public void Crearmazo(int longitud)
         {
+            string consulta = "14/" + id_partida;
+            byte[] msg = Encoding.ASCII.GetBytes(consulta);
+            server.Send(msg);
+            // recibimos respuesta del servidor
+
+            string listajugadoresvivos = GlobalData.Instance.listajugadoresvivos;
+            string[] numbers = listajugadoresvivos.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            int numjug = numbers.Length;
+
             Random random = new Random();
-            int[] cartas = new int[longitud];
-            for (int i = 0; i < longitud; i++)
+            int[] cartas = new int[longitud + numjug];
+            for (int i = 0; i < longitud + numjug; i++)
             {
-                cartas[i] = random.Next(10);
+                if (longitud % numjug == 0)
+                {
+                    cartas[i] = 0;
+                }
+                else
+                {
+                    cartas[i] = random.Next(10);
+                }
+
             }
             string mazocartas = string.Join("*", cartas);
             this.mazopartida = mazocartas;
@@ -304,7 +332,7 @@ namespace Cliente_Juego
                     {
                         if(MessageBox.Show("Deseas no tirar?", "No se ha seleccionado carta.", MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            Robarcarta(1);
+                            Robarcarta(0);
                             this.cartajugada = -1;
                         }
                     }

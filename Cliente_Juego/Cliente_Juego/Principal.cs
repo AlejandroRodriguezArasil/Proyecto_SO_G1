@@ -483,6 +483,7 @@ namespace Cliente_Juego
                     case 12:
                         break;
                     case 13:
+                        GlobalData.Instance.Set_vivo(0);
                         break;
                     case 14:
                         string listajugadoresvivos = trozos[1].TrimEnd('/');

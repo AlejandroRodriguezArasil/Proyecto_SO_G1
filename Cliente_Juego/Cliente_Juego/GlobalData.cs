@@ -21,7 +21,8 @@ namespace Cliente_Juego
         public string mimazo { get; private set; }
         public string mazopartida { get; private set; }
         public int lastcard { get; private set; }
-        public string listajugadoresvivos { get; private set; }    
+        public string listajugadoresvivos { get; private set; }
+        public int vivo { get; private set; } = 1;
 
 
 
@@ -82,6 +83,10 @@ namespace Cliente_Juego
         public void Set_listajugadoresvivos(string listajugcon) 
         {
             this.listajugadoresvivos = listajugcon;    
+        }
+        public void Set_vivo(int alive)
+        {
+            this.vivo = alive;
         }
     }
 }

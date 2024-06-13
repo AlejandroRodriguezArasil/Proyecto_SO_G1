@@ -32,15 +32,21 @@ namespace Cliente_Juego
 
         private void Principal_Load(object sender, EventArgs e)
         {
-
+            conectarseAlServidorToolStripMenuItem.Enabled = true;
+            cerrarSesiónToolStripMenuItem.Enabled = false;
+            desconectarseToolStripMenuItem.Enabled = false;
+            invitarToolStripMenuItem.Enabled = false;
+            borrarCuentaToolStripMenuItem.Enabled = false;
+            registrarseToolStripMenuItem.Enabled = false;
+            iniciarSesiónToolStripMenuItem.Enabled = false;
         }
 
         public void Conectarse()
         {
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9457);
+            IPAddress direc = IPAddress.Parse("10.4.119.5");
+            IPEndPoint ipep = new IPEndPoint(direc, 50060);
 
 
             //Creamos el socket 
@@ -65,6 +71,16 @@ namespace Cliente_Juego
         private void conectarseAlServidorToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Conectarse();
+            if (conexion)
+            {
+                registrarseToolStripMenuItem.Enabled=true;
+                conectarseAlServidorToolStripMenuItem.Enabled = false;
+                desconectarseToolStripMenuItem.Enabled = true;
+                borrarCuentaToolStripMenuItem.Enabled = true;
+                invitarToolStripMenuItem.Enabled = false;
+                cerrarSesiónToolStripMenuItem.Enabled = false;
+                iniciarSesiónToolStripMenuItem.Enabled = true;
+            } 
         }
         private void FormularioIniciarSession()
         {
@@ -75,11 +91,17 @@ namespace Cliente_Juego
         {
             if (conexion)
             {
+                iniciarSesiónToolStripMenuItem.Enabled = false;
+                cerrarSesiónToolStripMenuItem.Enabled = true;
+                invitarToolStripMenuItem.Enabled = true;
+                borrarCuentaToolStripMenuItem.Enabled = false;
+                cerrarSesiónToolStripMenuItem.Enabled = true;
+                string consulta = "5/";
+                byte[] msg = Encoding.ASCII.GetBytes(consulta);
+                server.Send(msg);
                 ThreadStart ts = delegate { FormularioIniciarSession(); };
                 Thread i = new Thread(ts);
                 i.Start();
-
-                
             }
             else
             {
@@ -112,6 +134,13 @@ namespace Cliente_Juego
             string mensaje = "4/";
             byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
+            conectarseAlServidorToolStripMenuItem.Enabled = false;
+            desconectarseToolStripMenuItem.Enabled = true;
+            borrarCuentaToolStripMenuItem.Enabled = true;
+            invitarToolStripMenuItem.Enabled = false;
+            cerrarSesiónToolStripMenuItem.Enabled = false;
+            iniciarSesiónToolStripMenuItem.Enabled = true;
+            registrarseToolStripMenuItem.Enabled = true;   
         }
         private void FormularioBorrarCuenta()
         {
@@ -165,10 +194,6 @@ namespace Cliente_Juego
             Thread z = new Thread(ts);
             z.Start();
         }
-        private void nuevaPartidaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
         private void FormularioConectados()
         {
 
@@ -179,9 +204,7 @@ namespace Cliente_Juego
         {
             if (conexion)
             {
-                string consulta = "5/";
-                byte[] msg = Encoding.ASCII.GetBytes(consulta);
-                server.Send(msg);
+                
                 ThreadStart ts = delegate { FormularioConectados(); };
                 Thread f = new Thread(ts);
                 f.Start();
@@ -251,6 +274,22 @@ namespace Cliente_Juego
                 atender.Abort();
             }
         }
+        private void desconectarseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            conectarseAlServidorToolStripMenuItem.Enabled = true;
+            desconectarseToolStripMenuItem.Enabled = false;
+            string mensaje = "0/";
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+            conectarseAlServidorToolStripMenuItem.Enabled = true;
+            cerrarSesiónToolStripMenuItem.Enabled = false;
+            desconectarseToolStripMenuItem.Enabled = false;
+            invitarToolStripMenuItem.Enabled = false;
+            borrarCuentaToolStripMenuItem.Enabled = false;
+            registrarseToolStripMenuItem.Enabled = false;
+            iniciarSesiónToolStripMenuItem.Enabled = false;
+
+        }
 
         public void atender_server()
         {
@@ -271,6 +310,7 @@ namespace Cliente_Juego
                             MessageBox.Show("Desconectado del servidor.");
                             conexion = false;
                             this.BackColor = Color.Gray;
+                            
                         }
                         else
                             MessageBox.Show("No te has podido desconectar");
@@ -308,7 +348,11 @@ namespace Cliente_Juego
                         break;
                     case 4:
                         if (Convert.ToInt32(trozos[1]) == 1)
+                        {
                             MessageBox.Show("Has cerrado sesión correctamente");
+                            
+                        }
+                            
                         else
                             MessageBox.Show("No has podido cerrar sesión");
                         break;
@@ -526,13 +570,7 @@ namespace Cliente_Juego
             }
         }
 
-        private void desconectarseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string mensaje = "0/";
-            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-
-        }
+        
     }
 }
 

@@ -202,29 +202,41 @@ namespace Cliente_Juego
 
         public void Crearmazo(int longitud)
         {
-            string consulta = "14/" + id_partida;
+            string consulta = "14/" + GlobalData.Instance.id_partida;
             byte[] msg = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg);
             // recibimos respuesta del servidor
-
+            Thread.Sleep(500);
             string listajugadoresvivos = GlobalData.Instance.listajugadoresvivos;
             string[] numbers = listajugadoresvivos.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             int numjug = numbers.Length;
 
             Random random = new Random();
-            int[] cartas = new int[longitud + numjug];
-            for (int i = 0; i < longitud + numjug; i++)
-            {
-                if (longitud % numjug == 0)
-                {
-                    cartas[i] = 0;
-                }
-                else
-                {
-                    cartas[i] = random.Next(10);
-                }
+            int totalLength = longitud + numjug;
+            int[] cartas = new int[totalLength];
 
+            // Initialize the first numjug elements with zeroes
+            for (int i = 0; i < numjug; i++)
+            {
+                cartas[i] = 0;
             }
+
+            // Fill the remaining elements with random numbers
+            for (int i = numjug; i < totalLength; i++)
+            {
+                cartas[i] = random.Next(10);
+            }
+
+            // Shuffle the array to distribute the zeroes randomly
+            for (int i = totalLength - 1; i > 0; i--)
+            {
+                int j = random.Next(i + 1);
+                int temp = cartas[i];
+                cartas[i] = cartas[j];
+                cartas[j] = temp;
+            }
+
+            // Convert the array to a string with elements separated by '*'
             string mazocartas = string.Join("*", cartas);
             this.mazopartida = mazocartas;
             this.mazocreado = true;
@@ -235,15 +247,22 @@ namespace Cliente_Juego
         {
             if (this.mimazo != "-1")
             {
-                int[] counts = new int[10];
-                string[] numbers = this.mimazo.Split('*');
-                foreach (string number in numbers)
+                try
                 {
-                    int digit = int.Parse(number);
-                    counts[digit]++;
+                    int[] counts = new int[10];
+                    string[] numbers = this.mimazo.Split('*');
+                    foreach (string number in numbers)
+                    {
+                        int digit = int.Parse(number);
+                        counts[digit]++;
+                    }
+                    this.mimazodesglosado = counts;
+                    PopulateCantidadCartas();
                 }
-                this.mimazodesglosado = counts;
-                PopulateCantidadCartas();
+                catch(Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}");
+                }
             }
         }
 
@@ -262,7 +281,6 @@ namespace Cliente_Juego
         public void JugarTurno()
         {
             Checkturno();
-            MessageBox.Show("Mazo partida: " + this.mazopartida);
             
             if (this.turno == true)
             {
@@ -334,10 +352,10 @@ namespace Cliente_Juego
                         {
                             Robarcarta(0);
                             this.cartajugada = -1;
+                            AsignarProximoTurno(0);
                         }
                     }
                 }
-                MessageBox.Show("Saliendo del boocle");
                 EnviarMazos();
             }
             else
@@ -370,7 +388,7 @@ namespace Cliente_Juego
             // recibimos respuesta del servidor
             
             string listajugadoresvivos = GlobalData.Instance.listajugadoresvivos;
-            string[] numbers = listajugadoresvivos.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] numbers = listajugadoresvivos.Split(new char[] { '*' }, StringSplitOptions.RemoveEmptyEntries);
             int index = Array.IndexOf(numbers, id_jugador);
             int nextIndex = id_jugador;
             if (direccion == 0)
@@ -386,42 +404,6 @@ namespace Cliente_Juego
             server.Send(msg3);
         }
 
-
-        private void jugar_rda_Click(object sender, EventArgs e)
-        {
-            Lanzarcarta(2);
-        }
-
-        private void jugar_ataque_Click(object sender, EventArgs e)
-        {
-            Lanzarcarta(3);
-        }
-
-        private void mef_button_Click(object sender, EventArgs e)
-        {
-            Lanzarcarta(4);
-        }
-
-        private void saltar_jugar_Click(object sender, EventArgs e)
-        {
-            Lanzarcarta(5);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Lanzarcarta(6);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Lanzarcarta(7);
-        }
-
-        private void atdir_button_Click(object sender, EventArgs e)
-        {
-            Lanzarcarta(8);
-        }
-
         private void jugar_turno_Click_1(object sender, EventArgs e)
         {
             JugarTurno();
@@ -432,5 +414,39 @@ namespace Cliente_Juego
             Lanzarcarta(1);
         }
 
+        private void jugar_rda_Click_1(object sender, EventArgs e)
+        {
+            Lanzarcarta(2);
+        }
+
+        private void jugar_ataque_Click_1(object sender, EventArgs e)
+        {
+            Lanzarcarta(3); 
+        }
+
+        private void mef_button_Click_1(object sender, EventArgs e)
+        {
+            Lanzarcarta(4);
+        }
+
+        private void saltar_jugar_Click_1(object sender, EventArgs e)
+        {
+            Lanzarcarta(5);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Lanzarcarta(6);
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Lanzarcarta(7);
+        }
+
+        private void atdir_button_Click_1(object sender, EventArgs e)
+        {
+            Lanzarcarta(8);
+        }
     }
 }

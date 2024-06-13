@@ -728,7 +728,43 @@ void *AtenderCliente(void *socket)
 							mysql_errno(conn), mysql_error(conn));
 					//exit (1);
 				}
-				strcpy(respuesta,"13/");
+				char count[200];
+				sprintf(count,"SELECT COUNT(*) FROM Auxiliar WHERE id_p = %d AND vivo = 1;",id_partida);
+				err=mysql_query (conn, count);
+				if (err!=0) {
+					printf ("Error al consultar datos de la base %u %s\n",
+							mysql_errno(conn), mysql_error(conn));
+					//exit (1);
+				}
+				resultado = mysql_store_result(conn);
+				row = mysql_fetch_row(resultado);
+				int vivos = row[0];
+				if (vivos>1)
+				{
+					strcpy(respuesta,"13/1");
+				}
+				else if(vivos ==1)
+				{
+					char upd[200];
+					sprintf(upd,"UPDATE Partida SET acabada = 1 WHERE id_partida = %d;", id_partida);
+					err=mysql_query (conn, upd);
+					if (err!=0) {
+						printf ("Error al consultar datos de la base %u %s\n",
+								mysql_errno(conn), mysql_error(conn));
+						//exit (1);
+					}
+					
+					char del[200];
+					sprintf(del,"DELETE * FROM Auxiliar WHERE id_p = %d;", id_partida);
+					err=mysql_query (conn, upd);
+					if (err!=0) {
+						printf ("Error al consultar datos de la base %u %s\n",
+								mysql_errno(conn), mysql_error(conn));
+						//exit (1);
+					}
+				}
+				
+				
 				break;
 			}
 			case 14: // peticio  d'usuaris vius
@@ -744,6 +780,7 @@ void *AtenderCliente(void *socket)
 							mysql_errno(conn), mysql_error(conn));
 					//exit (1);
 				}
+				strcpy(respuesta,"14/");
 				
 				resultado = mysql_store_result (conn);
 				row = mysql_fetch_row (resultado);
@@ -754,13 +791,13 @@ void *AtenderCliente(void *socket)
 					{
 						
 						strcat(respuesta, row[0]);
-						strcat(respuesta,"/");
+						strcat(respuesta,"*");
 						
 						row = mysql_fetch_row(resultado);
 					}
 				}
-			
-					
+				
+				write(sock_conn, respuesta, strlen(respuesta));	
 				//mysql_close (conn);
 				//exit(0);
 				
@@ -812,7 +849,8 @@ void *AtenderCliente(void *socket)
 				if (err != 0) {
 					printf("Error al consultar datos de la base %u %s\n", mysql_errno(conn), mysql_error(conn));
 					strcpy(respuesta, "Error al crear nueva partida");
-				} else {
+				} 
+				else {
 					resultado = mysql_store_result(conn);
 					row = mysql_fetch_row(resultado);
 					
@@ -835,7 +873,7 @@ void *AtenderCliente(void *socket)
 					id_jugador = atoi(row0[0]);
 					// Insertar nueva partida en la base de datos
 					char insert_nova[300];
-					sprintf(insert_nova, "INSERT INTO Partida (id_partida, acabada, ganador) VALUES (%d, 0, 'PENE69');", id_nova);
+					sprintf(insert_nova, "INSERT INTO Partida (id_partida, acabada) VALUES (%d, 0);", id_nova);
 					
 					char insert [200];
 					sprintf(insert,"INSERT INTO Puntos (id_p, id_j, puntos) VALUES (%d,%d,0);",id_nova, id_jugador);
@@ -849,6 +887,23 @@ void *AtenderCliente(void *socket)
 						sprintf(respuesta, "16/%d", id_nova);
 					}
 					err = mysql_query(conn, insert);
+					if (err != 0) {
+						printf("Error al insertar datos en la base %u %s\n", mysql_errno(conn), mysql_error(conn));
+					} 
+					
+					char aux[200];
+					sprintf(aux,"INSERT INTO Auxiliar VALUES (%d,%d,%d,-1,1)",id_nova,id_jugador,id_jugador);
+					err = mysql_query(conn, aux);
+					if (err != 0) {
+						printf("Error al insertar datos en la base %u %s\n", mysql_errno(conn), mysql_error(conn));
+					} 
+					
+					char aux1[200];
+					sprintf(aux1,"INSERT INTO Auxiliar VALUES (%d,0,%d,-1,1)",id_nova,id_jugador);
+					err = mysql_query(conn, aux1);
+					if (err != 0) {
+						printf("Error al insertar datos en la base %u %s\n", mysql_errno(conn), mysql_error(conn));
+					} 
 				}
 				
 				write(sock_conn, respuesta, strlen(respuesta));

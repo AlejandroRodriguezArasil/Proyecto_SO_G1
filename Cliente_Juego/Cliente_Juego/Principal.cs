@@ -382,10 +382,6 @@ namespace Cliente_Juego
                         GlobalData.Instance.Set_turno(turno);
                         break;
                     case 8:
-                        MessageBox.Show("Longitud trozos: " + Convert.ToString(trozos.Length));
-                        MessageBox.Show(trozos[1]);
-                        MessageBox.Show(trozos[2]);
-                        MessageBox.Show(trozos[3]);
                         
                         string mimazo = trozos[1];
                         string mazopartida = trozos[2];
@@ -486,7 +482,7 @@ namespace Cliente_Juego
                         GlobalData.Instance.Set_vivo(0);
                         break;
                     case 14:
-                        string listajugadoresvivos = trozos[1].TrimEnd('/');
+                        string listajugadoresvivos = trozos[1].TrimEnd('*');
                         GlobalData.Instance.Set_listajugadoresvivos(listajugadoresvivos);
                         break;
                     case 15:

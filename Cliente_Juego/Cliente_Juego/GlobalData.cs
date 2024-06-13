@@ -23,6 +23,8 @@ namespace Cliente_Juego
         public int lastcard { get; private set; }
         public string listajugadoresvivos { get; private set; }
         public int vivo { get; private set; } = 1;
+        public int conectado { get; private set; } = 0;
+        public int registrado { get; private set; } = 0;
 
 
 
@@ -87,6 +89,14 @@ namespace Cliente_Juego
         public void Set_vivo(int alive)
         {
             this.vivo = alive;
+        }
+        public void Set_registrado(int reg)
+        {
+            this.registrado = reg;
+        }
+        public void Set_conectado(int con)
+        {
+            this.conectado = con;
         }
     }
 }

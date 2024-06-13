@@ -23,6 +23,7 @@ namespace Cliente_Juego
         DataTable datatable10;
         DataTable datatable11;
         public bool conexion = false;
+        public string user;
 
         public Principal()
         {
@@ -39,7 +40,7 @@ namespace Cliente_Juego
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9010);
+            IPEndPoint ipep = new IPEndPoint(direc, 9456);
 
 
             //Creamos el socket 
@@ -78,6 +79,7 @@ namespace Cliente_Juego
                 Thread i = new Thread(ts);
                 i.Start();
 
+                
             }
             else
             {
@@ -139,22 +141,25 @@ namespace Cliente_Juego
         {
             if (conexion)
             {
+                string mensaje1 = "16/";
+                byte[] msg1 = Encoding.ASCII.GetBytes(mensaje1);
+                server.Send(msg1);
+
                 ThreadStart ts = delegate { FormularioInvitar(); };
                 Thread a = new Thread(ts);
                 a.Start();
-
             }
             else
             {
                 MessageBox.Show("Primero debes conectarte al servidor");
             }
         }
-        private void FormularioTablero()
+        public void FormularioTablero()
         {
-            Tablero tablero = new Tablero();
+            Tablero tablero = new Tablero(server);
             tablero.ShowDialog();
         }
-        private void ThreadPartida()
+        public void ThreadPartida()
         {
             ThreadStart ts = delegate { FormularioTablero(); };
             Thread z = new Thread(ts);
@@ -162,19 +167,7 @@ namespace Cliente_Juego
         }
         private void nuevaPartidaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (conexion)
-            {
-                string mensaje1 = "16/";
-                byte[] msg1 = Encoding.ASCII.GetBytes(mensaje1);
-                server.Send(msg1);
-
-                ThreadPartida();
-
-            }
-            else
-            {
-                MessageBox.Show("Primero debes conectarte al servidor");
-            }
+            
         }
         private void FormularioConectados()
         {
@@ -284,7 +277,9 @@ namespace Cliente_Juego
                         break;
                     case 1:
                         if (Convert.ToInt32(trozos[1]) == 1)
+                        {
                             MessageBox.Show("Te has registrado correctamente");
+                        }
                         else
                             MessageBox.Show("No te has podido registrar");
                         break;
@@ -296,7 +291,16 @@ namespace Cliente_Juego
                         break;
                     case 3:
                         if (Convert.ToInt32(trozos[1]) == 1)
+                        {
                             MessageBox.Show("Has iniciado sesión correctamente");
+
+                            int idjugador = Convert.ToInt32(trozos[2]);
+                            string usuari = trozos[3];
+                            int socket = Convert.ToInt32(trozos[4]);
+                            GlobalData.Instance.Set_nombrejugador(usuari);
+                            GlobalData.Instance.Set_idjugador(idjugador);
+                            GlobalData.Instance.Set_socketconn(socket);
+                        }
                         else if (Convert.ToInt32(trozos[1]) == -2)
                             MessageBox.Show("No has podido iniciar sesión. Revisa los campos o regístrate");
                         else
@@ -374,9 +378,11 @@ namespace Cliente_Juego
                     case 6:
                         break;
                     case 7:
+                        int turno = Convert.ToInt32(trozos[1]);
+                        GlobalData.Instance.Set_turno(turno);
                         break;
                     case 8:
-                        break;
+                        break; //
                     case 9:
                         break;
                     case 10:

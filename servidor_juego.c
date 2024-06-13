@@ -193,7 +193,7 @@ void *AtenderCliente(void *socket)
 				write(sock_conn, respuesta, strlen(respuesta));
 				break;
 			}
-			case 2:// consulta 2: borrar la cuenta XD
+			case 2:// consulta 2: borrar la cuenta
 			{				
 				char nombre[100];
 				char contrasena[100];
@@ -342,7 +342,7 @@ void *AtenderCliente(void *socket)
 					}
 					else
 					{
-						sprintf(respuesta, "3/1"); //good inicio sesion
+						sprintf(respuesta, "3/1/%d/%s/%d",id,nombre,sock_conn); //good inicio sesion
 					}
 					pthread_mutex_unlock(&mutex);
 					
@@ -448,12 +448,13 @@ void *AtenderCliente(void *socket)
 					printf ("No se han obtenido datos en la consulta\n");
 				else
 					printf ("%s\n", row[0]);
-				sprintf (respuesta,"%s\n", row[0]);
+					sprintf (respuesta,"7/%s\n", row[0]);
+					write(sock_conn, respuesta, strlen(respuesta));
 					
 				//mysql_close (conn);
 				//exit(0);
 				break;
-					
+
 			}
 			case 8: //proceso de coger el mazo entero
 			{
@@ -478,7 +479,7 @@ void *AtenderCliente(void *socket)
 					printf ("No se han obtenido datos en la consulta\n");
 				else
 					printf ("%s\n", row[0]);
-				sprintf (respuesta,"%s-\n", row[0]);
+				sprintf (respuesta,"%s*\n", row[0]);
 				
 				sprintf (consulta,"SELECT cartas FROM Mazo WHERE id_j=0 AND id_p = %d;",partida);
 				
@@ -494,7 +495,7 @@ void *AtenderCliente(void *socket)
 				if (row == NULL)
 					printf ("No se han obtenido datos en la consulta\n");
 				else
-					printf ("%s-\n", row[0]);
+					printf ("%s*\n", row[0]);
 				strcat (respuesta, row[0]);
 				
 				sprintf (consulta,"SELECT lastcard FROM Auxiliar WHERE id_j =%d AND id_p = %d;",jugador,partida);
@@ -511,7 +512,7 @@ void *AtenderCliente(void *socket)
 				if (row == NULL)
 					printf ("No se han obtenido datos en la consulta\n");
 				else
-					printf ("%s-\n", row[0]);
+					printf ("%s*\n", row[0]);
 				strcat (respuesta, row[0]);
 				
 				//mysql_close (conn);
@@ -523,46 +524,105 @@ void *AtenderCliente(void *socket)
 			{
 				p = strtok(NULL,"/");
 				int partida = atoi(p);
-				p = strtok(NULL,"/");
+				p = strtok(NULL,"*");
 				int jugador = atoi(p);
 				
 				char mazojugador[100];
-				p = strtok( NULL, "-");
-				strcpy (mazojugador, p);
+				p = strtok( NULL, "*");
+				sprintf (mazojugador,"%s", p);
 				char mazopartida[100];
-				p = strtok( NULL, "-");
-				strcpy (mazopartida, p);
-				p = strtok(NULL,"-");
+				p = strtok( NULL, "*");
+				sprintf (mazopartida,"%s", p);
+				p = strtok(NULL,"*");
 				int lastcard = atoi(p);
 				
-				char update[200];
-				
-				sprintf(update, "UPDATE Mazo SET cartas = '%s' WHERE id_j = %d AND id_p = %d;",mazojugador,jugador,partida);
-				
-				err=mysql_query (conn, update);
+				char consulta[200];
+				sprintf (consulta,"SELECT * FROM Mazo WHERE id_j = 0 AND id_p = %d;",partida);
+				err=mysql_query (conn, consulta);
 				if (err!=0) {
 					printf ("Error al consultar datos de la base %u %s\n",
 							mysql_errno(conn), mysql_error(conn));
 					//exit (1);
 				}
 				
-				sprintf(update,"UPDATE Mazo SET cartas = '%s' WHERE id_j = 0 AND id_p = %d;", mazopartida,partida);
+				resultado = mysql_store_result(conn);
+				MYSQL_ROW row1;
+				row1 = mysql_fetch_row(resultado);
 				
+				if (row1 == NULL)
+				{
+					char update[200];
+					
+					sprintf(update, "INSERT INTO Mazo VALUES (%d,0,'%s');",partida,mazopartida);
+					
+					err=mysql_query (conn, update);
+					if (err!=0) {
+						printf ("Error al consultar datos de la base %u %s\n",
+								mysql_errno(conn), mysql_error(conn));
+						//exit (1);
+					}
+					
+				}
+				
+				sprintf (consulta,"SELECT * FROM Mazo WHERE id_j = %d AND id_p = %d;",jugador,partida);
+				err=mysql_query (conn, consulta);
 				if (err!=0) {
 					printf ("Error al consultar datos de la base %u %s\n",
 							mysql_errno(conn), mysql_error(conn));
 					//exit (1);
 				}
 				
-				sprintf(update, "UPDATE Auxiliar SET lastcard = %d WHERE id_p = %d;",lastcard,partida);
+				resultado = mysql_store_result(conn);
+				MYSQL_ROW row2;
+				row2 = mysql_fetch_row(resultado);
 				
-				err=mysql_query (conn, update);
-				if (err!=0) {
-					printf ("Error al consultar datos de la base %u %s\n",
-							mysql_errno(conn), mysql_error(conn));
-					//exit (1);
+				if (row2 == NULL)
+				{
+					char update[200];
+					
+					sprintf(update,"INSERT INTO Mazo VALUES (%d,%d,'%s');",partida,jugador,mazojugador);
+					
+					err=mysql_query (conn, update);
+					if (err!=0) {
+						printf ("Error al consultar datos de la base %u %s\n",
+								mysql_errno(conn), mysql_error(conn));
+						//exit (1);
+					}
 				}
-			
+				
+				else if (row1 != NULL || row2 != NULL)
+				{
+					char update[200];
+					
+					sprintf(update, "UPDATE Mazo SET cartas = '%s' WHERE id_j = %d AND id_p = %d;",mazojugador,jugador,partida);
+					
+					err=mysql_query (conn, update);
+					if (err!=0) {
+						printf ("Error al consultar datos de la base %u %s\n",
+								mysql_errno(conn), mysql_error(conn));
+						//exit (1);
+					}
+					
+					sprintf(update,"UPDATE Mazo SET cartas = '%s' WHERE id_j = 0 AND id_p = %d;", mazopartida,partida);
+					
+					if (err!=0) {
+						printf ("Error al consultar datos de la base %u %s\n",
+								mysql_errno(conn), mysql_error(conn));
+						//exit (1);
+					}
+					
+					sprintf(update, "UPDATE Auxiliar SET lastcard = %d WHERE id_p = %d;",lastcard,partida);
+					
+					err=mysql_query (conn, update);
+					if (err!=0) {
+						printf ("Error al consultar datos de la base %u %s\n",
+								mysql_errno(conn), mysql_error(conn));
+						//exit (1);
+					}
+				}
+				
+				strcpy(respuesta,"9/\n");
+				printf(respuesta);
 				break;
 			}
 			
@@ -774,7 +834,8 @@ void *AtenderCliente(void *socket)
 					if (err != 0) {
 						printf("Error al insertar datos en la base %u %s\n", mysql_errno(conn), mysql_error(conn));
 						strcpy(respuesta, "16/-1");
-					} else {
+					} 
+					else {
 						sprintf(respuesta, "16/%d", id_nova);
 					}
 					err = mysql_query(conn, insert);
@@ -954,7 +1015,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// establecemos el puerto de escucha
-	serv_adr.sin_port = htons(9010);
+	serv_adr.sin_port = htons(9456);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind\n");
 	

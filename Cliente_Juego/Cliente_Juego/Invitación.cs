@@ -51,7 +51,7 @@ namespace Cliente_Juego
             }
             else
             {
-                MessageBox.Show("No va esto");
+                MessageBox.Show("Error");
             }
         }
     }

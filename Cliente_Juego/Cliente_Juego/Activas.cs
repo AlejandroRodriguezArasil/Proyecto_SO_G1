@@ -30,21 +30,18 @@ namespace Cliente_Juego
 
         private void activasGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                // Obtiene la primera celda de la fila clicada
-                DataGridViewRow clickedRow = activasGrid.Rows[e.RowIndex];
-                object firstCellValue = clickedRow.Cells[0].Value;
-                Convert.ToString(firstCellValue);
-                string mensaje = "12/";
-                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
+            
+        }
 
+        private void unirse_Click(object sender, EventArgs e)
+        {
+            int idp = Convert.ToInt32(partidaTB.Text);
 
-                //entras en la partida seleccionafa si clicas en una fila del datagridview
-                Tablero partida = new Tablero();
-                partida.Show();
-            }
+            GlobalData.Instance.Set_idpartida(idp);
+
+            //entras en la partida seleccionada con la id
+            Tablero partida = new Tablero(this.server);
+            partida.ShowDialog();
         }
     }
 }

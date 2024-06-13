@@ -18,6 +18,7 @@ namespace Cliente_Juego
     public partial class IniciarSesion : Form
     {
         private Socket server;
+        private string username;
         public IniciarSesion(Socket server)
         {
             InitializeComponent();
@@ -46,22 +47,25 @@ namespace Cliente_Juego
 
             else
             {
-                string username = usuarioBox.Text;
+                this.username = usuarioBox.Text;
                 string contraseña = contraseñaBox.Text;
-                string mensaje = "3/" + username + "/" + contraseña;
+                string mensaje = "3/" + this.username + "/" + contraseña;
 
                 byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
+
+                
             }
         }
 
         private void show_CheckedChanged(object sender, EventArgs e)
         {
-            if (show.Checked)
+            if (show.Checked == true)
             { contraseñaBox.UseSystemPasswordChar = false; }
 
             else
             { contraseñaBox.UseSystemPasswordChar = true; }
         }
+        
     }
 }

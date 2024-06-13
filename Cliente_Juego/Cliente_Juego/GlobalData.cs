@@ -16,6 +16,8 @@ namespace Cliente_Juego
         public int socketconn { get; private set; }
         public int id_partida { get; private set; }
 
+        public int turno_actual { get; private set; }
+
         private GlobalData() { }
 
         public static GlobalData Instance
@@ -51,6 +53,11 @@ namespace Cliente_Juego
         public void Set_idpartida(int idpartida)
         {
             this.id_partida = idpartida;
+        }
+
+        public void Set_turno(int turno)
+        {
+            this.turno_actual = turno;
         }
     }
 }

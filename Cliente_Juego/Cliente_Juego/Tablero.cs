@@ -9,6 +9,7 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,30 +25,43 @@ namespace Cliente_Juego
         private int socketconn;
         private int turno_actual;
         private bool turno = false;
-        private string mimazo;
+        private string mimazo = "-1";
         private int[] mimazodesglosado = new int[10];
         private string mazopartida;
-        private int lastcard;
+        private int lastcard = -1;
         private int cartajugada = -1;
         private static Random rng = new Random();
+        private bool mazocreado = false;
 
         // Identificadores de cartas (nums 0-9) en orden del tablero
         // 0-bomba
         // 1-no  2-roba de abajo  3-ataque  4-mira el futuro  5-saltar  6-mezclar  7-cambia el futuro  8-ataque dirigido
         // 9-desactivacion (no en el tablero)
 
-        public Tablero()
+        public Tablero(Socket Server)
         {
             InitializeComponent();
-            DisplayPlayerBoxes();
+            //DisplayPlayerBoxes();
             this.id_jugador = GlobalData.Instance.id_jugador;
             this.id_partida = GlobalData.Instance.id_partida;
             this.jugador_nombre = GlobalData.Instance.nombre_jugador;
             this.socketconn = GlobalData.Instance.socketconn;
+            this.server = Server;
         }
 
         private void Tablero_Load(object sender, EventArgs e)
         {
+            //this.Height = 0;
+
+            int alturaTB = this.Height - 50;
+            int HTB = 97;
+            int alturaB = this.Height - 10;
+            cantidad_no.Location = new Point(HTB, alturaTB);
+            no_button.Location = new Point(HTB,alturaB);
+
+
+            Crearmazo(50);
+            EnviarMazos();
 
         }
         private void DisplayPlayerBoxes()
@@ -85,37 +99,37 @@ namespace Cliente_Juego
             string consulta = "7/" + this.id_partida;
             byte[] msg = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg);
-            // recibimos respuesta del servidor
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            string serializedData = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            turno_actual = Convert.ToInt32(serializedData);
+            Thread.Sleep(500);
+            this.turno_actual = GlobalData.Instance.turno_actual;
             if (this.turno_actual == this.id_jugador)
             {
-                turno = true;
+                this.turno = true;
             }
-
 
         }
 
         private void RecibirMazos()  //nota: estructura del mazo  numcarta/numcarta/numcarta...
         {
-            string consulta = "8/" + this.id_partida + "/" + this.id_jugador;
+            string consulta = "8/" + this.id_partida + "/" + this.id_jugador; //missatge que rebem passar-lo al Principal igual que hem fet amb el codi 7
             byte[] msg = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg);
             // recibimos respuesta del servidor
             byte[] msg2 = new byte[80];
             server.Receive(msg2);
             string serializedData = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            this.mimazo = serializedData.Split('-')[0];
-            this.mazopartida = serializedData.Split('-')[1];
-            this.lastcard = Convert.ToInt32(serializedData.Split('-')[2]);
-
+            this.mimazo = serializedData.Split('*')[0];
+            this.mazopartida = serializedData.Split('*')[1];
+            this.lastcard = Convert.ToInt32(serializedData.Split('*')[2]);
+            if (this.mazopartida == null)
+            {
+                Crearmazo(10);
+                EnviarMazos();
+            }
         }
 
         private void EnviarMazos()
         {
-            string consulta = "9/" + this.id_partida + "/" + this.id_jugador + "-" + this.mimazo + "-" + this.mazopartida + "-" + this.cartajugada;
+            string consulta = "9/" + this.id_partida + "/" + this.id_jugador + "*" + this.mimazo + "*" + this.mazopartida + "*" + this.cartajugada;
             byte[] msg = Encoding.ASCII.GetBytes(consulta);
             server.Send(msg);
             this.cartajugada = -1;
@@ -157,7 +171,15 @@ namespace Cliente_Juego
                 server.Send(msg);    //    logica de haber explotado
             }
 
-            this.mimazo = this.mimazo + "/" + Convert.ToString(nuevacarta);
+            if (this.mimazo == "-1")
+            {
+                this.mimazo = Convert.ToString(nuevacarta);
+            }
+            else
+            {
+                this.mimazo = this.mimazo + "/" + Convert.ToString(nuevacarta);
+            }
+
             DesglosarMazo();
         }
 
@@ -172,19 +194,23 @@ namespace Cliente_Juego
             }
             string mazocartas = string.Join("/", cartas);
             this.mazopartida = mazocartas;
+            this.mazocreado = true;
         }
 
         public void DesglosarMazo()
         {
-            int[] counts = new int[10];
-            string[] numbers = this.mimazo.Split('/');
-            foreach (string number in numbers)
+            if (this.mimazo != "-1")
             {
-                int digit = int.Parse(number);
-                counts[digit]++;
+                int[] counts = new int[10];
+                string[] numbers = this.mimazo.Split('/');
+                foreach (string number in numbers)
+                {
+                    int digit = int.Parse(number);
+                    counts[digit]++;
+                }
+                this.mimazodesglosado = counts;
+                PopulateCantidadCartas();
             }
-            this.mimazodesglosado = counts;
-            PopulateCantidadCartas();
         }
 
         public void PopulateCantidadCartas()
@@ -202,8 +228,10 @@ namespace Cliente_Juego
         public void JugarTurno()
         {
             Checkturno();
-            if (turno == true)
+            
+            if (this.turno == true)
             {
+                MessageBox.Show("Es el teu torn");
                 RecibirMazos();
                 DesglosarMazo();
                 // primero, comprobamos cuál ha sido la ultima carta
@@ -216,6 +244,7 @@ namespace Cliente_Juego
                 //si no es un ataque
                 else
                 {
+                    MessageBox.Show("No es ataque: " + cartajugada);
                     if (cartajugada != -1)
                     {
                         if (cartajugada == 1) // no
@@ -264,11 +293,15 @@ namespace Cliente_Juego
                             // turno a alguien determinado
                         }
                     }
-                    if (cartajugada == -1)
+                    else if (cartajugada == -1)
                     {
-                        MessageBox.Show("Selecciona carta a jugar");
+                        if(MessageBox.Show("No se ha seleccionado carta.","Deseas no tirar?",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            Robarcarta(1);
+                        }
                     }
                 }
+                MessageBox.Show("Saliendo del boocle");
                 EnviarMazos();
             }
             else
@@ -320,11 +353,6 @@ namespace Cliente_Juego
         }
 
 
-        private void no_button_Click(object sender, EventArgs e)
-        {
-            Lanzarcarta(1);
-        }
-
         private void jugar_rda_Click(object sender, EventArgs e)
         {
             Lanzarcarta(2);
@@ -360,9 +388,15 @@ namespace Cliente_Juego
             Lanzarcarta(8);
         }
 
-        private void jugar_turno_Click(object sender, EventArgs e)
+        private void jugar_turno_Click_1(object sender, EventArgs e)
         {
             JugarTurno();
         }
+
+        private void no_button_Click_1(object sender, EventArgs e)
+        {
+            Lanzarcarta(1);
+        }
+
     }
 }

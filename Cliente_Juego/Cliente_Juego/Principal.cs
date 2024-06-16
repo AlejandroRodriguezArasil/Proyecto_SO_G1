@@ -91,17 +91,16 @@ namespace Cliente_Juego
         {
             if (conexion)
             {
+                
+                ThreadStart ts = delegate { FormularioIniciarSession(); };
+                Thread i = new Thread(ts);
+                i.Start();
                 iniciarSesiónToolStripMenuItem.Enabled = false;
                 cerrarSesiónToolStripMenuItem.Enabled = true;
                 invitarToolStripMenuItem.Enabled = true;
                 borrarCuentaToolStripMenuItem.Enabled = false;
                 cerrarSesiónToolStripMenuItem.Enabled = true;
-                string consulta = "5/";
-                byte[] msg = Encoding.ASCII.GetBytes(consulta);
-                server.Send(msg);
-                ThreadStart ts = delegate { FormularioIniciarSession(); };
-                Thread i = new Thread(ts);
-                i.Start();
+                
             }
             else
             {
@@ -204,7 +203,9 @@ namespace Cliente_Juego
         {
             if (conexion)
             {
-                
+                string consulta = "5/";
+                byte[] msg = Encoding.ASCII.GetBytes(consulta);
+                server.Send(msg);
                 ThreadStart ts = delegate { FormularioConectados(); };
                 Thread f = new Thread(ts);
                 f.Start();
@@ -366,9 +367,9 @@ namespace Cliente_Juego
                                 Array.Copy(trozos, 1, subVector, 0, trozos.Length - 1);
 
                                 // Unir los elementos en un solo string
-                                string resultado = String.Join("/", subVector);
+                                string resultado1 = String.Join("/", subVector);
                                 // Split the serialized data by '/'
-                                string[] rows = resultado.Split('/');
+                                string[] rows = resultado1.Split('/');
 
                                 // Create a new DataTable and define its columns
                                 
@@ -446,9 +447,9 @@ namespace Cliente_Juego
                                 Array.Copy(trozos, 1, subVector, 0, trozos.Length - 1);
 
                                 // Unir los elementos en un solo string
-                                string resultado = String.Join("/", subVector);
+                                string resultado2 = String.Join("/", subVector);
                                 // Split the serialized data by '/'
-                                string[] rows = resultado.Split('/');
+                                string[] rows = resultado2.Split('/');
 
                                 
                                 datatable10.Columns.Add("ID Partida Acabada", typeof(int));
@@ -488,9 +489,9 @@ namespace Cliente_Juego
                                 Array.Copy(trozos, 1, subVector, 0, trozos.Length - 1);
 
                                 // Unir los elementos en un solo string
-                                string resultado = String.Join("/", subVector);
+                                string resultado3 = String.Join("/", subVector);
                                 // Split the serialized data by '/'
-                                string[] rows = resultado.Split('/');
+                                string[] rows = resultado3.Split('/');
 
                                 
                                 datatable11.Columns.Add("ID Partida Activa", typeof(int));
@@ -538,25 +539,21 @@ namespace Cliente_Juego
                             MessageBox.Show("Has creado una partida con identificador: " + trozos[1]);
                         break;
                     case 17:
-                        if (Convert.ToInt32(trozos[1]) == -1)
-                            MessageBox.Show("No se ha podido invitar");
-                        else
+                        string nickname = trozos[1];
+                        int id_partida = Convert.ToInt32(trozos[2]);
+                        int id_jugador_invitado = Convert.ToInt32(trozos[3]);
+                        string missatge = nickname + "te ha invitado a una partida";
+                        DialogResult resultado = MessageBox.Show(missatge, "Deseas unirte?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resultado == DialogResult.Yes)
                         {
-                            string nickname = trozos[1];
-                            int id_partida = Convert.ToInt32(trozos[2]);
-                            int id_jugador_invitado = Convert.ToInt32(trozos[3]);
-                            string missatge = nickname + "te ha invitado a una partida";
-                            DialogResult resultado = MessageBox.Show(missatge, "Deseas unirte?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (resultado == DialogResult.Yes)
-                            {
-                                string mensaje1 = "18/" + id_partida + "/" + id_jugador_invitado;
-                                byte[] msg1 = Encoding.ASCII.GetBytes(mensaje1);
-                                server.Send(msg1);
-                                //FALTA ESCIBIR LA LÓGICA DE ENTRAR EN PARTIDA
-                                GlobalData.Instance.Set_idpartida(id_partida);
-                                ThreadPartida();
-                            }
+                            string mensaje1 = "18/" + id_partida + "/" + id_jugador_invitado;
+                            byte[] msg1 = Encoding.ASCII.GetBytes(mensaje1);
+                            server.Send(msg1);
+                            //FALTA ESCIBIR LA LÓGICA DE ENTRAR EN PARTIDA
+                            GlobalData.Instance.Set_idpartida(id_partida);
+                            ThreadPartida();
                         }
+                        
                         break;
                     case 18:
                         if (Convert.ToInt32(trozos[1]) == 0)
